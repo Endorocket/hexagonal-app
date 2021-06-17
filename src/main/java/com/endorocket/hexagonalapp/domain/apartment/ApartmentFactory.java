@@ -15,6 +15,6 @@ public class ApartmentFactory {
 				return new Room(name, squareMeter);
 			})
 			.toList();
-		return new Apartment(ownerId, address, description);
+		return new Apartment(ownerId, address, rooms, description);
 	}
 }
