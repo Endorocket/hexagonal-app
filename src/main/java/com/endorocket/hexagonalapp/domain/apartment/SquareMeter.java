@@ -1,5 +1,8 @@
 package com.endorocket.hexagonalapp.domain.apartment;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 class SquareMeter {
 	private final Double size;
 

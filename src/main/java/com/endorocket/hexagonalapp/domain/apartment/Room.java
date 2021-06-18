@@ -1,7 +1,13 @@
 package com.endorocket.hexagonalapp.domain.apartment;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+
+@Entity
 class Room {
 	private final String name;
+
+	@Embedded
 	private final SquareMeter squareMeter;
 
 	Room(String name, SquareMeter squareMeter) {
