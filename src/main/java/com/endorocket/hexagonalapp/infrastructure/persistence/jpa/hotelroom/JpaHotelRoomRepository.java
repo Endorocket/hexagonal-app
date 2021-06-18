@@ -4,14 +4,14 @@ import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoom;
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomRepository;
 
 public class JpaHotelRoomRepository implements HotelRoomRepository {
-  private final SpringJpaHotelRoomRepository springJpaHotelRoomRepository;
+  private final SpringJpaHotelRoomRepository hotelRoomRepository;
 
-  public JpaHotelRoomRepository(SpringJpaHotelRoomRepository springJpaHotelRoomRepository) {
-    this.springJpaHotelRoomRepository = springJpaHotelRoomRepository;
+  public JpaHotelRoomRepository(SpringJpaHotelRoomRepository hotelRoomRepository) {
+    this.hotelRoomRepository = hotelRoomRepository;
   }
 
   @Override
   public void save(HotelRoom hotelRoom) {
-    springJpaHotelRoomRepository.save(hotelRoom);
+    hotelRoomRepository.save(hotelRoom);
   }
 }

@@ -4,14 +4,14 @@ import com.endorocket.hexagonalapp.domain.apartment.Apartment;
 import com.endorocket.hexagonalapp.domain.apartment.ApartmentRepository;
 
 public class JpaApartmentRepository implements ApartmentRepository {
-  private final SpringJpaApartmentRepository springJpaApartmentRepository;
+  private final SpringJpaApartmentRepository apartmentRepository;
 
-  JpaApartmentRepository(SpringJpaApartmentRepository springJpaApartmentRepository) {
-    this.springJpaApartmentRepository = springJpaApartmentRepository;
+  JpaApartmentRepository(SpringJpaApartmentRepository apartmentRepository) {
+    this.apartmentRepository = apartmentRepository;
   }
 
   @Override
   public void save(Apartment apartment) {
-    springJpaApartmentRepository.save(apartment);
+    apartmentRepository.save(apartment);
   }
 }
