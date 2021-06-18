@@ -1,5 +1,8 @@
 package com.endorocket.hexagonalapp.domain.hotel;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 class Address {
   private final String name;
   private final String street;
