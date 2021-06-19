@@ -1,9 +1,8 @@
 package com.endorocket.hexagonalapp.domain.apartment;
 
-import javax.persistence.Embeddable;
 import java.time.LocalDate;
+import java.util.List;
 
-@Embeddable
 public class Period {
 
 	private final LocalDate start;
@@ -20,5 +19,9 @@ public class Period {
 
 	LocalDate getEnd() {
 		return end;
+	}
+
+	List<LocalDate> asDays() {
+		return start.datesUntil(end).toList();
 	}
 }
