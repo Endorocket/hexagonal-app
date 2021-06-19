@@ -1,10 +1,7 @@
 package com.endorocket.hexagonalapp.infrastructure.rest.api.apartment;
 
 import com.endorocket.hexagonalapp.application.apartment.ApartmentApplicationService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/apartment")
@@ -20,5 +17,11 @@ public class ApartmentRestController {
 		apartmentApplicationService.add(apartmentDto.ownerId(), apartmentDto.street(), apartmentDto.postalCode(),
 			apartmentDto.houseNumber(), apartmentDto.apartmentNumber(), apartmentDto.city(),
 			apartmentDto.country(), apartmentDto.description(), apartmentDto.roomsDefinition());
+	}
+
+	@PutMapping("/book/{id}")
+	public void book(@PathVariable String id, @RequestBody ApartmentBookingDto apartmentBookingDto) {
+		apartmentApplicationService.book(id, apartmentBookingDto.tenantId(), apartmentBookingDto.start(),
+			apartmentBookingDto.end());
 	}
 }
