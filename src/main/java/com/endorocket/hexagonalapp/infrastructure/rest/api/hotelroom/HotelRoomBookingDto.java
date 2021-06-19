@@ -4,5 +4,5 @@ import java.time.LocalDate;
 import java.util.List;
 
 record HotelRoomBookingDto(String tenantId,
-                           List<LocalDate> dates) {
+                           List<LocalDate> days) {
 }

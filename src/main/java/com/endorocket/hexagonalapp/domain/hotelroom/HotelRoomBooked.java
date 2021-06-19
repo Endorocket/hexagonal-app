@@ -11,21 +11,21 @@ public class HotelRoomBooked {
 	private final String id;
 	private final String hotelId;
 	private final String tenantId;
-	private final List<LocalDate> dates;
+	private final List<LocalDate> days;
 
-	private HotelRoomBooked(String eventId, LocalDateTime creationDateTime, String id, String hotelId, String tenantId, List<LocalDate> dates) {
+	private HotelRoomBooked(String eventId, LocalDateTime creationDateTime, String id, String hotelId, String tenantId, List<LocalDate> days) {
 		this.eventId = eventId;
 		this.creationDateTime = creationDateTime;
 		this.id = id;
 		this.hotelId = hotelId;
 		this.tenantId = tenantId;
-		this.dates = dates;
+		this.days = days;
 	}
 
-	static HotelRoomBooked create(String id, String hotelId, String tenantId, List<LocalDate> dates) {
+	static HotelRoomBooked create(String id, String hotelId, String tenantId, List<LocalDate> days) {
 		String eventId = UUID.randomUUID().toString();
 		LocalDateTime creationDateTime = LocalDateTime.now();
-		return new HotelRoomBooked(eventId, creationDateTime, id, hotelId, tenantId, dates);
+		return new HotelRoomBooked(eventId, creationDateTime, id, hotelId, tenantId, days);
 	}
 
 	public String getEventId() {
@@ -48,7 +48,7 @@ public class HotelRoomBooked {
 		return tenantId;
 	}
 
-	public List<LocalDate> getDates() {
-		return dates;
+	public List<LocalDate> getDays() {
+		return days;
 	}
 }

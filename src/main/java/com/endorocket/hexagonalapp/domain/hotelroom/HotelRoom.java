@@ -31,8 +31,8 @@ public class HotelRoom {
     this.description = description;
   }
 
-  public void book(String tenantId, List<LocalDate> dates, EventChannel eventChannel) {
-    HotelRoomBooked hotelRoomBooked = HotelRoomBooked.create(id, hotelId, tenantId, dates);
+  public void book(String tenantId, List<LocalDate> days, EventChannel eventChannel) {
+    HotelRoomBooked hotelRoomBooked = HotelRoomBooked.create(id, hotelId, tenantId, days);
     eventChannel.publish(hotelRoomBooked);
   }
 }
