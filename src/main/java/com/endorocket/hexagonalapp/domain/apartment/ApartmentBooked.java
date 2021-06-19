@@ -7,16 +7,16 @@ import java.util.UUID;
 public class ApartmentBooked {
 	private final String eventId;
 	private final LocalDateTime creationDateTime;
-	private final String id;
+	private final String apartmentId;
 	private final String ownerId;
 	private final String tenantId;
 	private final LocalDate periodStart;
 	private final LocalDate periodEnd;
 
-	private ApartmentBooked(String eventId, LocalDateTime creationDateTime, String id, String ownerId, String tenantId, Period period) {
+	private ApartmentBooked(String eventId, LocalDateTime creationDateTime, String apartmentId, String ownerId, String tenantId, Period period) {
 		this.eventId = eventId;
 		this.creationDateTime = creationDateTime;
-		this.id = id;
+		this.apartmentId = apartmentId;
 		this.ownerId = ownerId;
 		this.tenantId = tenantId;
 		periodStart = period.getStart();
@@ -38,8 +38,8 @@ public class ApartmentBooked {
 		return creationDateTime;
 	}
 
-	public String getId() {
-		return id;
+	public String getApartmentId() {
+		return apartmentId;
 	}
 
 	public String getOwnerId() {
