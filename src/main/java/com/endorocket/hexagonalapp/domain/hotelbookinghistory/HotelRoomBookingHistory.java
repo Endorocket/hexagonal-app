@@ -1,4 +1,4 @@
-package com.endorocket.hexagonalapp.domain.hotelroombookinghistory;
+package com.endorocket.hexagonalapp.domain.hotelbookinghistory;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

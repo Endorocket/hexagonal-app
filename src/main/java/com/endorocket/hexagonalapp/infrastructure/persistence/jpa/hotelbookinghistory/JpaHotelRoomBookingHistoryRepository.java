@@ -1,8 +1,7 @@
-package com.endorocket.hexagonalapp.infrastructure.persistence.jpa.hotelroombookinghistory;
+package com.endorocket.hexagonalapp.infrastructure.persistence.jpa.hotelbookinghistory;
 
-import com.endorocket.hexagonalapp.domain.hotelroombookinghistory.HotelBookingHistory;
-import com.endorocket.hexagonalapp.domain.hotelroombookinghistory.HotelBookingHistoryRepository;
-import com.endorocket.hexagonalapp.domain.hotelroombookinghistory.HotelRoomBookingHistory;
+import com.endorocket.hexagonalapp.domain.hotelbookinghistory.HotelBookingHistory;
+import com.endorocket.hexagonalapp.domain.hotelbookinghistory.HotelBookingHistoryRepository;
 
 import java.util.Optional;
 
