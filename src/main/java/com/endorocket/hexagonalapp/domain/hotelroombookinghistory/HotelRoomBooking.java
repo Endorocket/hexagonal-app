@@ -15,7 +15,7 @@ public class HotelRoomBooking {
 	@ElementCollection
 	private final List<LocalDate> days;
 
-	public HotelRoomBooking(BookingStep bookingStep, LocalDateTime bookingTime, String tenantId, List<LocalDate> days) {
+	private HotelRoomBooking(BookingStep bookingStep, LocalDateTime bookingTime, String tenantId, List<LocalDate> days) {
 		this.bookingStep = bookingStep;
 		this.bookingTime = bookingTime;
 		this.tenantId = tenantId;
