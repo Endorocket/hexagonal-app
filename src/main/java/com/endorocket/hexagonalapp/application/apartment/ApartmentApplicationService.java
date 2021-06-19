@@ -3,6 +3,7 @@ package com.endorocket.hexagonalapp.application.apartment;
 import com.endorocket.hexagonalapp.domain.apartment.Apartment;
 import com.endorocket.hexagonalapp.domain.apartment.ApartmentFactory;
 import com.endorocket.hexagonalapp.domain.apartment.ApartmentRepository;
+import com.endorocket.hexagonalapp.domain.apartment.Period;
 
 import java.time.LocalDate;
 import java.util.Map;
@@ -22,6 +23,9 @@ public class ApartmentApplicationService {
 	}
 
 	public void book(String id, String tenantId, LocalDate start, LocalDate end) {
+		Apartment apartment = apartmentRepository.findById(id);
+		Period period = new Period(start, end);
 
+		apartment.book(tenantId, period);
 	}
 }
