@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/hotel")
-public class Hotel {
+public class HotelRestController {
 	private final HotelApplicationService hotelApplicationService;
 
-	public Hotel(HotelApplicationService hotelApplicationService) {
+	public HotelRestController(HotelApplicationService hotelApplicationService) {
 		this.hotelApplicationService = hotelApplicationService;
 	}
 
