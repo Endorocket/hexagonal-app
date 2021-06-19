@@ -1,6 +1,6 @@
 package com.endorocket.hexagonalapp.application.hotelroom;
 
-import com.endorocket.hexagonalapp.domain.hotelroom.eventchannel.EventChannel;
+import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoom;
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomFactory;
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomRepository;

@@ -1,6 +1,6 @@
 package com.endorocket.hexagonalapp.domain.hotelroom;
 
-import com.endorocket.hexagonalapp.domain.hotelroom.eventchannel.EventChannel;
+import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

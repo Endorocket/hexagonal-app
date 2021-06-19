@@ -1,6 +1,6 @@
 package com.endorocket.hexagonalapp.domain.apartment;
 
-import com.endorocket.hexagonalapp.domain.apartment.eventchannel.EventChannel;
+import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
 
 import javax.persistence.*;
 import java.util.List;
