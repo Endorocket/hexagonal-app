@@ -8,21 +8,15 @@ import java.util.List;
 
 @Entity
 public class HotelRoomBooking {
-	private final BookingStep bookingStep;
 	private final LocalDateTime bookingTime;
 	private final String tenantId;
 
 	@ElementCollection
 	private final List<LocalDate> days;
 
-	private HotelRoomBooking(BookingStep bookingStep, LocalDateTime bookingTime, String tenantId, List<LocalDate> days) {
-		this.bookingStep = bookingStep;
+	public HotelRoomBooking(LocalDateTime bookingTime, String tenantId, List<LocalDate> days) {
 		this.bookingTime = bookingTime;
 		this.tenantId = tenantId;
 		this.days = days;
-	}
-
-	public static HotelRoomBooking start(LocalDateTime bookingTime, String tenantId, List<LocalDate> days) {
-		return new HotelRoomBooking(BookingStep.START, bookingTime, tenantId, days);
 	}
 }

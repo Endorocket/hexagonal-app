@@ -1,24 +1,25 @@
 package com.endorocket.hexagonalapp.infrastructure.persistence.jpa.hotelroombookinghistory;
 
-import com.endorocket.hexagonalapp.domain.hotelroombookinghistory.HotelRoomBookingHistoryRepository;
-import com.endorocket.hexagonalapp.domain.hotelroombookinghistory.HotelRoomHistory;
+import com.endorocket.hexagonalapp.domain.hotelroombookinghistory.HotelBookingHistory;
+import com.endorocket.hexagonalapp.domain.hotelroombookinghistory.HotelBookingHistoryRepository;
+import com.endorocket.hexagonalapp.domain.hotelroombookinghistory.HotelRoomBookingHistory;
 
 import java.util.Optional;
 
-public class JpaHotelRoomBookingHistoryRepository implements HotelRoomBookingHistoryRepository {
-	private final SpringJpaHotelRoomBookingHistoryRepository hotelRoomBookingHistoryRepository;
+public class JpaHotelRoomBookingHistoryRepository implements HotelBookingHistoryRepository {
+	private final SpringJpaHotelBookingHistoryRepository hotelBookingHistoryRepository;
 
-	public JpaHotelRoomBookingHistoryRepository(SpringJpaHotelRoomBookingHistoryRepository hotelRoomBookingHistoryRepository) {
-		this.hotelRoomBookingHistoryRepository = hotelRoomBookingHistoryRepository;
+	public JpaHotelRoomBookingHistoryRepository(SpringJpaHotelBookingHistoryRepository hotelBookingHistoryRepository) {
+		this.hotelBookingHistoryRepository = hotelBookingHistoryRepository;
 	}
 
 	@Override
-	public Optional<HotelRoomHistory> findFor(String hotelRoomId) {
-		return hotelRoomBookingHistoryRepository.findById(hotelRoomId);
+	public Optional<HotelBookingHistory> findFor(String hotelId) {
+		return hotelBookingHistoryRepository.findById(hotelId);
 	}
 
 	@Override
-	public void save(HotelRoomHistory hotelRoomHistory) {
-		hotelRoomBookingHistoryRepository.save(hotelRoomHistory);
+	public void save(HotelBookingHistory hotelBookingHistory) {
+		hotelBookingHistoryRepository.save(hotelBookingHistory);
 	}
 }
