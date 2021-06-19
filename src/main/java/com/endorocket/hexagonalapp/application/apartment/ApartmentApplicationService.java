@@ -1,18 +1,18 @@
 package com.endorocket.hexagonalapp.application.apartment;
 
-import com.endorocket.hexagonalapp.domain.apartment.Apartment;
-import com.endorocket.hexagonalapp.domain.apartment.ApartmentFactory;
-import com.endorocket.hexagonalapp.domain.apartment.ApartmentRepository;
-import com.endorocket.hexagonalapp.domain.apartment.Period;
+import com.endorocket.hexagonalapp.domain.apartment.*;
+import com.endorocket.hexagonalapp.domain.apartment.eventchannel.EventChannel;
 
 import java.time.LocalDate;
 import java.util.Map;
 
 public class ApartmentApplicationService {
 	private final ApartmentRepository apartmentRepository;
+	private final EventChannel eventChannel;
 
-	public ApartmentApplicationService(ApartmentRepository apartmentRepository) {
+	public ApartmentApplicationService(ApartmentRepository apartmentRepository, EventChannel eventChannel) {
 		this.apartmentRepository = apartmentRepository;
+		this.eventChannel = eventChannel;
 	}
 
 	public void add(String ownerId, String street, String postalCode, String houseNumber, String apartmentNumber,
@@ -26,6 +26,6 @@ public class ApartmentApplicationService {
 		Apartment apartment = apartmentRepository.findById(id);
 		Period period = new Period(start, end);
 
-		apartment.book(tenantId, period);
+		apartment.book(tenantId, period, eventChannel);
 	}
 }
