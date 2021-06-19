@@ -1,13 +1,17 @@
 package com.endorocket.hexagonalapp.domain.apartmentbookinghistory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ApartmentBookingHistory {
 	private final String apartmentId;
+	private final List<ApartmentBooking> bookings = new ArrayList<>();
 
 	public ApartmentBookingHistory(String apartmentId) {
 		this.apartmentId = apartmentId;
 	}
 
 	public void add(ApartmentBooking start) {
-
+		bookings.add(start);
 	}
 }
