@@ -8,15 +8,15 @@ import java.util.UUID;
 public class HotelRoomBooked {
 	private final String eventId;
 	private final LocalDateTime creationDateTime;
-	private final String id;
+	private final String hotelRoomId;
 	private final String hotelId;
 	private final String tenantId;
 	private final List<LocalDate> days;
 
-	private HotelRoomBooked(String eventId, LocalDateTime creationDateTime, String id, String hotelId, String tenantId, List<LocalDate> days) {
+	private HotelRoomBooked(String eventId, LocalDateTime creationDateTime, String hotelRoomId, String hotelId, String tenantId, List<LocalDate> days) {
 		this.eventId = eventId;
 		this.creationDateTime = creationDateTime;
-		this.id = id;
+		this.hotelRoomId = hotelRoomId;
 		this.hotelId = hotelId;
 		this.tenantId = tenantId;
 		this.days = days;
@@ -36,8 +36,8 @@ public class HotelRoomBooked {
 		return creationDateTime;
 	}
 
-	public String getId() {
-		return id;
+	public String getHotelRoomId() {
+		return hotelRoomId;
 	}
 
 	public String getHotelId() {

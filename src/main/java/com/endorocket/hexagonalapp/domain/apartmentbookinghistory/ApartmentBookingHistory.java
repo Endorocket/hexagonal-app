@@ -19,7 +19,7 @@ public class ApartmentBookingHistory {
 		this.apartmentId = apartmentId;
 	}
 
-	public void add(ApartmentBooking start) {
-		bookings.add(start);
+	public void add(ApartmentBooking apartmentBooking) {
+		bookings.add(apartmentBooking);
 	}
 }
