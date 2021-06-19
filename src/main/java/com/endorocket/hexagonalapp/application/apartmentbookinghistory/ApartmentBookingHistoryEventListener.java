@@ -20,7 +20,8 @@ public class ApartmentBookingHistoryEventListener {
 		ApartmentBookingHistory apartmentBookingHistory = getApartmentBookingHistoryFor(apartmentBooked.getApartmentId());
 		BookingPeriod bookingPeriod = new BookingPeriod(apartmentBooked.getPeriodStart(), apartmentBooked.getPeriodEnd());
 
-		apartmentBookingHistory.add(ApartmentBooking.start(apartmentBooked.getOwnerId(), apartmentBooked.getTenantId(), bookingPeriod));
+		apartmentBookingHistory.add(ApartmentBooking.start(
+			apartmentBooked.getCreationDateTime(), apartmentBooked.getOwnerId(), apartmentBooked.getTenantId(), bookingPeriod));
 
 		apartmentBookingHistoryRepository.save(apartmentBookingHistory);
 	}
