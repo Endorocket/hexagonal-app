@@ -1,5 +1,6 @@
 package com.endorocket.hexagonalapp.infrastructure.rest.api.booking;
 
+import com.endorocket.hexagonalapp.application.booking.BookingAccept;
 import com.endorocket.hexagonalapp.application.booking.BookingReject;
 import com.endorocket.hexagonalapp.application.commandregistry.CommandRegistry;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,5 +20,10 @@ public class BookingRestController {
 	@PutMapping("/reject/{id}")
 	public void reject(@PathVariable String id) {
 		commandRegistry.register(new BookingReject(id));
+	}
+
+	@PutMapping("/accept/{id}")
+	public void accept(@PathVariable String id) {
+		commandRegistry.register(new BookingAccept(id));
 	}
 }
