@@ -1,5 +1,7 @@
 package com.endorocket.hexagonalapp.domain.apartment;
 
+import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
+
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,7 @@ import java.util.List;
 
 @Entity
 public class Booking {
-	private final RentalType apartment;
+	private final RentalType rentalType;
 	@Id
 	@GeneratedValue
 	private String id;
@@ -21,8 +23,8 @@ public class Booking {
 	private final List<LocalDate> days;
 	private BookingStatus bookingStatus = BookingStatus.OPEN;
 
-	private Booking(RentalType apartment, String rentalPlaceId, String tenantId, List<LocalDate> days) {
-		this.apartment = apartment;
+	private Booking(RentalType rentalType, String rentalPlaceId, String tenantId, List<LocalDate> days) {
+		this.rentalType = rentalType;
 		this.rentalPlaceId = rentalPlaceId;
 		this.tenantId = tenantId;
 		this.days = days;
@@ -38,6 +40,12 @@ public class Booking {
 	}
 
 	public void reject() {
-		bookingStatus = BookingStatus.REJECT;
+		bookingStatus = BookingStatus.REJECTED;
+	}
+
+	public void accept(EventChannel eventChannel) {
+		bookingStatus = BookingStatus.ACCEPTED;
+		BookingAccepted bookingAccepted = BookingAccepted.create(rentalType, rentalPlaceId, tenantId, days);
+		eventChannel.publish(bookingAccepted);
 	}
 }
