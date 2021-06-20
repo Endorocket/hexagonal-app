@@ -1,15 +1,19 @@
 package com.endorocket.hexagonalapp.infrastructure.rest.api.apartment;
 
 import com.endorocket.hexagonalapp.application.apartment.ApartmentApplicationService;
+import com.endorocket.hexagonalapp.query.apartment.ApartmentReadModel;
+import com.endorocket.hexagonalapp.query.apartment.QueryApartmentRepository;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/apartment")
 public class ApartmentRestController {
 	private final ApartmentApplicationService apartmentApplicationService;
+	private final QueryApartmentRepository queryApartmentRepository;
 
-	public ApartmentRestController(ApartmentApplicationService apartmentApplicationService) {
+	public ApartmentRestController(ApartmentApplicationService apartmentApplicationService, QueryApartmentRepository queryApartmentRepository) {
 		this.apartmentApplicationService = apartmentApplicationService;
+		this.queryApartmentRepository = queryApartmentRepository;
 	}
 
 	@PostMapping
@@ -23,5 +27,10 @@ public class ApartmentRestController {
 	public void book(@PathVariable String id, @RequestBody ApartmentBookingDto apartmentBookingDto) {
 		apartmentApplicationService.book(id, apartmentBookingDto.tenantId(), apartmentBookingDto.start(),
 			apartmentBookingDto.end());
+	}
+
+	@GetMapping
+	public Iterable<ApartmentReadModel> findAll() {
+		return queryApartmentRepository.findAll();
 	}
 }
