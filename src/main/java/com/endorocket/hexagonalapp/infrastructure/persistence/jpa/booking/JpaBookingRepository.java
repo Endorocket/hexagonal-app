@@ -14,4 +14,9 @@ public class JpaBookingRepository implements BookingRepository {
 	public void save(Booking booking) {
 		bookingRepository.save(booking);
 	}
+
+	@Override
+	public Booking findById(String id) {
+		return bookingRepository.findById(id).get();
+	}
 }

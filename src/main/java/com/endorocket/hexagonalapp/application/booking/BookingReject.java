@@ -1,13 +1,13 @@
 package com.endorocket.hexagonalapp.application.booking;
 
 public class BookingReject {
-	private final String id;
+	private final String bookingId;
 
-	public BookingReject(String id) {
-		this.id = id;
+	public BookingReject(String bookingId) {
+		this.bookingId = bookingId;
 	}
 
-	String getId() {
-		return id;
+	String getBookingId() {
+		return bookingId;
 	}
 }
