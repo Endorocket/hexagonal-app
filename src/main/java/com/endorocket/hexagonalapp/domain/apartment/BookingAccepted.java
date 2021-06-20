@@ -8,12 +8,12 @@ import java.util.UUID;
 public class BookingAccepted {
 	private final String eventId;
 	private final LocalDateTime creationDateTime;
-	private final RentalType rentalType;
+	private final String rentalType;
 	private final String rentalPlaceId;
 	private final String tenantId;
 	private final List<LocalDate> days;
 
-	private BookingAccepted(String eventId, LocalDateTime creationDateTime, RentalType rentalType, String rentalPlaceId, String tenantId, List<LocalDate> days) {
+	private BookingAccepted(String eventId, LocalDateTime creationDateTime, String rentalType, String rentalPlaceId, String tenantId, List<LocalDate> days) {
 		this.eventId = eventId;
 		this.creationDateTime = creationDateTime;
 		this.rentalType = rentalType;
@@ -26,7 +26,7 @@ public class BookingAccepted {
 		String eventId = UUID.randomUUID().toString();
 		LocalDateTime creationDateTime = LocalDateTime.now();
 
-		return new BookingAccepted(eventId, creationDateTime, rentalType, rentalPlaceId, tenantId, days);
+		return new BookingAccepted(eventId, creationDateTime, rentalType.name(), rentalPlaceId, tenantId, days);
 	}
 
 	public String getEventId() {
@@ -37,7 +37,7 @@ public class BookingAccepted {
 		return creationDateTime;
 	}
 
-	public RentalType getRentalType() {
+	public String getRentalType() {
 		return rentalType;
 	}
 
