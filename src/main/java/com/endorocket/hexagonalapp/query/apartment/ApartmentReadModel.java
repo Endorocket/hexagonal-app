@@ -7,8 +7,7 @@ import java.util.List;
 @Table(name = "APARTMENT")
 public class ApartmentReadModel {
 	@Id
-	@GeneratedValue
-	private String id;
+	private final String id;
 
 	private final String ownerId;
 

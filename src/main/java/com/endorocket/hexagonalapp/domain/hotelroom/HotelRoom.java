@@ -3,14 +3,12 @@ package com.endorocket.hexagonalapp.domain.hotelroom;
 import com.endorocket.hexagonalapp.domain.apartment.Booking;
 import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@Table(name = "HOTEL_ROOM")
 public class HotelRoom {
   @Id
   @GeneratedValue

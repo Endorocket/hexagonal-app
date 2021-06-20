@@ -1,19 +1,19 @@
 package com.endorocket.hexagonalapp.query.apartment;
 
 public class ApartmentDetails {
-	private final ApartmentReadModel apartmentReadModel;
-	private final ApartmentBookingHistoryReadModel apartmentBookingHistoryReadModel;
+	private final ApartmentReadModel apartment;
+	private final ApartmentBookingHistoryReadModel apartmentBookingHistory;
 
-	ApartmentDetails(ApartmentReadModel apartmentReadModel, ApartmentBookingHistoryReadModel apartmentBookingHistoryReadModel) {
-		this.apartmentReadModel = apartmentReadModel;
-		this.apartmentBookingHistoryReadModel = apartmentBookingHistoryReadModel;
+	ApartmentDetails(ApartmentReadModel apartment, ApartmentBookingHistoryReadModel apartmentBookingHistory) {
+		this.apartment = apartment;
+		this.apartmentBookingHistory = apartmentBookingHistory;
 	}
 
-	public ApartmentReadModel getApartmentReadModel() {
-		return apartmentReadModel;
+	public ApartmentReadModel getApartment() {
+		return apartment;
 	}
 
-	public ApartmentBookingHistoryReadModel getApartmentBookingHistoryReadModel() {
-		return apartmentBookingHistoryReadModel;
+	public ApartmentBookingHistoryReadModel getApartmentBookingHistory() {
+		return apartmentBookingHistory;
 	}
 }

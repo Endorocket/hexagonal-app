@@ -2,8 +2,10 @@ package com.endorocket.hexagonalapp.domain.hotelroom;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "HOTEL_ROOM_SPACE")
 class Space {
   private final String name;
 
