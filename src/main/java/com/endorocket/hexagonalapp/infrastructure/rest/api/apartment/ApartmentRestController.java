@@ -1,6 +1,7 @@
 package com.endorocket.hexagonalapp.infrastructure.rest.api.apartment;
 
 import com.endorocket.hexagonalapp.application.apartment.ApartmentApplicationService;
+import com.endorocket.hexagonalapp.query.apartment.ApartmentDetails;
 import com.endorocket.hexagonalapp.query.apartment.ApartmentReadModel;
 import com.endorocket.hexagonalapp.query.apartment.QueryApartmentRepository;
 import org.springframework.web.bind.annotation.*;
@@ -32,5 +33,10 @@ public class ApartmentRestController {
 	@GetMapping
 	public Iterable<ApartmentReadModel> findAll() {
 		return queryApartmentRepository.findAll();
+	}
+
+	@GetMapping("/{id}")
+	public ApartmentDetails findById(@PathVariable String id) {
+		return queryApartmentRepository.findById(id);
 	}
 }
