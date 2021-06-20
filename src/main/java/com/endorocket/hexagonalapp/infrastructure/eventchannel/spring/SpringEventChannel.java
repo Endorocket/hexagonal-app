@@ -1,4 +1,4 @@
-package com.endorocket.hexagonalapp.infrastructure.eventchannel.spring.eventchannel;
+package com.endorocket.hexagonalapp.infrastructure.eventchannel.spring;
 
 import com.endorocket.hexagonalapp.domain.apartment.ApartmentBooked;
 import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
