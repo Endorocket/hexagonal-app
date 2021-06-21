@@ -7,15 +7,15 @@ import java.util.UUID;
 
 public class BookingAccepted {
 	private final String eventId;
-	private final LocalDateTime creationDateTime;
+	private final LocalDateTime eventCreationDateTime;
 	private final String rentalType;
 	private final String rentalPlaceId;
 	private final String tenantId;
 	private final List<LocalDate> days;
 
-	private BookingAccepted(String eventId, LocalDateTime creationDateTime, String rentalType, String rentalPlaceId, String tenantId, List<LocalDate> days) {
+	private BookingAccepted(String eventId, LocalDateTime eventCreationDateTime, String rentalType, String rentalPlaceId, String tenantId, List<LocalDate> days) {
 		this.eventId = eventId;
-		this.creationDateTime = creationDateTime;
+		this.eventCreationDateTime = eventCreationDateTime;
 		this.rentalType = rentalType;
 		this.rentalPlaceId = rentalPlaceId;
 		this.tenantId = tenantId;
@@ -33,8 +33,8 @@ public class BookingAccepted {
 		return eventId;
 	}
 
-	public LocalDateTime getCreationDateTime() {
-		return creationDateTime;
+	public LocalDateTime getEventCreationDateTime() {
+		return eventCreationDateTime;
 	}
 
 	public String getRentalType() {
