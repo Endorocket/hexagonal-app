@@ -6,16 +6,16 @@ import java.util.UUID;
 
 public class ApartmentBooked {
 	private final String eventId;
-	private final LocalDateTime creationDateTime;
+	private final LocalDateTime eventCreationDateTime;
 	private final String apartmentId;
 	private final String ownerId;
 	private final String tenantId;
 	private final LocalDate periodStart;
 	private final LocalDate periodEnd;
 
-	private ApartmentBooked(String eventId, LocalDateTime creationDateTime, String apartmentId, String ownerId, String tenantId, Period period) {
+	private ApartmentBooked(String eventId, LocalDateTime eventCreationDateTime, String apartmentId, String ownerId, String tenantId, Period period) {
 		this.eventId = eventId;
-		this.creationDateTime = creationDateTime;
+		this.eventCreationDateTime = eventCreationDateTime;
 		this.apartmentId = apartmentId;
 		this.ownerId = ownerId;
 		this.tenantId = tenantId;
@@ -34,8 +34,8 @@ public class ApartmentBooked {
 		return eventId;
 	}
 
-	public LocalDateTime getCreationDateTime() {
-		return creationDateTime;
+	public LocalDateTime getEventCreationDateTime() {
+		return eventCreationDateTime;
 	}
 
 	public String getApartmentId() {
