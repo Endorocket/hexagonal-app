@@ -15,11 +15,7 @@ class ApartmentTest {
 		String city = "Wrocław";
 		String country = "Poland";
 		String description = "Nice apartment";
-		String room1Name = "Toilet";
-		Double room1Size = 10.0;
-		String room2Name = "Bedroom";
-		Double room2Size = 15.5;
-		Map<String, Double> roomsDefinition = Map.of(room1Name, room1Size, room2Name, room2Size);
+		Map<String, Double> roomsDefinition = Map.of("Toilet", 10.0, "Bedroom", 15.5);
 
 		Apartment actual = new ApartmentFactory().create(ownerId, street, postalCode, houseNumber, apartmentNumber, city, country, description, roomsDefinition);
 
