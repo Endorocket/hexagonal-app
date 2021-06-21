@@ -22,6 +22,6 @@ public class Period {
 	}
 
 	List<LocalDate> asDays() {
-		return start.datesUntil(end).toList();
+		return start.datesUntil(end.plusDays(1)).toList();
 	}
 }
