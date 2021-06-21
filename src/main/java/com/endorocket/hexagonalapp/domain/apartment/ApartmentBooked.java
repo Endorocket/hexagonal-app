@@ -23,11 +23,11 @@ public class ApartmentBooked {
 		periodEnd = period.getEnd();
 	}
 
-	static ApartmentBooked create(String id, String ownerId, String tenantId, Period period) {
+	static ApartmentBooked create(String apartmentId, String ownerId, String tenantId, Period period) {
 		String eventId = UUID.randomUUID().toString();
 		LocalDateTime creationDateTime = LocalDateTime.now();
 
-		return new ApartmentBooked(eventId, creationDateTime, id, ownerId, tenantId, period);
+		return new ApartmentBooked(eventId, creationDateTime, apartmentId, ownerId, tenantId, period);
 	}
 
 	public String getEventId() {
