@@ -1,12 +1,16 @@
 package com.endorocket.hexagonalapp.domain.apartment;
 
+import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.then;
+import static org.mockito.Mockito.mock;
 
 class ApartmentTest {
 	private static final String OWNER_ID = "1234";
@@ -18,49 +22,55 @@ class ApartmentTest {
 	private static final String COUNTRY = "Poland";
 	private static final String DESCRIPTION = "Nice apartment";
 	private static final Map<String, Double> ROOMS_DEFINITION = Map.of("Toilet", 10.0, "Bedroom", 15.5);
+	private static final String TENANT_ID = "126";
+	private static final LocalDate START = LocalDate.of(2020, 3, 5);
+	private static final LocalDate MIDDLE = LocalDate.of(2020, 3, 6);
+	private static final LocalDate END = LocalDate.of(2020, 3, 7);
+	private static final Period PERIOD = new Period(START, END);
+
+	private final ApartmentFactory APARTMENT_FACTORY = new ApartmentFactory();
+	private final EventChannel eventChannel = mock(EventChannel.class);
 
 	@Test
 	void shouldCreateApartmentWithAllRequiredFields() {
-		Apartment actual = new ApartmentFactory().create(OWNER_ID, STREET, POSTAL_CODE, HOUSE_NUMBER, APARTMENT_NUMBER, CITY, COUNTRY, DESCRIPTION, ROOMS_DEFINITION);
+		Apartment actual = createApartment();
 
-		assertThatHasOwnerId(actual, OWNER_ID);
-		assertThatHasDescription(actual, DESCRIPTION);
-		assertThatHasAddress(actual, STREET, POSTAL_CODE, HOUSE_NUMBER, APARTMENT_NUMBER, CITY, COUNTRY);
-		assertThatHasRooms(actual, ROOMS_DEFINITION);
+		ApartmentAssertion.assertThat(actual)
+			.hasOwnerIdEqualsTo(OWNER_ID)
+			.hasDescriptionEqualsTo(DESCRIPTION)
+			.hasAddressEqualsTo(STREET, POSTAL_CODE, HOUSE_NUMBER, APARTMENT_NUMBER, CITY, COUNTRY)
+			.hasRoomsEqualsTo(ROOMS_DEFINITION);
 	}
 
-	private void assertThatHasOwnerId(Apartment actual, String ownerId) {
-		assertThat(actual).hasFieldOrPropertyWithValue("ownerId", ownerId);
+	@Test
+	void shouldCreateBookingOnceBooked() {
+		Apartment apartment = createApartment();
+
+		Booking actual = apartment.book(TENANT_ID, PERIOD, eventChannel);
+
+		BookingAssertion.assertThat(actual)
+			.isRentalTypeOf(RentalType.APARTMENT)
+			.hasTenantIdEqualTo(TENANT_ID)
+			.containsAllDays(List.of(START, MIDDLE, END));
 	}
 
-	private void assertThatHasDescription(Apartment actual, String description) {
-		assertThat(actual).hasFieldOrPropertyWithValue("description", description);
+	@Test
+	void shouldPublishApartmentBooked() {
+		ArgumentCaptor<ApartmentBooked> captor = ArgumentCaptor.forClass(ApartmentBooked.class);
+		Apartment apartment = createApartment();
+
+		apartment.book(TENANT_ID, PERIOD, eventChannel);
+
+		then(eventChannel).should().publish(captor.capture());
+		ApartmentBooked actual = captor.getValue();
+
+		Assertions.assertThat(actual.getTenantId()).isEqualTo(TENANT_ID);
+		Assertions.assertThat(actual.getOwnerId()).isEqualTo(OWNER_ID);
+		Assertions.assertThat(actual.getPeriodStart()).isEqualTo(START);
+		Assertions.assertThat(actual.getPeriodEnd()).isEqualTo(END);
 	}
 
-	private void assertThatHasAddress(Apartment actual, String street, String postalCode, String houseNumber, String apartmentNumber, String city, String country) {
-		assertThat(actual).extracting("address")
-			.hasFieldOrPropertyWithValue("street", street)
-			.hasFieldOrPropertyWithValue("postalCode", postalCode)
-			.hasFieldOrPropertyWithValue("houseNumber", houseNumber)
-			.hasFieldOrPropertyWithValue("apartmentNumber", apartmentNumber)
-			.hasFieldOrPropertyWithValue("city", city)
-			.hasFieldOrPropertyWithValue("country", country);
-	}
-
-	@SuppressWarnings("unchecked")
-	private void assertThatHasRooms(Apartment actual, Map<String, Double> roomsDefinition) {
-		assertThat(actual).extracting("rooms").satisfies(roomsActual -> {
-			List<Room> rooms = (List<Room>) roomsActual;
-			assertThat(rooms).hasSize(roomsDefinition.size());
-
-			roomsDefinition.forEach((name, squareMeter) ->
-				assertThat(rooms).anySatisfy(hasRoomThat(name, squareMeter)));
-		});
-	}
-
-	private Consumer<Room> hasRoomThat(String name, Double squareMeter) {
-		return room -> assertThat(room)
-			.hasFieldOrPropertyWithValue("name", name)
-			.hasFieldOrPropertyWithValue("squareMeter.size", squareMeter);
+	private Apartment createApartment() {
+		return APARTMENT_FACTORY.create(OWNER_ID, STREET, POSTAL_CODE, HOUSE_NUMBER, APARTMENT_NUMBER, CITY, COUNTRY, DESCRIPTION, ROOMS_DEFINITION);
 	}
 }
