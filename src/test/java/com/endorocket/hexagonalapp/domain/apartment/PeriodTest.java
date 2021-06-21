@@ -10,20 +10,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PeriodTest {
 
 	@Test
-	void shouldReturnPeriodAsDays() {
+	void shouldReturnAllDaysBetweenStartAndEnd() {
 		LocalDate start = LocalDate.of(2021, 1, 1);
-		LocalDate end = LocalDate.of(2021, 1, 4);
+		LocalDate end = LocalDate.of(2021, 1, 3);
 		Period period = new Period(start, end);
 
 		List<LocalDate> actual = period.asDays();
-		assertThat(actual).hasSize(4);
-		assertThatContainsValidDates(actual);
-	}
 
-	private void assertThatContainsValidDates(List<LocalDate> actual) {
-		assertThat(actual).anySatisfy(dayActual -> assertThat(dayActual).isEqualTo(LocalDate.of(2021, 1, 1)));
-		assertThat(actual).anySatisfy(dayActual -> assertThat(dayActual).isEqualTo(LocalDate.of(2021, 1, 2)));
-		assertThat(actual).anySatisfy(dayActual -> assertThat(dayActual).isEqualTo(LocalDate.of(2021, 1, 3)));
-		assertThat(actual).anySatisfy(dayActual -> assertThat(dayActual).isEqualTo(LocalDate.of(2021, 1, 4)));
+		assertThat(actual).containsExactly(start, LocalDate.of(2021, 1, 2), end);
 	}
 }
