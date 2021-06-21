@@ -21,6 +21,7 @@ class PeriodTest {
 		assertThat(actual).containsExactlyElementsOf(expected);
 	}
 
+	@SuppressWarnings("unused")
 	private static Stream<Arguments> daysBetweenStartAndEnd() {
 		return Stream.of(
 			Arguments.of(
