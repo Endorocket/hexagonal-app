@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -52,13 +53,14 @@ class ApartmentTest {
 			List<Room> rooms = (List<Room>) roomsActual;
 			assertThat(rooms).hasSize(roomsDefinition.size());
 
-			roomsDefinition.forEach((name, squareMeter) -> {
-				assertThat(rooms).anySatisfy(room -> {
-					assertThat(room)
-						.hasFieldOrPropertyWithValue("name", name)
-						.hasFieldOrPropertyWithValue("squareMeter.size", squareMeter);
-				});
-			});
+			roomsDefinition.forEach((name, squareMeter) ->
+				assertThat(rooms).anySatisfy(hasRoomThat(name, squareMeter)));
 		});
+	}
+
+	private Consumer<Room> hasRoomThat(String name, Double squareMeter) {
+		return room -> assertThat(room)
+			.hasFieldOrPropertyWithValue("name", name)
+			.hasFieldOrPropertyWithValue("squareMeter.size", squareMeter);
 	}
 }
