@@ -31,5 +31,7 @@ public class HotelRoomApplicationService {
 		HotelRoom hotelRoom = hotelRoomRepository.findById(id);
 
 		Booking booking = hotelRoom.book(tenantId, days, eventChannel);
+
+    bookingRepository.save(booking);
 	}
 }

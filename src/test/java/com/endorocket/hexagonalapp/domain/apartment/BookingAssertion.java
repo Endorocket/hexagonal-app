@@ -2,6 +2,7 @@ package com.endorocket.hexagonalapp.domain.apartment;
 
 import org.assertj.core.api.Assertions;
 
+import java.awt.print.Book;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -12,15 +13,15 @@ public class BookingAssertion {
 		this.actual = actual;
 	}
 
-	static BookingAssertion assertThat(Booking actual) {
+	public static BookingAssertion assertThat(Booking actual) {
 		return new BookingAssertion(actual);
 	}
 
-	BookingAssertion isOpen() {
+	public BookingAssertion isOpen() {
 		return hasBookingStatusEqualTo(BookingStatus.OPEN);
 	}
 
-	BookingAssertion isAccepted() {
+	public BookingAssertion isAccepted() {
 		return hasBookingStatusEqualTo(BookingStatus.ACCEPTED);
 	}
 
@@ -29,22 +30,26 @@ public class BookingAssertion {
 		return this;
 	}
 
+	public BookingAssertion isHotelRoom() {
+		return isRentalTypeOf(RentalType.HOTEL_ROOM);
+	}
+
 	BookingAssertion isRentalTypeOf(RentalType expected) {
 		Assertions.assertThat(actual).hasFieldOrPropertyWithValue("rentalType", expected);
 		return this;
 	}
 
-	BookingAssertion hasRentalPlaceIdEqualTo(String expected) {
+	public BookingAssertion hasRentalPlaceIdEqualTo(String expected) {
 		Assertions.assertThat(actual).hasFieldOrPropertyWithValue("rentalPlaceId", expected);
 		return this;
 	}
 
-	BookingAssertion hasTenantIdEqualTo(String expected) {
+	public BookingAssertion hasTenantIdEqualTo(String expected) {
 		Assertions.assertThat(actual).hasFieldOrPropertyWithValue("tenantId", expected);
 		return this;
 	}
 
-	BookingAssertion containsAllDays(List<LocalDate> expected) {
+	public BookingAssertion containsAllDays(List<LocalDate> expected) {
 		Assertions.assertThat(actual).hasFieldOrPropertyWithValue("days", expected);
 		return this;
 	}
