@@ -2,7 +2,6 @@ package com.endorocket.hexagonalapp.domain.apartment;
 
 import org.assertj.core.api.Assertions;
 
-import java.awt.print.Book;
 import java.time.LocalDate;
 import java.util.List;
 
