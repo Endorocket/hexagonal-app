@@ -4,6 +4,7 @@ import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "APARTMENT")
@@ -11,17 +12,20 @@ public class Apartment {
 
 	@Id
 	@GeneratedValue
-	private String id;
+	private UUID id;
 
-	private final String ownerId;
+	private String ownerId;
 
 	@Embedded
-	private final Address address;
+	private Address address;
 
-	@OneToMany
-	private final List<Room> rooms;
+	@ElementCollection
+	private List<Room> rooms;
 
-	private final String description;
+	private String description;
+
+	private Apartment() {
+	}
 
 	Apartment(String ownerId, Address address, List<Room> rooms, String description) {
 		this.ownerId = ownerId;
@@ -31,9 +35,13 @@ public class Apartment {
 	}
 
 	public Booking book(String tenantId, Period period, EventChannel eventChannel) {
-		ApartmentBooked apartmentBooked = ApartmentBooked.create(id, ownerId, tenantId, period);
+		ApartmentBooked apartmentBooked = ApartmentBooked.create(id(), ownerId, tenantId, period);
 		eventChannel.publish(apartmentBooked);
 
-		return Booking.apartment(id, tenantId, period);
+		return Booking.apartment(id(), tenantId, period);
+	}
+
+	public String id() {
+		return id.toString();
 	}
 }

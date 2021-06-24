@@ -2,7 +2,11 @@ package com.endorocket.hexagonalapp.infrastructure.persistence.jpa.apartment;
 
 import com.endorocket.hexagonalapp.domain.apartment.Apartment;
 import com.endorocket.hexagonalapp.domain.apartment.ApartmentRepository;
+import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
+@Repository
 public class JpaApartmentRepository implements ApartmentRepository {
   private final SpringJpaApartmentRepository apartmentRepository;
 
@@ -11,12 +15,13 @@ public class JpaApartmentRepository implements ApartmentRepository {
   }
 
   @Override
-  public void save(Apartment apartment) {
-    apartmentRepository.save(apartment);
+  public String save(Apartment apartment) {
+    return apartmentRepository.save(apartment).id();
   }
 
 	@Override
 	public Apartment findById(String id) {
-		return apartmentRepository.findById(id).get();
+		return apartmentRepository.findById(UUID.fromString(id))
+        .orElseThrow(() -> new ApartmentDoesNotExistException(id));
 	}
 }

@@ -28,7 +28,7 @@ class ApartmentTest {
 	private static final LocalDate END = LocalDate.of(2020, 3, 7);
 	private static final Period PERIOD = new Period(START, END);
 
-	private final ApartmentFactory APARTMENT_FACTORY = new ApartmentFactory();
+	private final ApartmentFactory apartmentFactory = new ApartmentFactory();
 	private final EventChannel eventChannel = mock(EventChannel.class);
 
 	@Test
@@ -71,6 +71,6 @@ class ApartmentTest {
 	}
 
 	private Apartment createApartment() {
-		return APARTMENT_FACTORY.create(OWNER_ID, STREET, POSTAL_CODE, HOUSE_NUMBER, APARTMENT_NUMBER, CITY, COUNTRY, DESCRIPTION, ROOMS_DEFINITION);
+		return apartmentFactory.create(OWNER_ID, STREET, POSTAL_CODE, HOUSE_NUMBER, APARTMENT_NUMBER, CITY, COUNTRY, DESCRIPTION, ROOMS_DEFINITION);
 	}
 }
