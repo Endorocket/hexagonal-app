@@ -1,13 +1,14 @@
 package com.endorocket.hexagonalapp.domain.hotel;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name = "HOTEL")
 public class Hotel {
   @Id
   @GeneratedValue
-  private String id;
+  private UUID id;
 
   private final String name;
 

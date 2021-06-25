@@ -6,7 +6,9 @@ import com.endorocket.hexagonalapp.domain.apartmentbookinghistory.ApartmentBooki
 import com.endorocket.hexagonalapp.domain.apartmentbookinghistory.ApartmentBookingHistoryRepository;
 import com.endorocket.hexagonalapp.domain.apartmentbookinghistory.BookingPeriod;
 import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ApartmentBookingHistoryEventListener {
 
 	private final ApartmentBookingHistoryRepository apartmentBookingHistoryRepository;

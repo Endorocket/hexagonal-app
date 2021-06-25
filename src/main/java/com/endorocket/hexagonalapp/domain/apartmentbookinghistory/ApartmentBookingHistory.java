@@ -1,19 +1,18 @@
 package com.endorocket.hexagonalapp.domain.apartmentbookinghistory;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "APARTMENT_BOOKING_HISTORY")
 public class ApartmentBookingHistory {
 
 	@Id
-	private final String apartmentId;
+	private String apartmentId;
 
-	@OneToMany
-	private final List<ApartmentBooking> bookings = new ArrayList<>();
+	@ElementCollection
+	private List<ApartmentBooking> bookings = new ArrayList<>();
 
 	public ApartmentBookingHistory(String apartmentId) {
 		this.apartmentId = apartmentId;

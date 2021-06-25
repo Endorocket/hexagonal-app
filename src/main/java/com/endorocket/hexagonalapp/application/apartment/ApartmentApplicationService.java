@@ -2,10 +2,12 @@ package com.endorocket.hexagonalapp.application.apartment;
 
 import com.endorocket.hexagonalapp.domain.apartment.*;
 import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Map;
 
+@Service
 public class ApartmentApplicationService {
 	private final ApartmentRepository apartmentRepository;
 	private final EventChannel eventChannel;

@@ -8,13 +8,16 @@ import javax.persistence.Table;
 @Table(name = "HOTEL")
 public class HotelReadModel {
 	@Id
-	private final String id;
-	private final String name;
-	private final String street;
-	private final String postalCode;
-	private final String buildingNumber;
-	private final String city;
-	private final String country;
+	private String id;
+	private String name;
+	private String street;
+	private String postalCode;
+	private String buildingNumber;
+	private String city;
+	private String country;
+
+	private HotelReadModel() {
+	}
 
 	HotelReadModel(String id, String name, String street, String postalCode, String buildingNumber, String city, String country) {
 		this.id = id;

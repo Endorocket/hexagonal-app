@@ -5,7 +5,9 @@ import com.endorocket.hexagonalapp.domain.apartment.BookingAccepted;
 import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomBooked;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.stereotype.Component;
 
+@Component
 public class SpringEventChannel implements EventChannel {
 	private final ApplicationEventPublisher publisher;
 

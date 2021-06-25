@@ -2,7 +2,9 @@ package com.endorocket.hexagonalapp.infrastructure.persistence.jpa.hotel;
 
 import com.endorocket.hexagonalapp.domain.hotel.Hotel;
 import com.endorocket.hexagonalapp.domain.hotel.HotelRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class JpaHotelRepository implements HotelRepository {
   private final SpringJpaHotelRepository hotelRepository;
 

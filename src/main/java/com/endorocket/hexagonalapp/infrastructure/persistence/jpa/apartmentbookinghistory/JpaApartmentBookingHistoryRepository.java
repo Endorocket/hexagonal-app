@@ -2,7 +2,9 @@ package com.endorocket.hexagonalapp.infrastructure.persistence.jpa.apartmentbook
 
 import com.endorocket.hexagonalapp.domain.apartmentbookinghistory.ApartmentBookingHistory;
 import com.endorocket.hexagonalapp.domain.apartmentbookinghistory.ApartmentBookingHistoryRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class JpaApartmentBookingHistoryRepository implements ApartmentBookingHistoryRepository {
 	private final SpringJpaApartmentBookingHistoryRepository apartmentBookingHistoryRepository;
 

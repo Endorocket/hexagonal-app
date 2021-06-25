@@ -29,27 +29,27 @@ public class BookingAccepted {
 		return new BookingAccepted(eventId, creationDateTime, rentalType.name(), rentalPlaceId, tenantId, days);
 	}
 
-	public String getEventId() {
+	String getEventId() {
 		return eventId;
 	}
 
-	public LocalDateTime getEventCreationDateTime() {
+	LocalDateTime getEventCreationDateTime() {
 		return eventCreationDateTime;
 	}
 
-	public String getRentalType() {
+	String getRentalType() {
 		return rentalType;
 	}
 
-	public String getRentalPlaceId() {
+	String getRentalPlaceId() {
 		return rentalPlaceId;
 	}
 
-	public String getTenantId() {
+	String getTenantId() {
 		return tenantId;
 	}
 
-	public List<LocalDate> getDays() {
+	List<LocalDate> getDays() {
 		return days;
 	}
 }

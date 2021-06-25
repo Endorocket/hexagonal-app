@@ -7,15 +7,18 @@ import java.util.List;
 @Table(name = "HOTEL_ROOM")
 public class HotelRoomReadModel {
 	@Id
-	private final String id;
+	private String id;
 
-	private final String hotelId;
-	private final int number;
+	private String hotelId;
+	private int number;
 
-	@OneToMany
-	private final List<SpaceReadModel> spaces;
+	@ElementCollection
+	private List<SpaceReadModel> spaces;
 
-	private final String description;
+	private String description;
+
+	private HotelRoomReadModel() {
+	}
 
 	HotelRoomReadModel(String id, String hotelId, int number, List<SpaceReadModel> spaces, String description) {
 		this.id = id;

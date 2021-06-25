@@ -6,7 +6,7 @@ import com.endorocket.hexagonalapp.query.apartment.ApartmentReadModel;
 import com.endorocket.hexagonalapp.query.apartment.QueryApartmentRepository;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+//@RestController
 @RequestMapping("/apartment")
 public class ApartmentRestController {
 	private final ApartmentApplicationService apartmentApplicationService;

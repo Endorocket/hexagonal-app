@@ -2,13 +2,15 @@ package com.endorocket.hexagonalapp.infrastructure.persistence.jpa.hotelbookingh
 
 import com.endorocket.hexagonalapp.domain.hotelbookinghistory.HotelBookingHistory;
 import com.endorocket.hexagonalapp.domain.hotelbookinghistory.HotelBookingHistoryRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Repository
 public class JpaHotelRoomBookingHistoryRepository implements HotelBookingHistoryRepository {
 	private final SpringJpaHotelBookingHistoryRepository hotelBookingHistoryRepository;
 
-	public JpaHotelRoomBookingHistoryRepository(SpringJpaHotelBookingHistoryRepository hotelBookingHistoryRepository) {
+	JpaHotelRoomBookingHistoryRepository(SpringJpaHotelBookingHistoryRepository hotelBookingHistoryRepository) {
 		this.hotelBookingHistoryRepository = hotelBookingHistoryRepository;
 	}
 

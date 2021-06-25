@@ -2,50 +2,53 @@ package com.endorocket.hexagonalapp.domain.apartment;
 
 import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 public class Booking {
-	private final RentalType rentalType;
-	@Id
-	@GeneratedValue
-	private String id;
+  private RentalType rentalType;
+  @Id
+  @GeneratedValue
+  private UUID id;
 
-	private final String rentalPlaceId;
-	private final String tenantId;
+  private String rentalPlaceId;
+  private String tenantId;
 
-	@ElementCollection
-	private final List<LocalDate> days;
-	private BookingStatus bookingStatus = BookingStatus.OPEN;
+  @ElementCollection
+  private List<LocalDate> days;
 
-	private Booking(RentalType rentalType, String rentalPlaceId, String tenantId, List<LocalDate> days) {
-		this.rentalType = rentalType;
-		this.rentalPlaceId = rentalPlaceId;
-		this.tenantId = tenantId;
-		this.days = days;
-	}
+  @Enumerated(EnumType.STRING)
+  private BookingStatus bookingStatus = BookingStatus.OPEN;
 
-	static Booking apartment(String rentalPlaceId, String tenantId, Period period) {
-		List<LocalDate> days = period.asDays();
-		return new Booking(RentalType.APARTMENT, rentalPlaceId, tenantId, days);
-	}
+  private Booking() {
+  }
 
-	public static Booking hotelRoom(String rentalPlaceId, String tenantId, List<LocalDate> days) {
-		return new Booking(RentalType.HOTEL_ROOM, rentalPlaceId, tenantId, days);
-	}
+  private Booking(RentalType rentalType, String rentalPlaceId, String tenantId, List<LocalDate> days) {
+    this.rentalType = rentalType;
+    this.rentalPlaceId = rentalPlaceId;
+    this.tenantId = tenantId;
+    this.days = days;
+  }
 
-	public void reject() {
-		bookingStatus = BookingStatus.REJECTED;
-	}
+  static Booking apartment(String rentalPlaceId, String tenantId, Period period) {
+    List<LocalDate> days = period.asDays();
+    return new Booking(RentalType.APARTMENT, rentalPlaceId, tenantId, days);
+  }
 
-	public void accept(EventChannel eventChannel) {
-		bookingStatus = BookingStatus.ACCEPTED;
-		BookingAccepted bookingAccepted = BookingAccepted.create(rentalType, rentalPlaceId, tenantId, days);
-		eventChannel.publish(bookingAccepted);
-	}
+  public static Booking hotelRoom(String rentalPlaceId, String tenantId, List<LocalDate> days) {
+    return new Booking(RentalType.HOTEL_ROOM, rentalPlaceId, tenantId, days);
+  }
+
+  public void reject() {
+    bookingStatus = BookingStatus.REJECTED;
+  }
+
+  public void accept(EventChannel eventChannel) {
+    bookingStatus = BookingStatus.ACCEPTED;
+    BookingAccepted bookingAccepted = BookingAccepted.create(rentalType, rentalPlaceId, tenantId, days);
+    eventChannel.publish(bookingAccepted);
+  }
 }

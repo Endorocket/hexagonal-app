@@ -41,6 +41,10 @@ public class Apartment {
 		return Booking.apartment(id(), tenantId, period);
 	}
 
+	public UUID getId() {
+		return id;
+	}
+
 	public String id() {
 		return id.toString();
 	}

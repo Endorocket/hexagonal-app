@@ -6,22 +6,26 @@ import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "HOTEL_ROOM")
 public class HotelRoom {
   @Id
   @GeneratedValue
-  private String id;
+  private UUID id;
 
-  private final String hotelId;
+  private String hotelId;
 
-  private final int number;
+  private int number;
 
-  @OneToMany
-  private final List<Space> spaces;
+  @ElementCollection
+  private List<Space> spaces;
 
-  private final String description;
+  private String description;
+
+  private HotelRoom() {
+  }
 
   HotelRoom(String hotelId, int number, List<Space> spaces, String description) {
     this.hotelId = hotelId;
@@ -31,9 +35,13 @@ public class HotelRoom {
   }
 
   public Booking book(String tenantId, List<LocalDate> days, EventChannel eventChannel) {
-    HotelRoomBooked hotelRoomBooked = HotelRoomBooked.create(id, hotelId, tenantId, days);
+    HotelRoomBooked hotelRoomBooked = HotelRoomBooked.create(id(), hotelId, tenantId, days);
     eventChannel.publish(hotelRoomBooked);
 
-    return Booking.hotelRoom(id, tenantId, days);
+    return Booking.hotelRoom(id(), tenantId, days);
+  }
+
+  public String id() {
+    return id.toString();
   }
 }

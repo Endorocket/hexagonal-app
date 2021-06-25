@@ -1,13 +1,14 @@
 package com.endorocket.hexagonalapp.query.hotelroom;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.Embeddable;
 
-@Entity
-@Table(name = "HOTEL_ROOM_SPACE")
+@Embeddable
 public class SpaceReadModel {
-	private final String name;
-	private final Double size;
+	private String name;
+	private Double size;
+
+	private SpaceReadModel() {
+	}
 
 	SpaceReadModel(String name, Double size) {
 		this.name = name;

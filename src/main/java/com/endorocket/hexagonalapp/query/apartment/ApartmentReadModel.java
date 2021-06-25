@@ -2,30 +2,34 @@ package com.endorocket.hexagonalapp.query.apartment;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "APARTMENT")
 public class ApartmentReadModel {
 	@Id
-	private final String id;
+	@GeneratedValue
+	private UUID id;
 
-	private final String ownerId;
+	private String ownerId;
 
-	private final String street;
-	private final String postalCode;
-	private final String houseNumber;
-	private final String apartmentNumber;
-	private final String city;
-	private final String country;
+	private String street;
+	private String postalCode;
+	private String houseNumber;
+	private String apartmentNumber;
+	private String city;
+	private String country;
 
-	@OneToMany
-	private final List<RoomReadModel> rooms;
+	@ElementCollection
+	private List<RoomReadModel> rooms;
 
-	private final String description;
+	private String description;
 
-	ApartmentReadModel(String id, String ownerId, String street, String postalCode, String houseNumber, String apartmentNumber,
+	private ApartmentReadModel() {
+	}
+
+	ApartmentReadModel(String ownerId, String street, String postalCode, String houseNumber, String apartmentNumber,
 	                   String city, String country, List<RoomReadModel> rooms, String description) {
-		this.id = id;
 		this.ownerId = ownerId;
 		this.street = street;
 		this.postalCode = postalCode;
@@ -38,7 +42,7 @@ public class ApartmentReadModel {
 	}
 
 	public String getId() {
-		return id;
+		return id.toString();
 	}
 
 	public String getOwnerId() {

@@ -5,7 +5,7 @@ import com.endorocket.hexagonalapp.query.hotelroom.HotelRoomReadModel;
 import com.endorocket.hexagonalapp.query.hotelroom.QueryHotelRoomRepository;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+//@RestController
 @RequestMapping("/hotelroom")
 public class HotelRoomRestController {
 	private final HotelRoomApplicationService hotelRoomApplicationService;

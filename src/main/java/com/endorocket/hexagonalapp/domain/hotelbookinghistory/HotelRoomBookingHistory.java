@@ -12,10 +12,13 @@ import java.util.List;
 public class HotelRoomBookingHistory {
 
 	@Id
-	private final String hotelRoomId;
+	private String hotelRoomId;
 
 	@OneToMany
-	private final List<HotelRoomBooking> bookings = new ArrayList<>();
+	private List<HotelRoomBooking> bookings = new ArrayList<>();
+
+	private HotelRoomBookingHistory() {
+	}
 
 	public HotelRoomBookingHistory(String hotelRoomId) {
 		this.hotelRoomId = hotelRoomId;

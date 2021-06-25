@@ -1,9 +1,6 @@
 package com.endorocket.hexagonalapp.query.apartment;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +9,13 @@ import java.util.List;
 public class ApartmentBookingHistoryReadModel {
 
 	@Id
-	private final String apartmentId;
+	private String apartmentId;
 
-	@OneToMany
-	private final List<ApartmentBookingReadModel> bookings = new ArrayList<>();
+	@ElementCollection
+	private List<ApartmentBookingReadModel> bookings = new ArrayList<>();
+
+	private ApartmentBookingHistoryReadModel() {
+	}
 
 	ApartmentBookingHistoryReadModel(String apartmentId) {
 		this.apartmentId = apartmentId;
