@@ -4,7 +4,9 @@ import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomBooked;
 import com.endorocket.hexagonalapp.domain.hotelbookinghistory.HotelBookingHistory;
 import com.endorocket.hexagonalapp.domain.hotelbookinghistory.HotelBookingHistoryRepository;
 import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
 
+@Component
 public class HotelBookingHistoryEventListener {
 
 	private final HotelBookingHistoryRepository hotelBookingHistoryRepository;
