@@ -56,15 +56,12 @@ class ApartmentRestControllerSystemTest {
   void shouldReturnExistingApartment() throws Exception {
     ApartmentDto apartmentDto = new ApartmentDto(OWNER_ID, STREET, POSTAL_CODE, HOUSE_NUMBER, APARTMENT_NUMBER, CITY, COUNTRY, DESCRIPTION, ROOMS_DEFINITION);
 
-    MvcResult mvcResult = mockMvc.perform(
-        post("/apartment")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(asJson(apartmentDto)))
+    MvcResult mvcResult = mockMvc.perform(post("/apartment").contentType(MediaType.APPLICATION_JSON).content(asJson(apartmentDto)))
         .andExpect(status().isCreated())
         .andReturn();
-    String redirectedUrl = Objects.requireNonNull(mvcResult.getResponse().getRedirectedUrl());
+    String redirectUrlToNewlyCreatedApartment = Objects.requireNonNull(mvcResult.getResponse().getRedirectedUrl());
 
-    mockMvc.perform(get(redirectedUrl))
+    mockMvc.perform(get(redirectUrlToNewlyCreatedApartment))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.apartment.ownerId").value(OWNER_ID))
         .andExpect(jsonPath("$.apartment.street").value(STREET))
