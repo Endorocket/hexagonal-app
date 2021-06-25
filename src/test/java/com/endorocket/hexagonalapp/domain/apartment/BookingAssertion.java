@@ -24,6 +24,10 @@ public class BookingAssertion {
 		return hasBookingStatusEqualTo(BookingStatus.ACCEPTED);
 	}
 
+	public BookingAssertion isRejected() {
+		return hasBookingStatusEqualTo(BookingStatus.REJECTED);
+	}
+
 	private BookingAssertion hasBookingStatusEqualTo(BookingStatus accepted) {
 		Assertions.assertThat(actual).hasFieldOrPropertyWithValue("bookingStatus", accepted);
 		return this;

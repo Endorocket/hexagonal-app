@@ -4,7 +4,9 @@ import com.endorocket.hexagonalapp.application.booking.BookingAccept;
 import com.endorocket.hexagonalapp.application.booking.BookingReject;
 import com.endorocket.hexagonalapp.application.commandregistry.CommandRegistry;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.stereotype.Component;
 
+@Component
 public class SpringCommandRegistry implements CommandRegistry {
 	private final ApplicationEventPublisher publisher;
 

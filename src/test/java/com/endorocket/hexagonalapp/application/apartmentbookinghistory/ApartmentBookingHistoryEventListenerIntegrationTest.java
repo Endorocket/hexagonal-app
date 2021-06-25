@@ -32,9 +32,7 @@ class ApartmentBookingHistoryEventListenerIntegrationTest {
   private static final Map<String, Double> ROOMS_DEFINITION = Map.of("Toilet", 10.0, "Bedroom", 15.5);
   private static final String TENANT_ID = "126";
   private static final LocalDate START = LocalDate.of(2020, 3, 5);
-  private static final LocalDate MIDDLE = LocalDate.of(2020, 3, 6);
   private static final LocalDate END = LocalDate.of(2020, 3, 7);
-  private static final Period PERIOD = new Period(START, END);
 
   @Autowired
   private ApartmentApplicationService apartmentApplicationService;

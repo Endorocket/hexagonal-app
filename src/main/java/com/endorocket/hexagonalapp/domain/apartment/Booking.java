@@ -42,6 +42,14 @@ public class Booking {
     return new Booking(RentalType.HOTEL_ROOM, rentalPlaceId, tenantId, days);
   }
 
+  public UUID getId() {
+    return id;
+  }
+
+  public String id() {
+    return id.toString();
+  }
+
   public void reject() {
     bookingStatus = BookingStatus.REJECTED;
   }

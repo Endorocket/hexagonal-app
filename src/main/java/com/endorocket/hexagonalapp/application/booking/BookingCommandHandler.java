@@ -4,7 +4,9 @@ import com.endorocket.hexagonalapp.domain.apartment.Booking;
 import com.endorocket.hexagonalapp.domain.apartment.BookingRepository;
 import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
 import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
 
+@Component
 public class BookingCommandHandler {
 	private final BookingRepository bookingRepository;
 	private final EventChannel eventChannel;
@@ -18,6 +20,7 @@ public class BookingCommandHandler {
 	public void reject(BookingReject bookingReject) {
 		Booking booking = bookingRepository.findById(bookingReject.getBookingId());
 		booking.reject();
+		bookingRepository.save(booking);
 	}
 
 	@EventListener
