@@ -3,7 +3,9 @@ package com.endorocket.hexagonalapp.application.hotel;
 import com.endorocket.hexagonalapp.domain.hotel.Hotel;
 import com.endorocket.hexagonalapp.domain.hotel.HotelFactory;
 import com.endorocket.hexagonalapp.domain.hotel.HotelRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class HotelApplicationService {
   private final HotelRepository hotelRepository;
 

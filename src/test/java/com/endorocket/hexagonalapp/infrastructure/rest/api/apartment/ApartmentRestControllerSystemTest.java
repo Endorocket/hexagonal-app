@@ -1,6 +1,6 @@
 package com.endorocket.hexagonalapp.infrastructure.rest.api.apartment;
 
-import com.endorocket.hexagonalapp.domain.apartment.Period;
+import com.endorocket.hexagonalapp.infrastructure.json.JsonFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 
-import java.time.LocalDate;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
@@ -34,8 +33,8 @@ class ApartmentRestControllerSystemTest {
   private static final String COUNTRY = "Poland";
   private static final String DESCRIPTION = "Nice apartment";
   private static final Map<String, Double> ROOMS_DEFINITION = Map.of("Toilet", 10.0, "Bedroom", 15.5);
-  private static final LocalDate START = LocalDate.of(2020, 3, 5);
-  private static final LocalDate END = LocalDate.of(2020, 3, 7);
+
+  private final JsonFactory jsonFactory = new JsonFactory();
 
   @Autowired
   private MockMvc mockMvc;
@@ -56,7 +55,7 @@ class ApartmentRestControllerSystemTest {
   void shouldReturnExistingApartment() throws Exception {
     ApartmentDto apartmentDto = new ApartmentDto(OWNER_ID, STREET, POSTAL_CODE, HOUSE_NUMBER, APARTMENT_NUMBER, CITY, COUNTRY, DESCRIPTION, ROOMS_DEFINITION);
 
-    MvcResult mvcResult = mockMvc.perform(post("/apartment").contentType(MediaType.APPLICATION_JSON).content(asJson(apartmentDto)))
+    MvcResult mvcResult = mockMvc.perform(post("/apartment").contentType(MediaType.APPLICATION_JSON).content(jsonFactory.create(apartmentDto)))
         .andExpect(status().isCreated())
         .andReturn();
     String redirectUrlToNewlyCreatedApartment = Objects.requireNonNull(mvcResult.getResponse().getRedirectedUrl());
@@ -68,13 +67,5 @@ class ApartmentRestControllerSystemTest {
         .andExpect(jsonPath("$.apartment.postalCode").value(POSTAL_CODE))
         .andExpect(jsonPath("$.apartment.houseNumber").value(HOUSE_NUMBER))
         .andExpect(jsonPath("$.bookingHistory").isEmpty());
-  }
-
-  private String asJson(ApartmentDto apartmentDto) {
-    try {
-      return new ObjectMapper().writeValueAsString(apartmentDto);
-    } catch (JsonProcessingException e) {
-      throw new RuntimeException(e);
-    }
   }
 }
