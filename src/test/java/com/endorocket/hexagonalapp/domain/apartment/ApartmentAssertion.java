@@ -17,17 +17,17 @@ public class ApartmentAssertion {
 		return new ApartmentAssertion(actual);
 	}
 
-	public ApartmentAssertion hasOwnerIdEqualsTo(String ownerId) {
+	public ApartmentAssertion hasOwnerIdEqualTo(String ownerId) {
 		Assertions.assertThat(actual).hasFieldOrPropertyWithValue("ownerId", ownerId);
 		return this;
 	}
 
-	public ApartmentAssertion hasDescriptionEqualsTo(String description) {
+	public ApartmentAssertion hasDescriptionEqualTo(String description) {
 		Assertions.assertThat(actual).hasFieldOrPropertyWithValue("description", description);
 		return this;
 	}
 
-	public ApartmentAssertion hasAddressEqualsTo(String street, String postalCode, String houseNumber, String apartmentNumber, String city, String country) {
+	public ApartmentAssertion hasAddressEqualTo(String street, String postalCode, String houseNumber, String apartmentNumber, String city, String country) {
 		Assertions.assertThat(actual).extracting("address")
 			.hasFieldOrPropertyWithValue("street", street)
 			.hasFieldOrPropertyWithValue("postalCode", postalCode)

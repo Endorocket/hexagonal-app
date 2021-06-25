@@ -1,7 +1,7 @@
 package com.endorocket.hexagonalapp.infrastructure.persistence.jpa.hotelroom;
 
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoom;
-import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomAssertions;
+import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomAssertion;
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomFactory;
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomRepository;
 import org.junit.jupiter.api.Test;
@@ -44,11 +44,11 @@ class JpaHotelRoomRepositoryIntegrationTest {
 
     HotelRoom actual = hotelRoomRepository.findById(existingId);
 
-    HotelRoomAssertions.assertThat(actual)
-        .hasHotelIdEqualsTo(HOTEL_ID)
-        .hasNumberEqualsTo(ROOM_NUMBER)
-        .hasSpacesEqualsOf(SPACES_DEFINITION)
-        .hasDescriptionEqualsTo(DESCRIPTION);;
+    HotelRoomAssertion.assertThat(actual)
+        .hasHotelIdEqualTo(HOTEL_ID)
+        .hasNumberEqualTo(ROOM_NUMBER)
+        .hasSpacesEqualOf(SPACES_DEFINITION)
+        .hasDescriptionEqualTo(DESCRIPTION);;
   }
 
   private HotelRoom createHotelRoom() {

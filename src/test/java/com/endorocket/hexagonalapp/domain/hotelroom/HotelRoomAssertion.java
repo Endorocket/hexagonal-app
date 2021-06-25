@@ -6,29 +6,29 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
-public class HotelRoomAssertions {
+public class HotelRoomAssertion {
   private final HotelRoom actual;
 
-  private HotelRoomAssertions(HotelRoom actual) {
+  private HotelRoomAssertion(HotelRoom actual) {
     this.actual = actual;
   }
 
-  public static HotelRoomAssertions assertThat(HotelRoom actual) {
-    return new HotelRoomAssertions(actual);
+  public static HotelRoomAssertion assertThat(HotelRoom actual) {
+    return new HotelRoomAssertion(actual);
   }
 
-  public HotelRoomAssertions hasHotelIdEqualsTo(String expected) {
+  public HotelRoomAssertion hasHotelIdEqualTo(String expected) {
     Assertions.assertThat(actual).hasFieldOrPropertyWithValue("hotelId", expected);
     return this;
   }
 
-  public HotelRoomAssertions hasNumberEqualsTo(int expected) {
+  public HotelRoomAssertion hasNumberEqualTo(int expected) {
     Assertions.assertThat(actual).hasFieldOrPropertyWithValue("number", expected);
     return this;
   }
 
   @SuppressWarnings("unchecked")
-  public HotelRoomAssertions hasSpacesEqualsOf(Map<String, Double> spacesDefinition) {
+  public HotelRoomAssertion hasSpacesEqualOf(Map<String, Double> spacesDefinition) {
     Assertions.assertThat(actual).extracting("spaces").satisfies(spacesActual -> {
       List<Space> spaces = (List<Space>) spacesActual;
       Assertions.assertThat(spaces).hasSize(spacesDefinition.size());
@@ -45,7 +45,7 @@ public class HotelRoomAssertions {
         .hasFieldOrPropertyWithValue("squareMeter.size", squareMeter);
   }
 
-  public HotelRoomAssertions hasDescriptionEqualsTo(String expected) {
+  public HotelRoomAssertion hasDescriptionEqualTo(String expected) {
     Assertions.assertThat(actual).hasFieldOrPropertyWithValue("description", expected);
     return this;
   }

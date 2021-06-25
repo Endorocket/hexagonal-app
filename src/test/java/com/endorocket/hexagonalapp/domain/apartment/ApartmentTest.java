@@ -36,9 +36,9 @@ class ApartmentTest {
 		Apartment actual = createApartment();
 
 		ApartmentAssertion.assertThat(actual)
-			.hasOwnerIdEqualsTo(OWNER_ID)
-			.hasDescriptionEqualsTo(DESCRIPTION)
-			.hasAddressEqualsTo(STREET, POSTAL_CODE, HOUSE_NUMBER, APARTMENT_NUMBER, CITY, COUNTRY)
+			.hasOwnerIdEqualTo(OWNER_ID)
+			.hasDescriptionEqualTo(DESCRIPTION)
+			.hasAddressEqualTo(STREET, POSTAL_CODE, HOUSE_NUMBER, APARTMENT_NUMBER, CITY, COUNTRY)
 			.hasRoomsEqualsTo(ROOMS_DEFINITION);
 	}
 
