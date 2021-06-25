@@ -7,27 +7,32 @@ import java.util.UUID;
 
 @Repository
 public class QueryApartmentRepository {
-	private final SpringQueryApartmentRepository apartmentRepository;
-	private final SpringQueryApartmentBookingHistoryRepository apartmentBookingHistoryRepository;
+  private final SpringQueryApartmentRepository apartmentRepository;
+  private final SpringQueryApartmentBookingHistoryRepository apartmentBookingHistoryRepository;
 
-	public QueryApartmentRepository(SpringQueryApartmentRepository apartmentRepository, SpringQueryApartmentBookingHistoryRepository apartmentBookingHistoryRepository) {
-		this.apartmentRepository = apartmentRepository;
-		this.apartmentBookingHistoryRepository = apartmentBookingHistoryRepository;
-	}
+  public QueryApartmentRepository(SpringQueryApartmentRepository apartmentRepository, SpringQueryApartmentBookingHistoryRepository apartmentBookingHistoryRepository) {
+    this.apartmentRepository = apartmentRepository;
+    this.apartmentBookingHistoryRepository = apartmentBookingHistoryRepository;
+  }
 
-	public Iterable<ApartmentReadModel> findAll() {
-		return apartmentRepository.findAll();
-	}
+  public Iterable<ApartmentReadModel> findAll() {
+    return apartmentRepository.findAll();
+  }
 
-	public ApartmentDetails findById(String id) {
-		Optional<ApartmentReadModel> found = apartmentRepository.findById(UUID.fromString(id));
+  public ApartmentDetails findById(String id) {
+    Optional<ApartmentReadModel> found = apartmentRepository.findById(UUID.fromString(id));
 
-		if (found.isPresent()) {
-			ApartmentBookingHistoryReadModel apartmentBookingHistoryReadModel = apartmentBookingHistoryRepository.findById(id).get();
+    if (found.isPresent()) {
+      Optional<ApartmentBookingHistoryReadModel> foundHistory = apartmentBookingHistoryRepository.findById(id);
 
-			return new ApartmentDetails(found.get(), apartmentBookingHistoryReadModel);
-		} else {
-			return ApartmentDetails.notExisting();
-		}
-	}
+      if (foundHistory.isPresent()) {
+        ApartmentBookingHistoryReadModel apartmentBookingHistoryReadModel = foundHistory.get();
+        return ApartmentDetails.withHistory(found.get(), apartmentBookingHistoryReadModel);
+      } else {
+        return ApartmentDetails.withoutHistory(found.get());
+      }
+    } else {
+      return ApartmentDetails.notExisting();
+    }
+  }
 }

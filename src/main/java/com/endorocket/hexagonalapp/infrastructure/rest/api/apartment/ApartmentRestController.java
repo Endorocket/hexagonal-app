@@ -4,7 +4,10 @@ import com.endorocket.hexagonalapp.application.apartment.ApartmentApplicationSer
 import com.endorocket.hexagonalapp.query.apartment.ApartmentDetails;
 import com.endorocket.hexagonalapp.query.apartment.ApartmentReadModel;
 import com.endorocket.hexagonalapp.query.apartment.QueryApartmentRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/apartment")
@@ -18,10 +21,12 @@ public class ApartmentRestController {
 	}
 
 	@PostMapping
-	public void add(@RequestBody ApartmentDto apartmentDto) {
-		apartmentApplicationService.add(apartmentDto.ownerId(), apartmentDto.street(), apartmentDto.postalCode(),
+	public ResponseEntity<String> add(@RequestBody ApartmentDto apartmentDto) {
+		String id = apartmentApplicationService.add(apartmentDto.ownerId(), apartmentDto.street(), apartmentDto.postalCode(),
 			apartmentDto.houseNumber(), apartmentDto.apartmentNumber(), apartmentDto.city(),
 			apartmentDto.country(), apartmentDto.description(), apartmentDto.roomsDefinition());
+
+		return ResponseEntity.created(URI.create("/apartment/" + id)).build();
 	}
 
 	@PutMapping("/book/{id}")
