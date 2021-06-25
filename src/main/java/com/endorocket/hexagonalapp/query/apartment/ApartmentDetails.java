@@ -1,6 +1,9 @@
 package com.endorocket.hexagonalapp.query.apartment;
 
 public class ApartmentDetails {
+	private static final ApartmentReadModel NO_APARTMENT = null;
+	private static final ApartmentBookingHistoryReadModel NO_HISTORY = null;
+
 	private final ApartmentReadModel apartment;
 	private final ApartmentBookingHistoryReadModel bookingHistory;
 
@@ -9,7 +12,11 @@ public class ApartmentDetails {
 		this.bookingHistory = bookingHistory;
 	}
 
-	public ApartmentReadModel getApartment() {
+	static ApartmentDetails notExisting() {
+		return new ApartmentDetails(NO_APARTMENT, NO_HISTORY);
+	}
+
+  public ApartmentReadModel getApartment() {
 		return apartment;
 	}
 
