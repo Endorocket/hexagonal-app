@@ -47,6 +47,9 @@ public class Booking {
   }
 
   public String id() {
+    if (id == null) {
+      return null;
+    }
     return id.toString();
   }
 
