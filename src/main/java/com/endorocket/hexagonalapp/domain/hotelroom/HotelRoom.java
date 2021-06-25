@@ -41,6 +41,10 @@ public class HotelRoom {
     return Booking.hotelRoom(id(), tenantId, days);
   }
 
+  public UUID getId() {
+    return id;
+  }
+
   public String id() {
     return id.toString();
   }
