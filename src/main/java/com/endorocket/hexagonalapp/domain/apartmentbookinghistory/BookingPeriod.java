@@ -8,6 +8,9 @@ public class BookingPeriod {
 	private LocalDate periodStart;
 	private LocalDate periodEnd;
 
+	private BookingPeriod() {
+	}
+
 	public BookingPeriod(LocalDate periodStart, LocalDate periodEnd) {
 		this.periodStart = periodStart;
 		this.periodEnd = periodEnd;

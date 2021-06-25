@@ -14,6 +14,9 @@ public class ApartmentBookingHistory {
 	@ElementCollection
 	private List<ApartmentBooking> bookings = new ArrayList<>();
 
+	private ApartmentBookingHistory() {
+	}
+
 	public ApartmentBookingHistory(String apartmentId) {
 		this.apartmentId = apartmentId;
 	}
