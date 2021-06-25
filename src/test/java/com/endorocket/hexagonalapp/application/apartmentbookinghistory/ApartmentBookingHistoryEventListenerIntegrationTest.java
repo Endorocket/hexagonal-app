@@ -47,13 +47,17 @@ class ApartmentBookingHistoryEventListenerIntegrationTest {
 
   @Test
   @Transactional
-  @SuppressWarnings("unchecked")
   void shouldUpdateApartmentBookingHistory() {
     String apartmentId = givenExistingApartment();
 
     apartmentApplicationService.book(apartmentId, TENANT_ID, START, END);
     ApartmentBookingHistory actual = apartmentBookingHistoryRepository.findFor(apartmentId);
 
+    assertThatContainsOneApartmentBookingWithProperValues(actual);
+  }
+
+  @SuppressWarnings("unchecked")
+  private void assertThatContainsOneApartmentBookingWithProperValues(ApartmentBookingHistory actual) {
     Assertions.assertThat(actual).extracting("bookings").satisfies(actualBookings -> {
       List<ApartmentBooking> bookings = (List<ApartmentBooking>) actualBookings;
 
