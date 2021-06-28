@@ -1,6 +1,11 @@
 package com.endorocket.hexagonalapp.application.apartment;
 
-import com.endorocket.hexagonalapp.domain.apartment.*;
+import com.endorocket.hexagonalapp.domain.apartment.Apartment;
+import com.endorocket.hexagonalapp.domain.apartment.ApartmentFactory;
+import com.endorocket.hexagonalapp.domain.apartment.ApartmentRepository;
+import com.endorocket.hexagonalapp.domain.apartment.Booking;
+import com.endorocket.hexagonalapp.domain.apartment.BookingRepository;
+import com.endorocket.hexagonalapp.domain.apartment.Period;
 import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
 import org.springframework.stereotype.Service;
 
