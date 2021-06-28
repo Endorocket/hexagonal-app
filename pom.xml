@@ -203,6 +203,9 @@
 									<goal>check</goal>
 								</goals>
 								<configuration>
+									<excludes>
+										<exclude>com.endorocket.hexagonalapp.RentalApplication.class</exclude>
+									</excludes>
 									<rules>
 										<rule>
 											<element>BUNDLE</element>
