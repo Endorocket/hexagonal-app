@@ -3,6 +3,7 @@ package com.endorocket.hexagonalapp.domain.hotelroom;
 import javax.persistence.Embeddable;
 
 @Embeddable
+@SuppressWarnings("PMD.UnusedPrivateMethod")
 class SquareMeter {
   private Double size;
 

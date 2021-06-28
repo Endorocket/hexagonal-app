@@ -3,6 +3,7 @@ package com.endorocket.hexagonalapp.domain.apartment;
 import javax.persistence.Embeddable;
 
 @Embeddable
+@SuppressWarnings("PMD.UnusedPrivateField")
 class Address {
 	private String street;
 	private String postalCode;

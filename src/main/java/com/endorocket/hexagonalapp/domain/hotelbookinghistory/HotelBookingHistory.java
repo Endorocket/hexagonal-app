@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@SuppressWarnings("PMD.UnusedPrivateField")
 public class HotelBookingHistory {
 	@Id
 	private String hotelId;

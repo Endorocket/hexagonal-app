@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Embeddable
+@SuppressWarnings("PMD.UnusedPrivateField")
 public class ApartmentBooking {
 	@Enumerated(EnumType.STRING)
 	private BookingStep bookingStep;

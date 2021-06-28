@@ -6,6 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "APARTMENT_BOOKING_HISTORY")
+@SuppressWarnings("PMD.UnusedPrivateField")
 public class ApartmentBookingHistory {
 
 	@Id
