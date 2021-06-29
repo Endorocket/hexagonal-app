@@ -19,7 +19,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@Transactional //rollback after each test
 @Tag("SystemTest")
 class HotelRestControllerSystemTest {
 
