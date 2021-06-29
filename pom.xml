@@ -232,12 +232,6 @@
 									<goal>check</goal>
 								</goals>
 								<configuration>
-									<excludes>
-										<exclude>com/endorocket/hexagonalapp/RentalApplication.class</exclude>
-										<exclude>com/endorocket/hexagonalapp/infrastructure/**/*</exclude>
-										<exclude>com/endorocket/hexagonalapp/query/**/*</exclude>
-									</excludes>
-
 									<includes>
 										<include>com/endorocket/hexagonalapp/domain/**/*</include>
 										<include>com/endorocket/hexagonalapp/application/**/*</include>
@@ -251,7 +245,7 @@
 												<limit>
 													<counter>LINE</counter>
 													<value>COVEREDRATIO</value>
-													<minimum>0.66</minimum> <!-- 1.00 after completing tests -->
+													<minimum>0.67</minimum> <!-- 1.00 after completing tests -->
 												</limit>
 
 												<limit>
@@ -272,7 +266,7 @@
 		</profile>
 
 		<profile>
-			<id>runtime-analysis</id>
+			<id>integration-tests</id>
 
 			<build>
 				<plugins>
@@ -282,7 +276,7 @@
 						<version>${maven-surefire-plugin.version}</version>
 
 						<configuration>
-							<excludedGroups>ArchitectureTest</excludedGroups>
+							<groups>IntegrationTest</groups>
 						</configuration>
 					</plugin>
 
@@ -318,7 +312,17 @@
 								<configuration>
 									<excludes>
 										<exclude>com/endorocket/hexagonalapp/RentalApplication.class</exclude>
+										<exclude>com/endorocket/hexagonalapp/domain/**/*</exclude>
+										<exclude>com/endorocket/hexagonalapp/application/**/*</exclude>
+										<exclude>com/endorocket/hexagonalapp/infrastructure/persistence/jpa/**/*</exclude>
+										<exclude>com/endorocket/hexagonalapp/infrastructure/rest/api/**/*</exclude>
 									</excludes>
+
+									<includes>
+										<include>com/endorocket/hexagonalapp/infrastructure/**/*</include>
+										<include>com/endorocket/hexagonalapp/query/**/*</include>
+									</includes>
+
 									<rules>
 										<rule>
 											<element>BUNDLE</element>
@@ -326,13 +330,13 @@
 												<limit>
 													<counter>LINE</counter>
 													<value>COVEREDRATIO</value>
-													<minimum>0.72</minimum> <!-- 1.00 after completing tests -->
+													<minimum>0.18</minimum> <!-- 1.00 after completing tests -->
 												</limit>
 
 												<limit>
 													<counter>CLASS</counter>
 													<value>MISSEDCOUNT</value>
-													<maximum>12</maximum> <!-- 0 after completing tests -->
+													<maximum>8</maximum> <!-- 0 after completing tests -->
 												</limit>
 											</limits>
 										</rule>
@@ -343,6 +347,83 @@
 					</plugin>
 				</plugins>
 			</build>
+
+		</profile>
+
+		<profile>
+			<id>system-tests</id>
+
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${maven-surefire-plugin.version}</version>
+
+						<configuration>
+							<groups>SystemTest</groups>
+						</configuration>
+					</plugin>
+
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>${jacoco-maven-plugin.version}</version>
+
+						<executions>
+							<execution>
+								<id>prepare-agent</id>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+							</execution>
+
+							<execution>
+								<id>report</id>
+								<goals>
+									<goal>report</goal>
+								</goals>
+								<phase>test</phase>
+								<configuration>
+									<outputDirectory>${project.build.directory}/jacoco/jacoco-ut</outputDirectory>
+								</configuration>
+							</execution>
+
+							<execution>
+								<id>check</id>
+								<goals>
+									<goal>check</goal>
+								</goals>
+								<configuration>
+									<includes>
+										<include>com/endorocket/hexagonalapp/infrastructure/rest/api/**/*</include>
+									</includes>
+
+									<rules>
+										<rule>
+											<element>BUNDLE</element>
+											<limits>
+												<limit>
+													<counter>LINE</counter>
+													<value>COVEREDRATIO</value>
+													<minimum>0.51</minimum> <!-- 1.00 after completing tests -->
+												</limit>
+
+												<limit>
+													<counter>CLASS</counter>
+													<value>MISSEDCOUNT</value>
+													<maximum>4</maximum> <!-- 0 after completing tests -->
+												</limit>
+											</limits>
+										</rule>
+									</rules>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+
 		</profile>
 	</profiles>
 
