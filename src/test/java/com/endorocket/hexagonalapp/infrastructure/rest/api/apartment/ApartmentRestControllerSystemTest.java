@@ -3,6 +3,7 @@ package com.endorocket.hexagonalapp.infrastructure.rest.api.apartment;
 import com.endorocket.hexagonalapp.infrastructure.json.JsonFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -23,6 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@Tag("SystemTest")
 class ApartmentRestControllerSystemTest {
   private static final String OWNER_ID = "1234";
   private static final String STREET = "Krakowska";

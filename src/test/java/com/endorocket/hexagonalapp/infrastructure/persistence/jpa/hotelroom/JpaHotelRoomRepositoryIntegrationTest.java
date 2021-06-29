@@ -4,6 +4,7 @@ import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoom;
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomAssertion;
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomFactory;
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomRepository;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
+@Tag("DomainRepositoryIntegrationTest")
 class JpaHotelRoomRepositoryIntegrationTest {
   private static final String HOTEL_ID = "234";
   private static final int ROOM_NUMBER = 1;

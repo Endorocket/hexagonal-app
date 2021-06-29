@@ -10,6 +10,7 @@ import com.endorocket.hexagonalapp.domain.apartmentbookinghistory.ApartmentBooki
 import com.endorocket.hexagonalapp.domain.apartmentbookinghistory.ApartmentBookingHistory;
 import com.endorocket.hexagonalapp.domain.apartmentbookinghistory.ApartmentBookingHistoryRepository;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 @SpringBootTest
+@Tag("IntegrationTest")
 class ApartmentBookingHistoryEventListenerIntegrationTest {
   private static final String OWNER_ID = "1234";
   private static final String STREET = "Krakowska";

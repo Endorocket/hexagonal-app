@@ -4,6 +4,7 @@ import com.endorocket.hexagonalapp.domain.apartment.Apartment;
 import com.endorocket.hexagonalapp.domain.apartment.ApartmentAssertion;
 import com.endorocket.hexagonalapp.domain.apartment.ApartmentFactory;
 import com.endorocket.hexagonalapp.domain.apartment.ApartmentRepository;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@Tag("DomainRepositoryIntegrationTest")
 class JpaApartmentRepositoryIntegrationTest {
   private static final String OWNER_ID = "1234";
   private static final String STREET = "Krakowska";

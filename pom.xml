@@ -188,6 +188,83 @@
 		</profile>
 
 		<profile>
+			<id>domain-tests</id>
+
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${maven-surefire-plugin.version}</version>
+
+						<configuration>
+							<excludedGroups>ArchitectureTest,SystemTest,IntegrationTest</excludedGroups>
+						</configuration>
+					</plugin>
+
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>${jacoco-maven-plugin.version}</version>
+
+						<executions>
+							<execution>
+								<id>prepare-agent</id>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+							</execution>
+
+							<execution>
+								<id>report</id>
+								<goals>
+									<goal>report</goal>
+								</goals>
+								<phase>test</phase>
+								<configuration>
+									<outputDirectory>${project.build.directory}/jacoco/jacoco-ut</outputDirectory>
+								</configuration>
+							</execution>
+
+							<execution>
+								<id>check</id>
+								<goals>
+									<goal>check</goal>
+								</goals>
+								<configuration>
+									<excludes>
+										<exclude>com/endorocket/hexagonalapp/RentalApplication.class</exclude>
+										<exclude>com/endorocket/hexagonalapp/infrastructure/**/*</exclude>
+										<exclude>com/endorocket/hexagonalapp/query/**/*</exclude>
+									</excludes>
+									<rules>
+										<rule>
+											<element>BUNDLE</element>
+											<limits>
+												<limit>
+													<counter>LINE</counter>
+													<value>COVEREDRATIO</value>
+													<minimum>0.66</minimum> <!-- 1.00 after completing tests -->
+												</limit>
+
+												<limit>
+													<counter>CLASS</counter>
+													<value>MISSEDCOUNT</value>
+													<maximum>8</maximum> <!-- 0 after completing tests -->
+												</limit>
+											</limits>
+										</rule>
+									</rules>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+
+		</profile>
+
+		<profile>
 			<id>runtime-analysis</id>
 
 			<build>
@@ -233,7 +310,7 @@
 								</goals>
 								<configuration>
 									<excludes>
-										<exclude>com.endorocket.hexagonalapp.RentalApplication.class</exclude>
+										<exclude>com/endorocket/hexagonalapp/RentalApplication.class</exclude>
 									</excludes>
 									<rules>
 										<rule>
