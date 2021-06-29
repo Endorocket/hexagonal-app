@@ -237,6 +237,13 @@
 										<exclude>com/endorocket/hexagonalapp/infrastructure/**/*</exclude>
 										<exclude>com/endorocket/hexagonalapp/query/**/*</exclude>
 									</excludes>
+
+									<includes>
+										<include>com/endorocket/hexagonalapp/domain/**/*</include>
+										<include>com/endorocket/hexagonalapp/application/**/*</include>
+										<include>com/endorocket/hexagonalapp/infrastructure/persistence/jpa/**/*</include> <!-- FIXME it doesn't include that package in coverage verification -->
+									</includes>
+
 									<rules>
 										<rule>
 											<element>BUNDLE</element>
