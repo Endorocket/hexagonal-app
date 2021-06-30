@@ -1,5 +1,6 @@
 package com.endorocket.hexagonalapp.infrastructure.rest.api.hotel;
 
+import com.endorocket.hexagonalapp.application.hotel.HotelDto;
 import com.endorocket.hexagonalapp.infrastructure.json.JsonFactory;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Tag;

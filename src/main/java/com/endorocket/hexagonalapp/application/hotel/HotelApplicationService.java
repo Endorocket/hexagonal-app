@@ -1,9 +1,10 @@
 package com.endorocket.hexagonalapp.application.hotel;
 
 import com.endorocket.hexagonalapp.domain.hotel.Hotel;
-import com.endorocket.hexagonalapp.domain.hotel.HotelFactory;
 import com.endorocket.hexagonalapp.domain.hotel.HotelRepository;
 import org.springframework.stereotype.Service;
+
+import static com.endorocket.hexagonalapp.domain.hotel.Hotel.Builder.hotel;
 
 @Service
 public class HotelApplicationService {
@@ -13,8 +14,15 @@ public class HotelApplicationService {
     this.hotelRepository = hotelRepository;
   }
 
-  public void add(String name, String street, String postalCode, String buildingNumber, String city, String country) {
-    Hotel hotel = new HotelFactory().create(name, street, postalCode, buildingNumber, city, country);
+  public void add(HotelDto hotelDto) {
+    Hotel hotel = hotel()
+        .withName(hotelDto.name())
+        .withStreet(hotelDto.street())
+        .withPostalCode(hotelDto.postalCode())
+        .withBuildingNumber(hotelDto.buildingNumber())
+        .withCity(hotelDto.city())
+        .withCountry(hotelDto.country())
+        .build();
     hotelRepository.save(hotel);
   }
 }

@@ -1,6 +1,7 @@
 package com.endorocket.hexagonalapp.infrastructure.rest.api.hotel;
 
 import com.endorocket.hexagonalapp.application.hotel.HotelApplicationService;
+import com.endorocket.hexagonalapp.application.hotel.HotelDto;
 import com.endorocket.hexagonalapp.query.hotel.HotelReadModel;
 import com.endorocket.hexagonalapp.query.hotel.QueryHotelRepository;
 import org.springframework.http.HttpStatus;
@@ -20,8 +21,7 @@ public class HotelRestController {
 
 	@PostMapping
 	public ResponseEntity<Void> add(@RequestBody HotelDto hotelDto) {
-		hotelApplicationService.add(hotelDto.name(), hotelDto.street(), hotelDto.postalCode(), hotelDto.buildingNumber(),
-			hotelDto.city(), hotelDto.country());
+		hotelApplicationService.add(hotelDto);
 
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}

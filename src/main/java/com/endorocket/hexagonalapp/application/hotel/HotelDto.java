@@ -1,6 +1,6 @@
-package com.endorocket.hexagonalapp.infrastructure.rest.api.hotel;
+package com.endorocket.hexagonalapp.application.hotel;
 
-record HotelDto(String name,
+public record HotelDto(String name,
                 String street,
                 String postalCode,
                 String buildingNumber,
