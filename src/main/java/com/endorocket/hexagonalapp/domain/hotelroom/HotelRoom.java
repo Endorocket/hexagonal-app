@@ -1,7 +1,6 @@
 package com.endorocket.hexagonalapp.domain.hotelroom;
 
 import com.endorocket.hexagonalapp.domain.apartment.Booking;
-import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -40,9 +39,8 @@ public class HotelRoom {
     this.description = description;
   }
 
-  public Booking book(String tenantId, List<LocalDate> days, EventChannel eventChannel) {
-    HotelRoomBooked hotelRoomBooked = HotelRoomBooked.create(id(), hotelId, tenantId, days);
-    eventChannel.publish(hotelRoomBooked);
+  public Booking book(String tenantId, List<LocalDate> days, HotelRoomEventsPublisher publisher) {
+    publisher.publishHotelRoomBooked(id(), hotelId, tenantId, days);
 
     return Booking.hotelRoom(id(), tenantId, days);
   }

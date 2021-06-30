@@ -3,8 +3,8 @@ package com.endorocket.hexagonalapp.application.hotelroom;
 import com.endorocket.hexagonalapp.domain.apartment.Booking;
 import com.endorocket.hexagonalapp.domain.apartment.BookingAssertion;
 import com.endorocket.hexagonalapp.domain.apartment.BookingRepository;
-import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoom;
+import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomEventsPublisher;
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -27,8 +27,9 @@ class HotelRoomApplicationServiceTest {
 
   private final HotelRoomRepository hotelRoomRepository = mock(HotelRoomRepository.class);
   private final BookingRepository bookingRepository = mock(BookingRepository.class);
-  private final EventChannel eventChannel = mock(EventChannel.class);
-  private final HotelRoomApplicationService service = new HotelRoomApplicationService(hotelRoomRepository, bookingRepository, eventChannel);
+  private final HotelRoomEventsPublisher hotelRoomEventsPublisher = mock(HotelRoomEventsPublisher.class);
+
+  private final HotelRoomApplicationService service = new HotelRoomApplicationService(hotelRoomRepository, bookingRepository, hotelRoomEventsPublisher);
 
   @Test
   void shouldCreateBookingWhenHotelRoomBooked() {

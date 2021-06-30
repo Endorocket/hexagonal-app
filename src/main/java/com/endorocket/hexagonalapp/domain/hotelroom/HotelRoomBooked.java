@@ -3,37 +3,30 @@ package com.endorocket.hexagonalapp.domain.hotelroom;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 public class HotelRoomBooked {
 	private final String eventId;
-	private final LocalDateTime creationDateTime;
+	private final LocalDateTime eventCreationDateTime;
 	private final String hotelRoomId;
 	private final String hotelId;
 	private final String tenantId;
 	private final List<LocalDate> days;
 
-	private HotelRoomBooked(String eventId, LocalDateTime creationDateTime, String hotelRoomId, String hotelId, String tenantId, List<LocalDate> days) {
+	HotelRoomBooked(String eventId, LocalDateTime eventCreationDateTime, String hotelRoomId, String hotelId, String tenantId, List<LocalDate> days) {
 		this.eventId = eventId;
-		this.creationDateTime = creationDateTime;
+		this.eventCreationDateTime = eventCreationDateTime;
 		this.hotelRoomId = hotelRoomId;
 		this.hotelId = hotelId;
 		this.tenantId = tenantId;
 		this.days = days;
 	}
 
-	static HotelRoomBooked create(String id, String hotelId, String tenantId, List<LocalDate> days) {
-		String eventId = UUID.randomUUID().toString();
-		LocalDateTime creationDateTime = LocalDateTime.now();
-		return new HotelRoomBooked(eventId, creationDateTime, id, hotelId, tenantId, days);
-	}
-
 	public String getEventId() {
 		return eventId;
 	}
 
-	public LocalDateTime getCreationDateTime() {
-		return creationDateTime;
+	public LocalDateTime getEventCreationDateTime() {
+		return eventCreationDateTime;
 	}
 
 	public String getHotelRoomId() {
