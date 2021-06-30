@@ -257,7 +257,7 @@
 												<limit>
 													<counter>CLASS</counter>
 													<value>MISSEDCOUNT</value>
-													<maximum>11</maximum> <!-- 0 after completing tests -->
+													<maximum>12</maximum> <!-- 0 after completing tests -->
 												</limit>
 											</limits>
 										</rule>
