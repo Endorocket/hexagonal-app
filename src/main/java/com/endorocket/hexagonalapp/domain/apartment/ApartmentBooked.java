@@ -1,8 +1,9 @@
 package com.endorocket.hexagonalapp.domain.apartment;
 
+import com.endorocket.hexagonalapp.domain.event.EventIdFactory;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public class ApartmentBooked {
 	private final String eventId;
@@ -24,7 +25,7 @@ public class ApartmentBooked {
 	}
 
 	static ApartmentBooked create(String apartmentId, String ownerId, String tenantId, Period period) {
-		String eventId = UUID.randomUUID().toString();
+		String eventId = new EventIdFactory().create();
 		LocalDateTime creationDateTime = LocalDateTime.now();
 
 		return new ApartmentBooked(eventId, creationDateTime, apartmentId, ownerId, tenantId, period);
