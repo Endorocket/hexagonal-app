@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
+import static com.endorocket.hexagonalapp.domain.apartment.Apartment.Builder.apartment;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.mock;
 
@@ -28,7 +29,6 @@ class ApartmentTest {
 	private static final LocalDate END = LocalDate.of(2020, 3, 7);
 	private static final Period PERIOD = new Period(START, END);
 
-	private final ApartmentFactory apartmentFactory = new ApartmentFactory();
 	private final EventChannel eventChannel = mock(EventChannel.class);
 
 	@Test
@@ -71,6 +71,16 @@ class ApartmentTest {
 	}
 
 	private Apartment createApartment() {
-		return apartmentFactory.create(OWNER_ID, STREET, POSTAL_CODE, HOUSE_NUMBER, APARTMENT_NUMBER, CITY, COUNTRY, DESCRIPTION, ROOMS_DEFINITION);
-	}
+    return apartment()
+        .withOwnerId(OWNER_ID)
+        .withStreet(STREET)
+        .withPostalCode(POSTAL_CODE)
+        .withHouseNumber(HOUSE_NUMBER)
+        .withApartmentNumber(APARTMENT_NUMBER)
+        .withCity(CITY)
+        .withCountry(COUNTRY)
+        .withDescription(DESCRIPTION)
+        .withRoomsDefinition(ROOMS_DEFINITION)
+        .build();
+  }
 }

@@ -2,7 +2,6 @@ package com.endorocket.hexagonalapp.infrastructure.persistence.jpa.apartment;
 
 import com.endorocket.hexagonalapp.domain.apartment.Apartment;
 import com.endorocket.hexagonalapp.domain.apartment.ApartmentAssertion;
-import com.endorocket.hexagonalapp.domain.apartment.ApartmentFactory;
 import com.endorocket.hexagonalapp.domain.apartment.ApartmentRepository;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -13,8 +12,9 @@ import javax.transaction.Transactional;
 import java.util.Map;
 import java.util.UUID;
 
+import static com.endorocket.hexagonalapp.domain.apartment.Apartment.Builder.apartment;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 @Tag("DomainRepositoryIntegrationTest")
@@ -31,8 +31,6 @@ class JpaApartmentRepositoryIntegrationTest {
 
   @Autowired
   private ApartmentRepository apartmentRepository;
-
-  private final ApartmentFactory apartmentFactory = new ApartmentFactory();
 
   @Test
   void shouldThrowExceptionWhenApartmentDoesNotExist() {
@@ -60,13 +58,46 @@ class JpaApartmentRepositoryIntegrationTest {
   @Test
   @Transactional
   void shouldReturnExistingApartmentWeWant() {
-    Apartment apartment1 = apartmentFactory.create("1234", "Floriańska", "98-765", "12", "34", "Kraków", "Poland", "The greatest apartment", Map.of("Room1", 50.0));
+    Apartment apartment1 = apartment()
+        .withOwnerId("1234")
+        .withStreet("Floriańska")
+        .withPostalCode("98-765")
+        .withHouseNumber("12")
+        .withApartmentNumber("34")
+        .withCity("Kraków")
+        .withCountry("Poland")
+        .withDescription("The greatest apartment")
+        .withRoomsDefinition(Map.of("Room1", 50.0))
+        .build();
     apartmentRepository.save(apartment1);
+
     Apartment apartment = createApartment();
     String existingId = apartmentRepository.save(apartment);
-    Apartment apartment2 = apartmentFactory.create("5692", "Floriańska", "98-999", "10", "42", "Kraków", "Poland", "Great apartment", Map.of("Room4", 100.0));
+
+    Apartment apartment2 = apartment()
+        .withOwnerId("5692")
+        .withStreet("Floriańska")
+        .withPostalCode("98-999")
+        .withHouseNumber("10")
+        .withApartmentNumber("42")
+        .withCity("Kraków")
+        .withCountry("Poland")
+        .withDescription("Great apartment")
+        .withRoomsDefinition(Map.of("Room4", 100.0))
+        .build();
     apartmentRepository.save(apartment2);
-    Apartment apartment3 = apartmentFactory.create("2083", "Floriańska", "98-123", "11", "22", "Kraków", "Poland", "Not so bad apartment", Map.of("Room3", 30.0));
+
+    Apartment apartment3 = apartment()
+        .withOwnerId("2083")
+        .withStreet("Floriańska")
+        .withPostalCode("98-123")
+        .withHouseNumber("11")
+        .withApartmentNumber("22")
+        .withCity("Kraków")
+        .withCountry("Poland")
+        .withDescription("Not so bad apartment")
+        .withRoomsDefinition(Map.of("Room3", 30.0))
+        .build();
     apartmentRepository.save(apartment3);
 
 
@@ -80,6 +111,16 @@ class JpaApartmentRepositoryIntegrationTest {
   }
 
   private Apartment createApartment() {
-    return apartmentFactory.create(OWNER_ID, STREET, POSTAL_CODE, HOUSE_NUMBER, APARTMENT_NUMBER, CITY, COUNTRY, DESCRIPTION, ROOMS_DEFINITION);
+    return apartment()
+        .withOwnerId(OWNER_ID)
+        .withStreet(STREET)
+        .withPostalCode(POSTAL_CODE)
+        .withHouseNumber(HOUSE_NUMBER)
+        .withApartmentNumber(APARTMENT_NUMBER)
+        .withCity(CITY)
+        .withCountry(COUNTRY)
+        .withDescription(DESCRIPTION)
+        .withRoomsDefinition(ROOMS_DEFINITION)
+        .build();
   }
 }
