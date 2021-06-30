@@ -1,10 +1,10 @@
 package com.endorocket.hexagonalapp.application.apartmentbookinghistory;
 
 import com.endorocket.hexagonalapp.application.apartment.ApartmentApplicationService;
+import com.endorocket.hexagonalapp.application.apartment.ApartmentBookingDto;
 import com.endorocket.hexagonalapp.domain.apartment.Apartment;
 import com.endorocket.hexagonalapp.domain.apartment.ApartmentFactory;
 import com.endorocket.hexagonalapp.domain.apartment.ApartmentRepository;
-import com.endorocket.hexagonalapp.domain.apartment.Period;
 import com.endorocket.hexagonalapp.domain.apartmentbookinghistory.ApartmentBooking;
 import com.endorocket.hexagonalapp.domain.apartmentbookinghistory.ApartmentBookingAssertion;
 import com.endorocket.hexagonalapp.domain.apartmentbookinghistory.ApartmentBookingHistory;
@@ -50,10 +50,14 @@ class ApartmentBookingHistoryEventListenerIntegrationTest {
   void shouldUpdateApartmentBookingHistory() {
     String apartmentId = givenExistingApartment();
 
-    apartmentApplicationService.book(apartmentId, TENANT_ID, START, END);
+    apartmentApplicationService.book(apartmentId, givenApartmentBookingDto());
     ApartmentBookingHistory actual = apartmentBookingHistoryRepository.findFor(apartmentId);
 
     assertThatContainsOneApartmentBookingWithProperValues(actual);
+  }
+
+  private ApartmentBookingDto givenApartmentBookingDto() {
+    return new ApartmentBookingDto(TENANT_ID, START, END);
   }
 
   @SuppressWarnings("unchecked")

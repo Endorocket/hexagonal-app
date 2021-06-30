@@ -1,8 +1,8 @@
-package com.endorocket.hexagonalapp.infrastructure.rest.api.apartment;
+package com.endorocket.hexagonalapp.application.apartment;
 
 import java.util.Map;
 
-record ApartmentDto(String ownerId,
+public record ApartmentDto(String ownerId,
                     String street,
                     String postalCode,
                     String houseNumber,
