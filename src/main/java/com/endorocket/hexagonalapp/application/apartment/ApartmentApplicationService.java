@@ -4,6 +4,8 @@ import com.endorocket.hexagonalapp.domain.apartment.*;
 import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
 import org.springframework.stereotype.Service;
 
+import static com.endorocket.hexagonalapp.domain.apartment.Apartment.Builder.apartment;
+
 @Service
 public class ApartmentApplicationService {
   private final ApartmentRepository apartmentRepository;
@@ -17,9 +19,18 @@ public class ApartmentApplicationService {
   }
 
   public String add(ApartmentDto apartmentDto) {
-    Apartment apartment = new ApartmentFactory().create(
-        apartmentDto.ownerId(), apartmentDto.street(), apartmentDto.postalCode(), apartmentDto.houseNumber(), apartmentDto.apartmentNumber(),
-        apartmentDto.city(), apartmentDto.country(), apartmentDto.description(), apartmentDto.roomsDefinition());
+    Apartment apartment = apartment()
+        .withOwnerId(apartmentDto.ownerId())
+        .withStreet(apartmentDto.street())
+        .withPostalCode(apartmentDto.postalCode())
+        .withHouseNumber(apartmentDto.houseNumber())
+        .withApartmentNumber(apartmentDto.apartmentNumber())
+        .withCity(apartmentDto.city())
+        .withCountry(apartmentDto.country())
+        .withDescription(apartmentDto.description())
+        .withRoomsDefinition(apartmentDto.roomsDefinition())
+        .build();
+
     return apartmentRepository.save(apartment);
   }
 
