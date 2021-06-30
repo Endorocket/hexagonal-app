@@ -1,6 +1,7 @@
 package com.endorocket.hexagonalapp.infrastructure.rest.api.hotelroom;
 
 import com.endorocket.hexagonalapp.application.hotelroom.HotelRoomApplicationService;
+import com.endorocket.hexagonalapp.application.hotelroom.HotelRoomBookingDto;
 import com.endorocket.hexagonalapp.application.hotelroom.HotelRoomDto;
 import com.endorocket.hexagonalapp.query.hotelroom.HotelRoomReadModel;
 import com.endorocket.hexagonalapp.query.hotelroom.QueryHotelRoomRepository;
@@ -24,7 +25,7 @@ public class HotelRoomRestController {
 
 	@PutMapping("/book/{id}")
 	public void book(@PathVariable String id, @RequestBody HotelRoomBookingDto hotelRoomBookingDto) {
-		hotelRoomApplicationService.book(id, hotelRoomBookingDto.tenantId(), hotelRoomBookingDto.days());
+		hotelRoomApplicationService.book(id, hotelRoomBookingDto);
 	}
 
 	@GetMapping("/hotel/{hotelId}")

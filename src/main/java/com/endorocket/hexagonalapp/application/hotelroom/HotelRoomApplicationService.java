@@ -7,9 +7,6 @@ import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoom;
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.util.List;
-
 import static com.endorocket.hexagonalapp.domain.hotelroom.HotelRoom.Builder.hotelRoom;
 
 @Service
@@ -34,10 +31,10 @@ public class HotelRoomApplicationService {
     hotelRoomRepository.save(hotelRoom);
   }
 
-	public void book(String id, String tenantId, List<LocalDate> days) {
+	public void book(String id, HotelRoomBookingDto hotelRoomBookingDto) {
 		HotelRoom hotelRoom = hotelRoomRepository.findById(id);
 
-		Booking booking = hotelRoom.book(tenantId, days, eventChannel);
+		Booking booking = hotelRoom.book(hotelRoomBookingDto.tenantId(), hotelRoomBookingDto.days(), eventChannel);
 
     bookingRepository.save(booking);
 	}

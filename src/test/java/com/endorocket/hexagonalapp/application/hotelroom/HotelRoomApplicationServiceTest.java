@@ -34,9 +34,13 @@ class HotelRoomApplicationServiceTest {
   void shouldCreateBookingWhenHotelRoomBooked() {
     givenHotelRoom();
 
-    service.book(HOTEL_ROOM_ID, TENANT_ID, DAYS);
+    service.book(HOTEL_ROOM_ID, givenHotelRoomBookingDto());
 
     thenBookingShouldBeCreated();
+  }
+
+  private HotelRoomBookingDto givenHotelRoomBookingDto() {
+    return new HotelRoomBookingDto(TENANT_ID, DAYS);
   }
 
   private void givenHotelRoom() {
