@@ -5,7 +5,6 @@ import com.endorocket.hexagonalapp.domain.apartment.BookingAssertion;
 import com.endorocket.hexagonalapp.domain.apartment.BookingRepository;
 import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoom;
-import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomFactory;
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -14,6 +13,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
+import static com.endorocket.hexagonalapp.domain.hotelroom.HotelRoom.Builder.hotelRoom;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.mock;
@@ -28,7 +28,6 @@ class HotelRoomApplicationServiceTest {
   private final HotelRoomRepository hotelRoomRepository = mock(HotelRoomRepository.class);
   private final BookingRepository bookingRepository = mock(BookingRepository.class);
   private final EventChannel eventChannel = mock(EventChannel.class);
-  private final HotelRoomFactory hotelRoomFactory = new HotelRoomFactory();
   private final HotelRoomApplicationService service = new HotelRoomApplicationService(hotelRoomRepository, bookingRepository, eventChannel);
 
   @Test
@@ -46,7 +45,12 @@ class HotelRoomApplicationServiceTest {
   }
 
   private HotelRoom createHotelRoom() {
-    return hotelRoomFactory.create(HOTEL_ID, ROOM_NUMBER, Map.of("Bedroom", 5.5, "Bathroom", 3.0), "Nice hotel room");
+    return hotelRoom()
+        .withHotelId(HOTEL_ID)
+        .withNumber(ROOM_NUMBER)
+        .withSpacesDefinition(Map.of("Bedroom", 5.5, "Bathroom", 3.0))
+        .withDescription("Nice hotel room")
+        .build();
   }
 
   private void thenBookingShouldBeCreated() {

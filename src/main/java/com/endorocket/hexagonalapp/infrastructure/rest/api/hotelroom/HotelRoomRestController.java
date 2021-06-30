@@ -1,6 +1,7 @@
 package com.endorocket.hexagonalapp.infrastructure.rest.api.hotelroom;
 
 import com.endorocket.hexagonalapp.application.hotelroom.HotelRoomApplicationService;
+import com.endorocket.hexagonalapp.application.hotelroom.HotelRoomDto;
 import com.endorocket.hexagonalapp.query.hotelroom.HotelRoomReadModel;
 import com.endorocket.hexagonalapp.query.hotelroom.QueryHotelRoomRepository;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +19,7 @@ public class HotelRoomRestController {
 
 	@GetMapping
 	public void add(@RequestBody HotelRoomDto hotelRoomDto) {
-		hotelRoomApplicationService.add(hotelRoomDto.hotelId(), hotelRoomDto.number(), hotelRoomDto.spacesDefinition(),
-			hotelRoomDto.description());
+		hotelRoomApplicationService.add(hotelRoomDto);
 	}
 
 	@PutMapping("/book/{id}")

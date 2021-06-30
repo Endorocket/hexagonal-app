@@ -3,9 +3,14 @@ package com.endorocket.hexagonalapp.domain.hotelroom;
 import com.endorocket.hexagonalapp.domain.apartment.Booking;
 import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
 
-import javax.persistence.*;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Entity
@@ -51,5 +56,54 @@ public class HotelRoom {
       return null;
     }
     return id.toString();
+  }
+
+  public static class Builder {
+    private String hotelId;
+    private int number;
+    private Map<String, Double> spacesDefinition;
+    private String description;
+
+    private Builder() {
+    }
+
+    public static Builder hotelRoom() {
+      return new Builder();
+    }
+
+    public Builder withHotelId(String hotelId) {
+      this.hotelId = hotelId;
+      return this;
+    }
+
+    public Builder withNumber(int number) {
+      this.number = number;
+      return this;
+    }
+
+    public Builder withSpacesDefinition(Map<String, Double> spacesDefinition) {
+      this.spacesDefinition = spacesDefinition;
+      return this;
+    }
+
+    public Builder withDescription(String description) {
+      this.description = description;
+      return this;
+    }
+
+    public HotelRoom build() {
+      return new HotelRoom(hotelId, number, spaces(), description);
+    }
+
+    private List<Space> spaces() {
+      return spacesDefinition.entrySet().stream()
+          .map(entry -> {
+            String name = entry.getKey();
+            Double size = entry.getValue();
+            SquareMeter squareMeter = new SquareMeter(size);
+            return new Space(name, squareMeter);
+          })
+          .toList();
+    }
   }
 }

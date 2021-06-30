@@ -2,7 +2,6 @@ package com.endorocket.hexagonalapp.infrastructure.persistence.jpa.hotelroom;
 
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoom;
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomAssertion;
-import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomFactory;
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomRepository;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -13,6 +12,7 @@ import javax.transaction.Transactional;
 import java.util.Map;
 import java.util.UUID;
 
+import static com.endorocket.hexagonalapp.domain.hotelroom.HotelRoom.Builder.hotelRoom;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -26,8 +26,6 @@ class JpaHotelRoomRepositoryIntegrationTest {
 
   @Autowired
   private HotelRoomRepository hotelRoomRepository;
-
-  private final HotelRoomFactory hotelRoomFactory = new HotelRoomFactory();
 
   @Test
   void shouldThrowExceptionWhenHotelRoomDoesNotExist() {
@@ -54,6 +52,11 @@ class JpaHotelRoomRepositoryIntegrationTest {
   }
 
   private HotelRoom createHotelRoom() {
-    return hotelRoomFactory.create(HOTEL_ID, ROOM_NUMBER, SPACES_DEFINITION, DESCRIPTION);
+    return hotelRoom()
+        .withHotelId(HOTEL_ID)
+        .withNumber(ROOM_NUMBER)
+        .withSpacesDefinition(SPACES_DEFINITION)
+        .withDescription(DESCRIPTION)
+        .build();
   }
 }

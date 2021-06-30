@@ -4,13 +4,13 @@ import com.endorocket.hexagonalapp.domain.apartment.Booking;
 import com.endorocket.hexagonalapp.domain.apartment.BookingRepository;
 import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoom;
-import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomFactory;
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
+
+import static com.endorocket.hexagonalapp.domain.hotelroom.HotelRoom.Builder.hotelRoom;
 
 @Service
 public class HotelRoomApplicationService {
@@ -24,8 +24,13 @@ public class HotelRoomApplicationService {
 	  this.eventChannel = eventChannel;
   }
 
-  public void add(String hotelId, int number, Map<String, Double> spacesDefinition, String description) {
-    HotelRoom hotelRoom = new HotelRoomFactory().create(hotelId, number, spacesDefinition, description);
+  public void add(HotelRoomDto hotelRoomDto) {
+    HotelRoom hotelRoom = hotelRoom()
+        .withHotelId(hotelRoomDto.hotelId())
+        .withNumber(hotelRoomDto.number())
+        .withSpacesDefinition(hotelRoomDto.spacesDefinition())
+        .withDescription(hotelRoomDto.description())
+        .build();
     hotelRoomRepository.save(hotelRoom);
   }
 

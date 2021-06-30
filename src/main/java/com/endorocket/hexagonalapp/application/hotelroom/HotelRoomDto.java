@@ -1,8 +1,8 @@
-package com.endorocket.hexagonalapp.infrastructure.rest.api.hotelroom;
+package com.endorocket.hexagonalapp.application.hotelroom;
 
 import java.util.Map;
 
-record HotelRoomDto(String hotelId,
+public record HotelRoomDto(String hotelId,
                     int number,
                     Map<String, Double> spacesDefinition,
                     String description) {

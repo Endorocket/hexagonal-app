@@ -71,8 +71,11 @@ public class Hotel {
     }
 
     public Hotel build() {
-      Address address = new Address(street, postalCode, buildingNumber, city, country);
-      return new Hotel(name, address);
+      return new Hotel(name, address());
+    }
+
+    private Address address() {
+      return new Address(street, postalCode, buildingNumber, city, country);
     }
   }
 }
