@@ -1,7 +1,5 @@
 package com.endorocket.hexagonalapp.domain.apartment;
 
-import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
-
 import javax.persistence.*;
 import java.util.List;
 import java.util.Map;
@@ -36,9 +34,8 @@ public class Apartment {
     this.description = description;
   }
 
-  public Booking book(String tenantId, Period period, EventChannel eventChannel) {
-    ApartmentBooked apartmentBooked = ApartmentBooked.create(id(), ownerId, tenantId, period);
-    eventChannel.publish(apartmentBooked);
+  public Booking book(String tenantId, Period period, ApartmentEventsPublisher publisher) {
+    publisher.publishApartmentBooked(id(), ownerId, tenantId, period);
 
     return Booking.apartment(id(), tenantId, period);
   }

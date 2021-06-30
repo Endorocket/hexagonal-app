@@ -1,26 +1,23 @@
 package com.endorocket.hexagonalapp.application.apartment;
 
 import com.endorocket.hexagonalapp.domain.apartment.Apartment;
+import com.endorocket.hexagonalapp.domain.apartment.ApartmentEventsPublisher;
 import com.endorocket.hexagonalapp.domain.apartment.ApartmentRepository;
 import com.endorocket.hexagonalapp.domain.apartment.Booking;
 import com.endorocket.hexagonalapp.domain.apartment.BookingRepository;
 import com.endorocket.hexagonalapp.domain.apartment.Period;
-import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
-import org.springframework.stereotype.Service;
+
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
 
 import static com.endorocket.hexagonalapp.domain.apartment.Apartment.Builder.apartment;
 
-@Service
+@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public class ApartmentApplicationService {
-  private final ApartmentRepository apartmentRepository;
-  private final EventChannel eventChannel;
-  private final BookingRepository bookingRepository;
 
-  public ApartmentApplicationService(ApartmentRepository apartmentRepository, EventChannel eventChannel, BookingRepository bookingRepository) {
-    this.apartmentRepository = apartmentRepository;
-    this.eventChannel = eventChannel;
-    this.bookingRepository = bookingRepository;
-  }
+  private final ApartmentRepository apartmentRepository;
+  private final BookingRepository bookingRepository;
+  private final ApartmentEventsPublisher apartmentEventsPublisher;
 
   public String add(ApartmentDto apartmentDto) {
     Apartment apartment = apartment()
@@ -42,7 +39,8 @@ public class ApartmentApplicationService {
     Apartment apartment = apartmentRepository.findById(id);
     Period period = new Period(apartmentBookingDto.start(), apartmentBookingDto.end());
 
-    Booking booking = apartment.book(apartmentBookingDto.tenantId(), period, eventChannel);
+    Booking booking = apartment.book(apartmentBookingDto.tenantId(), period, apartmentEventsPublisher);
+
     bookingRepository.save(booking);
   }
 }
