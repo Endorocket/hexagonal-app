@@ -3,9 +3,6 @@ language: java
 jdk:
   - openjdk16
 
-git:
-  depth: false
-
 matrix:
   - jdk: openjdk16
     before_install:
