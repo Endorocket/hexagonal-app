@@ -82,7 +82,7 @@ class ApartmentBookingHistoryEventListenerTest {
 	}
 
 	private ApartmentBooked givenApartmentBooked() {
-		return ApartmentBookedTestFactory.create(APARTMENT_ID, OWNER_ID, TENANT_ID, PERIOD);
+		return ApartmentBookedTestFactory.create("23132", APARTMENT_ID, OWNER_ID, TENANT_ID, PERIOD);
 	}
 
 }

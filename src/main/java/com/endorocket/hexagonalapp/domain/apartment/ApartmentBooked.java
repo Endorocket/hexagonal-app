@@ -1,7 +1,5 @@
 package com.endorocket.hexagonalapp.domain.apartment;
 
-import com.endorocket.hexagonalapp.domain.event.EventIdFactory;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -22,12 +20,6 @@ public class ApartmentBooked {
 		this.tenantId = tenantId;
 		periodStart = period.getStart();
 		periodEnd = period.getEnd();
-	}
-
-	static ApartmentBooked create(String apartmentId, String ownerId, String tenantId, Period period) {
-		String eventId = new EventIdFactory().create();
-
-		return create(eventId, apartmentId, ownerId, tenantId, period);
 	}
 
 	static ApartmentBooked create(String eventId, String apartmentId, String ownerId, String tenantId, Period period) {
