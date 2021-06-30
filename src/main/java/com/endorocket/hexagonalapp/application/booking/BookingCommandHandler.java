@@ -1,7 +1,7 @@
 package com.endorocket.hexagonalapp.application.booking;
 
-import com.endorocket.hexagonalapp.domain.apartment.Booking;
-import com.endorocket.hexagonalapp.domain.apartment.BookingRepository;
+import com.endorocket.hexagonalapp.domain.booking.Booking;
+import com.endorocket.hexagonalapp.domain.booking.BookingRepository;
 import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;

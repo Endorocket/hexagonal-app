@@ -1,7 +1,7 @@
 package com.endorocket.hexagonalapp.infrastructure.eventchannel.spring;
 
 import com.endorocket.hexagonalapp.domain.apartment.ApartmentBooked;
-import com.endorocket.hexagonalapp.domain.apartment.BookingAccepted;
+import com.endorocket.hexagonalapp.domain.booking.BookingAccepted;
 import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomBooked;
 import org.springframework.context.ApplicationEventPublisher;

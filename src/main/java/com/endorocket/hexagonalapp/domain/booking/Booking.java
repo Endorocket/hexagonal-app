@@ -1,8 +1,14 @@
-package com.endorocket.hexagonalapp.domain.apartment;
+package com.endorocket.hexagonalapp.domain.booking;
 
+import com.endorocket.hexagonalapp.domain.apartment.Period;
 import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
 
-import javax.persistence.*;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -34,7 +40,7 @@ public class Booking {
     this.days = days;
   }
 
-  static Booking apartment(String rentalPlaceId, String tenantId, Period period) {
+  public static Booking apartment(String rentalPlaceId, String tenantId, Period period) {
     List<LocalDate> days = period.asDays();
     return new Booking(RentalType.APARTMENT, rentalPlaceId, tenantId, days);
   }

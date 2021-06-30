@@ -1,4 +1,4 @@
-package com.endorocket.hexagonalapp.domain.apartment;
+package com.endorocket.hexagonalapp.domain.booking;
 
 import org.assertj.core.api.Assertions;
 
@@ -37,7 +37,11 @@ public class BookingAssertion {
 		return isRentalTypeOf(RentalType.HOTEL_ROOM);
 	}
 
-	BookingAssertion isRentalTypeOf(RentalType expected) {
+	public BookingAssertion isApartment() {
+		return isRentalTypeOf(RentalType.APARTMENT);
+	}
+
+	private BookingAssertion isRentalTypeOf(RentalType expected) {
 		Assertions.assertThat(actual).hasFieldOrPropertyWithValue("rentalType", expected);
 		return this;
 	}

@@ -1,4 +1,4 @@
-package com.endorocket.hexagonalapp.domain.apartment;
+package com.endorocket.hexagonalapp.domain.booking;
 
 public enum BookingStatus {
 	OPEN, ACCEPTED, REJECTED

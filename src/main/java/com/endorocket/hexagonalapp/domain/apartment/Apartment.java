@@ -1,6 +1,13 @@
 package com.endorocket.hexagonalapp.domain.apartment;
 
-import javax.persistence.*;
+import com.endorocket.hexagonalapp.domain.booking.Booking;
+
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;

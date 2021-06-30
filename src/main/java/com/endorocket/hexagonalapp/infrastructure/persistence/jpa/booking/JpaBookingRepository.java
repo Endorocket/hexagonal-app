@@ -1,7 +1,7 @@
 package com.endorocket.hexagonalapp.infrastructure.persistence.jpa.booking;
 
-import com.endorocket.hexagonalapp.domain.apartment.Booking;
-import com.endorocket.hexagonalapp.domain.apartment.BookingRepository;
+import com.endorocket.hexagonalapp.domain.booking.Booking;
+import com.endorocket.hexagonalapp.domain.booking.BookingRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;

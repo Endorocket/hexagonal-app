@@ -1,5 +1,7 @@
 package com.endorocket.hexagonalapp.domain.apartment;
 
+import com.endorocket.hexagonalapp.domain.booking.Booking;
+import com.endorocket.hexagonalapp.domain.booking.BookingAssertion;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -48,7 +50,7 @@ class ApartmentTest {
 		Booking actual = apartment.book(TENANT_ID, PERIOD, apartmentEventsPublisher);
 
 		BookingAssertion.assertThat(actual)
-			.isRentalTypeOf(RentalType.APARTMENT)
+			.isApartment()
 			.hasTenantIdEqualTo(TENANT_ID)
 			.containsAllDays(List.of(START, MIDDLE, END));
 	}

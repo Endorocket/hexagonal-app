@@ -1,6 +1,6 @@
 package com.endorocket.hexagonalapp.domain.hotelroom;
 
-import com.endorocket.hexagonalapp.domain.apartment.Booking;
+import com.endorocket.hexagonalapp.domain.booking.Booking;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;

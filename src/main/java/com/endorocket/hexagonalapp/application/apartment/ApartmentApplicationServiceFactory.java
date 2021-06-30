@@ -2,7 +2,7 @@ package com.endorocket.hexagonalapp.application.apartment;
 
 import com.endorocket.hexagonalapp.domain.apartment.ApartmentEventsPublisher;
 import com.endorocket.hexagonalapp.domain.apartment.ApartmentRepository;
-import com.endorocket.hexagonalapp.domain.apartment.BookingRepository;
+import com.endorocket.hexagonalapp.domain.booking.BookingRepository;
 import com.endorocket.hexagonalapp.domain.event.EventIdFactory;
 import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
 import org.springframework.context.annotation.Bean;

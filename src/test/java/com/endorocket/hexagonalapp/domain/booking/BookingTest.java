@@ -1,5 +1,6 @@
-package com.endorocket.hexagonalapp.domain.apartment;
+package com.endorocket.hexagonalapp.domain.booking;
 
+import com.endorocket.hexagonalapp.domain.apartment.Period;
 import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import static com.endorocket.hexagonalapp.domain.apartment.BookingAssertion.assertThat;
+import static com.endorocket.hexagonalapp.domain.booking.BookingAssertion.assertThat;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.mock;
 
@@ -28,7 +29,7 @@ class BookingTest {
 
 		assertThat(actual)
 			.isOpen()
-			.isRentalTypeOf(RentalType.APARTMENT)
+			.isApartment()
 			.hasRentalPlaceIdEqualTo(APARTMENT_ID)
 			.hasTenantIdEqualTo(TENANT_ID)
 			.containsAllDays(List.of(START, LocalDate.of(2020, 12, 2), END));
@@ -43,7 +44,7 @@ class BookingTest {
 
 		assertThat(actual)
 			.isOpen()
-			.isRentalTypeOf(RentalType.HOTEL_ROOM)
+			.isHotelRoom()
 			.hasRentalPlaceIdEqualTo(hotelRoomId)
 			.hasTenantIdEqualTo(TENANT_ID)
 			.containsAllDays(days);

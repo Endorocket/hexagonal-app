@@ -1,7 +1,7 @@
 package com.endorocket.hexagonalapp.application.hotelroom;
 
-import com.endorocket.hexagonalapp.domain.apartment.Booking;
-import com.endorocket.hexagonalapp.domain.apartment.BookingRepository;
+import com.endorocket.hexagonalapp.domain.booking.Booking;
+import com.endorocket.hexagonalapp.domain.booking.BookingRepository;
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoom;
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomEventsPublisher;
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomRepository;

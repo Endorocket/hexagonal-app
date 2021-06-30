@@ -1,6 +1,6 @@
 package com.endorocket.hexagonalapp.application.hotelroom;
 
-import com.endorocket.hexagonalapp.domain.apartment.BookingRepository;
+import com.endorocket.hexagonalapp.domain.booking.BookingRepository;
 import com.endorocket.hexagonalapp.domain.clock.Clock;
 import com.endorocket.hexagonalapp.domain.event.EventIdFactory;
 import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
