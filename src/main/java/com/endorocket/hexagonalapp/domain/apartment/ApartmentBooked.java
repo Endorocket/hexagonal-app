@@ -24,7 +24,6 @@ public class ApartmentBooked {
 
 	static ApartmentBooked create(String eventId, String apartmentId, String ownerId, String tenantId, Period period) {
 		LocalDateTime creationDateTime = LocalDateTime.now();
-
 		return new ApartmentBooked(eventId, creationDateTime, apartmentId, ownerId, tenantId, period);
 	}
 
