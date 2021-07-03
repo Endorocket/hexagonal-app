@@ -1,6 +1,7 @@
 package com.endorocket.hexagonalapp.application.hotelroomoffer;
 
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomRepository;
+import com.endorocket.hexagonalapp.domain.hotelroomoffer.HotelRoomNotFoundException;
 import com.endorocket.hexagonalapp.domain.hotelroomoffer.HotelRoomOffer;
 import com.endorocket.hexagonalapp.domain.hotelroomoffer.HotelRoomOfferAssertion;
 import com.endorocket.hexagonalapp.domain.hotelroomoffer.HotelRoomOfferRepository;
@@ -10,6 +11,8 @@ import org.mockito.ArgumentCaptor;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.mock;
 
@@ -41,7 +44,20 @@ class HotelRoomOfferServiceTest {
         .hasAvailabilityEqualTo(START, END);
   }
 
+  @Test
+  void shouldRecognizeHotelRoomDoesNotExist() {
+    givenNotExistingHotelRoom();
+
+    HotelRoomNotFoundException actual = assertThrows(HotelRoomNotFoundException.class, () -> service.add(givenHotelRoomOfferDto()));
+
+    assertThat(actual).hasMessage("Hotel room with id: " + HOTEL_ROOM_ID + " does not exist.");
+  }
+
   private void givenExistingHotelRoom() {
+  }
+
+  private void givenNotExistingHotelRoom() {
+
   }
 
   private HotelRoomOfferDto givenHotelRoomOfferDto() {
