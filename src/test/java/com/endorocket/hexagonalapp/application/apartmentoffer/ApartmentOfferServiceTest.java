@@ -5,6 +5,7 @@ import com.endorocket.hexagonalapp.domain.apartment.ApartmentRepository;
 import com.endorocket.hexagonalapp.domain.apartmentoffer.ApartmentOffer;
 import com.endorocket.hexagonalapp.domain.apartmentoffer.ApartmentOfferAssertion;
 import com.endorocket.hexagonalapp.domain.apartmentoffer.ApartmentOfferRepository;
+import com.endorocket.hexagonalapp.domain.apartmentoffer.NotAllowedMoneyValueException;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -51,6 +52,16 @@ class ApartmentOfferServiceTest {
     ApartmentNotFoundException actual = assertThrows(ApartmentNotFoundException.class, () -> service.add(givenApartmentOfferDto()));
 
     assertThat(actual).hasMessage("Apartment with id: " + APARTMENT_ID + " does not exist.");
+  }
+
+  @Test
+  void shouldRecognizePriceLowerThanZero() {
+    givenExistingApartment();
+    ApartmentOfferDto dto = new ApartmentOfferDto(APARTMENT_ID, BigDecimal.valueOf(-12), START, END);
+
+    NotAllowedMoneyValueException actual = assertThrows(NotAllowedMoneyValueException.class, () -> service.add(dto));
+
+    assertThat(actual).hasMessage("Given -12 is lower than zero.");
   }
 
   private ApartmentOfferDto givenApartmentOfferDto() {
