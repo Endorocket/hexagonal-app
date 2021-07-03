@@ -1,7 +1,5 @@
 package com.endorocket.hexagonalapp.domain.apartmentoffer;
 
-public class ApartmentOfferRepository {
-  public void save(ApartmentOffer apartmentOffer) {
-
-  }
+public interface ApartmentOfferRepository {
+  void save(ApartmentOffer apartmentOffer);
 }
