@@ -79,7 +79,7 @@ class HotelRoomOfferServiceTest {
   @Test
   void shouldRecognizeThatStartIsAfterEnd() {
     givenExistingHotelRoom();
-    HotelRoomOfferDto dto = new HotelRoomOfferDto(HOTEL_ROOM_ID, BigDecimal.ZERO, END, START);
+    HotelRoomOfferDto dto = new HotelRoomOfferDto(HOTEL_ROOM_ID, PRICE, END, START);
 
     HotelRoomAvailabilityException actual = assertThrows(HotelRoomAvailabilityException.class, () -> service.add(dto));
 
