@@ -86,6 +86,17 @@ class HotelRoomOfferServiceTest {
     assertThat(actual).hasMessage("Start date: 2020-10-20 of availability is after end date: 2020-10-11.");
   }
 
+  @Test
+  void shouldRecognizeThatStartIsBeforeToday() {
+    givenExistingHotelRoom();
+    LocalDate startDate = LocalDate.now().minusDays(1);
+    HotelRoomOfferDto dto = new HotelRoomOfferDto(HOTEL_ROOM_ID, PRICE, startDate, LocalDate.now().plusDays(2));
+
+    HotelRoomAvailabilityException actual = assertThrows(HotelRoomAvailabilityException.class, () -> service.add(dto));
+
+    assertThat(actual).hasMessage("Start date: " + startDate + " of availability is before today: " + LocalDate.now() + ".");
+  }
+
   private void givenExistingHotelRoom() {
     given(hotelRoomRepository.existsById(HOTEL_ROOM_ID)).willReturn(true);
   }
