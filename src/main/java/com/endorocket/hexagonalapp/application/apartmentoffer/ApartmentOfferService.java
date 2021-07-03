@@ -4,17 +4,14 @@ import com.endorocket.hexagonalapp.domain.apartment.ApartmentNotFoundException;
 import com.endorocket.hexagonalapp.domain.apartment.ApartmentRepository;
 import com.endorocket.hexagonalapp.domain.apartmentoffer.ApartmentOffer;
 import com.endorocket.hexagonalapp.domain.apartmentoffer.ApartmentOfferRepository;
+import lombok.AllArgsConstructor;
 
 import static com.endorocket.hexagonalapp.domain.apartmentoffer.ApartmentOffer.Builder.apartmentOffer;
 
+@AllArgsConstructor
 class ApartmentOfferService {
   private final ApartmentOfferRepository apartmentOfferRepository;
   private final ApartmentRepository apartmentRepository;
-
-  public ApartmentOfferService(ApartmentOfferRepository apartmentOfferRepository, ApartmentRepository apartmentRepository) {
-    this.apartmentOfferRepository = apartmentOfferRepository;
-    this.apartmentRepository = apartmentRepository;
-  }
 
   void add(ApartmentOfferDto dto) {
     if (!apartmentRepository.existsById(dto.apartmentId())) {
