@@ -5,9 +5,6 @@ import com.endorocket.hexagonalapp.domain.apartment.ApartmentRepository;
 import com.endorocket.hexagonalapp.domain.apartmentoffer.ApartmentOffer;
 import com.endorocket.hexagonalapp.domain.apartmentoffer.ApartmentOfferRepository;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-
 import static com.endorocket.hexagonalapp.domain.apartmentoffer.ApartmentOffer.Builder.apartmentOffer;
 
 class ApartmentOfferService {
@@ -19,14 +16,14 @@ class ApartmentOfferService {
     this.apartmentRepository = apartmentRepository;
   }
 
-  void add(String apartmentId, BigDecimal price, LocalDate start, LocalDate end) {
-    if (!apartmentRepository.existsById(apartmentId)) {
-      throw new ApartmentNotFoundException(apartmentId);
+  void add(ApartmentOfferDto dto) {
+    if (!apartmentRepository.existsById(dto.apartmentId())) {
+      throw new ApartmentNotFoundException(dto.apartmentId());
     }
     ApartmentOffer apartmentOffer = apartmentOffer()
-        .withApartmentId(apartmentId)
-        .withMoney(price)
-        .withAvailability(start, end)
+        .withApartmentId(dto.apartmentId())
+        .withMoney(dto.price())
+        .withAvailability(dto.start(), dto.end())
         .build();
     apartmentOfferRepository.save(apartmentOffer);
   }
