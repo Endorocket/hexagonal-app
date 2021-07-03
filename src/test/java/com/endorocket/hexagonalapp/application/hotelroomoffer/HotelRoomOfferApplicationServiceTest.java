@@ -21,9 +21,11 @@ import static org.mockito.Mockito.mock;
 
 class HotelRoomOfferApplicationServiceTest {
   private static final String HOTEL_ROOM_ID = "1234";
-  private static final LocalDate START = LocalDate.of(2040, 10, 11);
-  private static final LocalDate END = LocalDate.of(2040, 10, 20);
   private static final BigDecimal PRICE = BigDecimal.valueOf(123);
+  private static final LocalDate START = LocalDate.of(2040, 10, 11);
+  public static final LocalDate START_YEAR_LATER = LocalDate.of(2041, 10, 11);
+  private static final LocalDate END = LocalDate.of(2040, 10, 20);
+  private static final LocalDate NO_DATE = null;
 
   private final ArgumentCaptor<HotelRoomOffer> captor = ArgumentCaptor.forClass(HotelRoomOffer.class);
 
@@ -97,9 +99,9 @@ class HotelRoomOfferApplicationServiceTest {
   }
 
   @Test
-  void shouldFillEndDateWhenEndDateIsEmpty() {
+  void shouldCreateHotelRoomOfferWhenAvailabilityEndNotGiven() {
     givenExistingHotelRoom();
-    HotelRoomOfferDto dto = new HotelRoomOfferDto(HOTEL_ROOM_ID, PRICE, START);
+    HotelRoomOfferDto dto = new HotelRoomOfferDto(HOTEL_ROOM_ID, PRICE, START, NO_DATE);
 
     service.add(dto);
 
@@ -109,7 +111,7 @@ class HotelRoomOfferApplicationServiceTest {
     HotelRoomOfferAssertion.assertThat(actual)
         .hasHotelRoomIdEqualTo(HOTEL_ROOM_ID)
         .hasPriceEqualTo(PRICE)
-        .hasAvailabilityEqualTo(START, LocalDate.of(2041, 10, 11));
+        .hasAvailabilityEqualTo(START, START_YEAR_LATER);
   }
 
   private void givenExistingHotelRoom() {
