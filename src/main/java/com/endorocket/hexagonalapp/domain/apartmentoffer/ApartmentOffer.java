@@ -46,7 +46,7 @@ public class ApartmentOffer {
 
     public ApartmentOffer build() {
       Money money = Money.of(this.money);
-      ApartmentAvailability availability = new ApartmentAvailability(start, end);
+      ApartmentAvailability availability = ApartmentAvailability.of(start, end);
       return new ApartmentOffer(apartmentId, money, availability);
     }
   }
