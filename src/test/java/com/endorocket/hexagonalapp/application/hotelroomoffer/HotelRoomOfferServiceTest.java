@@ -1,7 +1,8 @@
 package com.endorocket.hexagonalapp.application.hotelroomoffer;
 
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomRepository;
-import com.endorocket.hexagonalapp.domain.hotelroomoffer.HotelRoomNotFoundException;
+import com.endorocket.hexagonalapp.domain.hotelroomoffer.HotelRoomAvailabilityException;
+import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomNotFoundException;
 import com.endorocket.hexagonalapp.domain.hotelroomoffer.HotelRoomOffer;
 import com.endorocket.hexagonalapp.domain.hotelroomoffer.HotelRoomOfferAssertion;
 import com.endorocket.hexagonalapp.domain.hotelroomoffer.HotelRoomOfferRepository;
@@ -73,6 +74,16 @@ class HotelRoomOfferServiceTest {
     NotAllowedMoneyValueException actual = assertThrows(NotAllowedMoneyValueException.class, () -> service.add(dto));
 
     assertThat(actual).hasMessage("Given 0 is not higher than zero.");
+  }
+
+  @Test
+  void shouldRecognizeThatStartIsAfterEnd() {
+    givenExistingHotelRoom();
+    HotelRoomOfferDto dto = new HotelRoomOfferDto(HOTEL_ROOM_ID, BigDecimal.ZERO, END, START);
+
+    HotelRoomAvailabilityException actual = assertThrows(HotelRoomAvailabilityException.class, () -> service.add(dto));
+
+    assertThat(actual).hasMessage("Start date: 2020-10-20 of availability is after end date: 2020-10-11.");
   }
 
   private void givenExistingHotelRoom() {
