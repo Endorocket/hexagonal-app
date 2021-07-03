@@ -89,12 +89,11 @@ class HotelRoomOfferApplicationServiceTest {
   @Test
   void shouldRecognizeThatStartIsBeforeToday() {
     givenExistingHotelRoom();
-    LocalDate startDate = LocalDate.now().minusDays(1);
-    HotelRoomOfferDto dto = new HotelRoomOfferDto(HOTEL_ROOM_ID, PRICE, startDate, LocalDate.now().plusDays(2));
+    HotelRoomOfferDto dto = new HotelRoomOfferDto(HOTEL_ROOM_ID, PRICE, LocalDate.of(2020, 10, 10), END);
 
     HotelRoomAvailabilityException actual = assertThrows(HotelRoomAvailabilityException.class, () -> service.add(dto));
 
-    assertThat(actual).hasMessage("Start date: " + startDate + " of availability is before today: " + LocalDate.now() + ".");
+    assertThat(actual).hasMessage("Start date: 2020-10-10 is past date.");
   }
 
   @Test
@@ -110,7 +109,7 @@ class HotelRoomOfferApplicationServiceTest {
     HotelRoomOfferAssertion.assertThat(actual)
         .hasHotelRoomIdEqualTo(HOTEL_ROOM_ID)
         .hasPriceEqualTo(PRICE)
-        .hasAvailabilityEqualTo(START, START.plusYears(1));
+        .hasAvailabilityEqualTo(START, LocalDate.of(2041, 10, 11));
   }
 
   private void givenExistingHotelRoom() {

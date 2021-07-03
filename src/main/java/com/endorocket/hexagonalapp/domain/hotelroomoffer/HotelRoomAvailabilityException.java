@@ -8,6 +8,6 @@ public class HotelRoomAvailabilityException extends RuntimeException {
   }
 
   HotelRoomAvailabilityException(LocalDate start) {
-    super("Start date: " + start + " of availability is before today: " + LocalDate.now() + ".");
+    super("Start date: " + start + " is past date.");
   }
 }
