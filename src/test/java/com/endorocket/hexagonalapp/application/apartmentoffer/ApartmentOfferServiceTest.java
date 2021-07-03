@@ -2,6 +2,7 @@ package com.endorocket.hexagonalapp.application.apartmentoffer;
 
 import com.endorocket.hexagonalapp.domain.apartment.ApartmentNotFoundException;
 import com.endorocket.hexagonalapp.domain.apartment.ApartmentRepository;
+import com.endorocket.hexagonalapp.domain.apartmentoffer.ApartmentAvailabilityException;
 import com.endorocket.hexagonalapp.domain.apartmentoffer.ApartmentOffer;
 import com.endorocket.hexagonalapp.domain.apartmentoffer.ApartmentOfferAssertion;
 import com.endorocket.hexagonalapp.domain.apartmentoffer.ApartmentOfferRepository;
@@ -62,6 +63,16 @@ class ApartmentOfferServiceTest {
     NotAllowedMoneyValueException actual = assertThrows(NotAllowedMoneyValueException.class, () -> service.add(dto));
 
     assertThat(actual).hasMessage("Given -12 is lower than zero.");
+  }
+
+  @Test
+  void shouldRecognizeThatStartIsAfterEnd() {
+    givenExistingApartment();
+    ApartmentOfferDto dto = new ApartmentOfferDto(APARTMENT_ID, PRICE, END, START);
+
+    ApartmentAvailabilityException actual = assertThrows(ApartmentAvailabilityException.class, () -> service.add(dto));
+
+    assertThat(actual).hasMessage("Start date of availability is after end date.");
   }
 
   private ApartmentOfferDto givenApartmentOfferDto() {
