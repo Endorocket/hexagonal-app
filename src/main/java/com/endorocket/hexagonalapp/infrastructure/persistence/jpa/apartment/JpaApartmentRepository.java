@@ -24,4 +24,9 @@ public class JpaApartmentRepository implements ApartmentRepository {
 		return apartmentRepository.findById(UUID.fromString(id))
         .orElseThrow(() -> new ApartmentDoesNotExistException(id));
 	}
+
+  @Override
+  public boolean existsById(String id) {
+    return apartmentRepository.existsById(UUID.fromString(id));
+  }
 }
