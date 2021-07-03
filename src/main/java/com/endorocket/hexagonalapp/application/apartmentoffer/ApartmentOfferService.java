@@ -4,11 +4,11 @@ import com.endorocket.hexagonalapp.domain.apartment.ApartmentNotFoundException;
 import com.endorocket.hexagonalapp.domain.apartment.ApartmentRepository;
 import com.endorocket.hexagonalapp.domain.apartmentoffer.ApartmentOffer;
 import com.endorocket.hexagonalapp.domain.apartmentoffer.ApartmentOfferRepository;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import static com.endorocket.hexagonalapp.domain.apartmentoffer.ApartmentOffer.Builder.apartmentOffer;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 class ApartmentOfferService {
   private final ApartmentOfferRepository apartmentOfferRepository;
   private final ApartmentRepository apartmentRepository;

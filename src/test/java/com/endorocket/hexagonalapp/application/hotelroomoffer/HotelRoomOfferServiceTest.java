@@ -97,6 +97,23 @@ class HotelRoomOfferServiceTest {
     assertThat(actual).hasMessage("Start date: " + startDate + " of availability is before today: " + LocalDate.now() + ".");
   }
 
+  @Test
+  void shouldFillEndDateWhenEndDateIsEmpty() {
+    givenExistingHotelRoom();
+    LocalDate startDate = LocalDate.now().plusDays(1);
+    HotelRoomOfferDto dto = new HotelRoomOfferDto(HOTEL_ROOM_ID, PRICE, startDate);
+
+    service.add(dto);
+
+    then(hotelRoomOfferRepository).should().save(captor.capture());
+
+    HotelRoomOffer actual = captor.getValue();
+    HotelRoomOfferAssertion.assertThat(actual)
+        .hasHotelRoomIdEqualTo(HOTEL_ROOM_ID)
+        .hasPriceEqualTo(PRICE)
+        .hasAvailabilityEqualTo(startDate, startDate.plusYears(1));
+  }
+
   private void givenExistingHotelRoom() {
     given(hotelRoomRepository.existsById(HOTEL_ROOM_ID)).willReturn(true);
   }

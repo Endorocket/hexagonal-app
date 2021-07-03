@@ -1,7 +1,19 @@
 package com.endorocket.hexagonalapp.application.hotelroomoffer;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-record HotelRoomOfferDto(String hotelRoomId, BigDecimal price, LocalDate start, LocalDate end) {
+
+@AllArgsConstructor
+@RequiredArgsConstructor
+@Getter
+class HotelRoomOfferDto {
+  private final String hotelRoomId;
+  private final BigDecimal price;
+  private final LocalDate start;
+  private LocalDate end;
 }
