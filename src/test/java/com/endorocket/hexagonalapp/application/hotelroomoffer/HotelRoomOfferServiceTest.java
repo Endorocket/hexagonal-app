@@ -65,6 +65,16 @@ class HotelRoomOfferServiceTest {
     assertThat(actual).hasMessage("Given -4 is not higher than zero.");
   }
 
+  @Test
+  void shouldRecognizePriceEqualToZero() {
+    givenExistingHotelRoom();
+    HotelRoomOfferDto dto = new HotelRoomOfferDto(HOTEL_ROOM_ID, BigDecimal.ZERO, START, END);
+
+    NotAllowedMoneyValueException actual = assertThrows(NotAllowedMoneyValueException.class, () -> service.add(dto));
+
+    assertThat(actual).hasMessage("Given 0 is not higher than zero.");
+  }
+
   private void givenExistingHotelRoom() {
     given(hotelRoomRepository.existsById(HOTEL_ROOM_ID)).willReturn(true);
   }
