@@ -5,6 +5,7 @@ import com.endorocket.hexagonalapp.domain.hotelroomoffer.HotelRoomNotFoundExcept
 import com.endorocket.hexagonalapp.domain.hotelroomoffer.HotelRoomOffer;
 import com.endorocket.hexagonalapp.domain.hotelroomoffer.HotelRoomOfferAssertion;
 import com.endorocket.hexagonalapp.domain.hotelroomoffer.HotelRoomOfferRepository;
+import com.endorocket.hexagonalapp.domain.hotelroomoffer.NotAllowedMoneyValueException;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -52,6 +53,16 @@ class HotelRoomOfferServiceTest {
     HotelRoomNotFoundException actual = assertThrows(HotelRoomNotFoundException.class, () -> service.add(givenHotelRoomOfferDto()));
 
     assertThat(actual).hasMessage("Hotel room with id: " + HOTEL_ROOM_ID + " does not exist.");
+  }
+
+  @Test
+  void shouldRecognizePriceLowerThanZero() {
+    givenExistingHotelRoom();
+    HotelRoomOfferDto dto = new HotelRoomOfferDto(HOTEL_ROOM_ID, BigDecimal.valueOf(-4), START, END);
+
+    NotAllowedMoneyValueException actual = assertThrows(NotAllowedMoneyValueException.class, () -> service.add(dto));
+
+    assertThat(actual).hasMessage("Given -4 is not higher than zero.");
   }
 
   private void givenExistingHotelRoom() {
