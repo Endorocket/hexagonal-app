@@ -12,13 +12,13 @@ class HotelRoomOfferApplicationService {
   private final HotelRoomRepository hotelRoomRepository;
 
   void add(HotelRoomOfferDto dto) {
-    if (!hotelRoomRepository.existsById(dto.getHotelRoomId())) {
-      throw new HotelRoomNotFoundException(dto.getHotelRoomId());
+    if (!hotelRoomRepository.existsById(dto.hotelRoomId())) {
+      throw new HotelRoomNotFoundException(dto.hotelRoomId());
     }
     HotelRoomOffer hotelRoomOffer = HotelRoomOffer.Builder.hotelRoomOffer()
-        .withHotelRoomId(dto.getHotelRoomId())
-        .withMoney(dto.getPrice())
-        .withAvailability(dto.getStart(), dto.getEnd())
+        .withHotelRoomId(dto.hotelRoomId())
+        .withMoney(dto.price())
+        .withAvailability(dto.start(), dto.end())
         .build();
 
     hotelRoomOfferRepository.save(hotelRoomOffer);
