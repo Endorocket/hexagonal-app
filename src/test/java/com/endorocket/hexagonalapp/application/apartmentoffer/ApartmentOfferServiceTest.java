@@ -25,6 +25,8 @@ class ApartmentOfferServiceTest {
   private static final LocalDate END = LocalDate.of(2020, 10, 20);
   private static final BigDecimal PRICE = BigDecimal.valueOf(123);
 
+  private final ArgumentCaptor<ApartmentOffer> captor = ArgumentCaptor.forClass(ApartmentOffer.class);
+
   private final ApartmentOfferRepository apartmentOfferRepository = mock(ApartmentOfferRepository.class);
   private final ApartmentRepository apartmentRepository = mock(ApartmentRepository.class);
 
@@ -32,7 +34,6 @@ class ApartmentOfferServiceTest {
 
   @Test
   void shouldCreateApartmentOfferForExistingApartment() {
-    ArgumentCaptor<ApartmentOffer> captor = ArgumentCaptor.forClass(ApartmentOffer.class);
     givenExistingApartment();
 
     service.add(givenApartmentOfferDto());
@@ -63,6 +64,21 @@ class ApartmentOfferServiceTest {
     NotAllowedMoneyValueException actual = assertThrows(NotAllowedMoneyValueException.class, () -> service.add(dto));
 
     assertThat(actual).hasMessage("Given -12 is lower than zero.");
+  }
+
+  @Test
+  void shouldCreateApartmentOfferWithZeroPrice() {
+    givenExistingApartment();
+
+    service.add(new ApartmentOfferDto(APARTMENT_ID, BigDecimal.ZERO, START, END));
+
+    then(apartmentOfferRepository).should().save(captor.capture());
+
+    ApartmentOffer actual = captor.getValue();
+    ApartmentOfferAssertion.assertThat(actual)
+        .hasApartmentIdEqualTo(APARTMENT_ID)
+        .hasPriceEqualTo(BigDecimal.ZERO)
+        .hasAvailabilityEqualTo(START, END);
   }
 
   @Test
