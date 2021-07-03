@@ -21,8 +21,8 @@ import static org.mockito.Mockito.mock;
 
 class HotelRoomOfferApplicationServiceTest {
   private static final String HOTEL_ROOM_ID = "1234";
-  private static final LocalDate START = LocalDate.of(2020, 10, 11);
-  private static final LocalDate END = LocalDate.of(2020, 10, 20);
+  private static final LocalDate START = LocalDate.of(2040, 10, 11);
+  private static final LocalDate END = LocalDate.of(2040, 10, 20);
   private static final BigDecimal PRICE = BigDecimal.valueOf(123);
 
   private final ArgumentCaptor<HotelRoomOffer> captor = ArgumentCaptor.forClass(HotelRoomOffer.class);
@@ -83,7 +83,7 @@ class HotelRoomOfferApplicationServiceTest {
 
     HotelRoomAvailabilityException actual = assertThrows(HotelRoomAvailabilityException.class, () -> service.add(dto));
 
-    assertThat(actual).hasMessage("Start date: 2020-10-20 of availability is after end date: 2020-10-11.");
+    assertThat(actual).hasMessage("Start date: 2040-10-20 of availability is after end date: 2040-10-11.");
   }
 
   @Test
@@ -100,8 +100,7 @@ class HotelRoomOfferApplicationServiceTest {
   @Test
   void shouldFillEndDateWhenEndDateIsEmpty() {
     givenExistingHotelRoom();
-    LocalDate startDate = LocalDate.now().plusDays(1);
-    HotelRoomOfferDto dto = new HotelRoomOfferDto(HOTEL_ROOM_ID, PRICE, startDate);
+    HotelRoomOfferDto dto = new HotelRoomOfferDto(HOTEL_ROOM_ID, PRICE, START);
 
     service.add(dto);
 
@@ -111,7 +110,7 @@ class HotelRoomOfferApplicationServiceTest {
     HotelRoomOfferAssertion.assertThat(actual)
         .hasHotelRoomIdEqualTo(HOTEL_ROOM_ID)
         .hasPriceEqualTo(PRICE)
-        .hasAvailabilityEqualTo(startDate, startDate.plusYears(1));
+        .hasAvailabilityEqualTo(START, START.plusYears(1));
   }
 
   private void givenExistingHotelRoom() {
