@@ -19,7 +19,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.mock;
 
-class HotelRoomOfferServiceTest {
+class HotelRoomOfferApplicationServiceTest {
   private static final String HOTEL_ROOM_ID = "1234";
   private static final LocalDate START = LocalDate.of(2020, 10, 11);
   private static final LocalDate END = LocalDate.of(2020, 10, 20);
@@ -30,7 +30,7 @@ class HotelRoomOfferServiceTest {
   private final HotelRoomOfferRepository hotelRoomOfferRepository = mock(HotelRoomOfferRepository.class);
   private final HotelRoomRepository hotelRoomRepository = mock(HotelRoomRepository.class);
 
-  private final HotelRoomOfferService service = new HotelRoomOfferService(hotelRoomOfferRepository, hotelRoomRepository);
+  private final HotelRoomOfferApplicationService service = new HotelRoomOfferApplicationService(hotelRoomOfferRepository, hotelRoomRepository);
 
   @Test
   void shouldCreateHotelRoomOfferForExistingHotelRoom() {

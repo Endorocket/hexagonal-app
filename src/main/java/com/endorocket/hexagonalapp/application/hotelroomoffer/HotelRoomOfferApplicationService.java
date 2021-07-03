@@ -7,7 +7,7 @@ import com.endorocket.hexagonalapp.domain.hotelroomoffer.HotelRoomOfferRepositor
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-class HotelRoomOfferService {
+class HotelRoomOfferApplicationService {
   private final HotelRoomOfferRepository hotelRoomOfferRepository;
   private final HotelRoomRepository hotelRoomRepository;
 

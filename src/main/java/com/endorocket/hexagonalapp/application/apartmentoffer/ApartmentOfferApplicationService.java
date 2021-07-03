@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 import static com.endorocket.hexagonalapp.domain.apartmentoffer.ApartmentOffer.Builder.apartmentOffer;
 
 @RequiredArgsConstructor
-class ApartmentOfferService {
+class ApartmentOfferApplicationService {
   private final ApartmentOfferRepository apartmentOfferRepository;
   private final ApartmentRepository apartmentRepository;
 
