@@ -11,9 +11,13 @@ class Money {
   }
 
   static Money of(BigDecimal price) {
-    if (price.compareTo(BigDecimal.ZERO) < 0) {
+    if (isLowerThanZero(price)) {
       throw new NotAllowedMoneyValueException(price);
     }
     return new Money(price);
+  }
+
+  private static boolean isLowerThanZero(BigDecimal price) {
+    return price.compareTo(BigDecimal.ZERO) < 0;
   }
 }
