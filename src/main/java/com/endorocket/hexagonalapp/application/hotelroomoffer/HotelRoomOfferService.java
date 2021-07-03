@@ -1,6 +1,7 @@
 package com.endorocket.hexagonalapp.application.hotelroomoffer;
 
 import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomRepository;
+import com.endorocket.hexagonalapp.domain.hotelroomoffer.HotelRoomNotFoundException;
 import com.endorocket.hexagonalapp.domain.hotelroomoffer.HotelRoomOffer;
 import com.endorocket.hexagonalapp.domain.hotelroomoffer.HotelRoomOfferRepository;
 import lombok.AllArgsConstructor;
@@ -11,6 +12,9 @@ class HotelRoomOfferService {
   private final HotelRoomRepository hotelRoomRepository;
 
   void add(HotelRoomOfferDto dto) {
+    if (!hotelRoomRepository.existsById(dto.hotelRoomId())) {
+      throw new HotelRoomNotFoundException(dto.hotelRoomId());
+    }
     HotelRoomOffer hotelRoomOffer = HotelRoomOffer.Builder.hotelRoomOffer()
         .withHotelRoomId(dto.hotelRoomId())
         .withMoney(dto.price())

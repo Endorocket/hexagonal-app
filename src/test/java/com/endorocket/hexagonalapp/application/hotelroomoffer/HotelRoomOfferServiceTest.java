@@ -13,6 +13,7 @@ import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.mock;
 
@@ -54,10 +55,11 @@ class HotelRoomOfferServiceTest {
   }
 
   private void givenExistingHotelRoom() {
+    given(hotelRoomRepository.existsById(HOTEL_ROOM_ID)).willReturn(true);
   }
 
   private void givenNotExistingHotelRoom() {
-
+    given(hotelRoomRepository.existsById(HOTEL_ROOM_ID)).willReturn(false);
   }
 
   private HotelRoomOfferDto givenHotelRoomOfferDto() {
