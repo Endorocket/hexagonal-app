@@ -1,5 +1,6 @@
 package com.endorocket.hexagonalapp.domain.hotelroomoffer;
 
+import javax.annotation.Nullable;
 import java.time.LocalDate;
 
 @SuppressWarnings("PMD.UnusedPrivateField")
@@ -12,7 +13,10 @@ class HotelRoomAvailability {
     this.end = end;
   }
 
-  static HotelRoomAvailability of(LocalDate start, LocalDate end) {
+  static HotelRoomAvailability of(LocalDate start, @Nullable LocalDate end) {
+    if (end == null) {
+      end = start.plusYears(1);
+    }
     if (start.isAfter(end)) {
       throw new HotelRoomAvailabilityException(start, end);
     }
