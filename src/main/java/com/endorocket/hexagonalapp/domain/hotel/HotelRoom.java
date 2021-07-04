@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -65,6 +66,19 @@ public class HotelRoom {
 
   boolean hasNumberEqualTo(int number) {
     return this.number == number;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    HotelRoom hotelRoom = (HotelRoom) o;
+    return number == hotelRoom.number && Objects.equals(hotelId, hotelRoom.hotelId);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(hotelId, number);
   }
 
   public static class Builder {

@@ -29,6 +29,7 @@ class ApartmentTest {
   private static final String COUNTRY_1 = "Poland";
   private static final String DESCRIPTION_1 = "Nice apartment";
   private static final Map<String, Double> SPACES_DEFINITION_1 = Map.of("Toilet", 10.0, "Bedroom", 15.5);
+
   private static final String OWNER_ID_2 = "123456";
   private static final String STREET_2 = "Marszałkowska";
   private static final String POSTAL_CODE_2 = "12-222";
@@ -38,6 +39,7 @@ class ApartmentTest {
   private static final String COUNTRY_2 = "Germany";
   private static final String DESCRIPTION_2 = "Cosy apartment";
   private static final Map<String, Double> SPACES_DEFINITION_2 = Map.of("Bathroom", 12.0, "Kitchen", 12.5);
+
   private static final String TENANT_ID = "126";
   private static final LocalDate START = LocalDate.of(2020, 3, 5);
   private static final LocalDate MIDDLE = LocalDate.of(2020, 3, 6);

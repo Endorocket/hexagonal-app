@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 import static com.endorocket.hexagonalapp.domain.hotel.HotelRoom.Builder.hotelRoom;
@@ -72,6 +73,19 @@ public class Hotel {
 
   public Booking bookRoom(int number, String tenantId, List<LocalDate> days, HotelRoomEventsPublisher hotelRoomEventsPublisher) {
     return getHotelRoom(number).book(tenantId, days, hotelRoomEventsPublisher);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Hotel hotel = (Hotel) o;
+    return Objects.equals(name, hotel.name) && Objects.equals(address, hotel.address);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, address);
   }
 
   public static class Builder {
