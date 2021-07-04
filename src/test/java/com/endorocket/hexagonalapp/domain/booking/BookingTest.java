@@ -2,6 +2,7 @@ package com.endorocket.hexagonalapp.domain.booking;
 
 import com.endorocket.hexagonalapp.domain.period.Period;
 import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import static com.endorocket.hexagonalapp.domain.booking.BookingAssertion.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.mock;
 
@@ -75,5 +77,35 @@ class BookingTest {
 			.hasRentalPlaceIdEqualTo(APARTMENT_ID)
 			.hasTenantIdEqualTo(TENANT_ID)
 			.containsAllDays(List.of(START, MIDDLE, END));
+	}
+
+	@Test
+	void shouldNotBeAbleToAcceptAlreadyRejectedBooking() {
+		Booking booking = givenRejectedBooking();
+
+		BookingStatusException actual = assertThrows(BookingStatusException.class, () -> booking.accept(eventChannel));
+
+		Assertions.assertThat(actual).hasMessage("Accepting already rejected booking is forbidden.");
+	}
+
+	@Test
+	void shouldNotBeAbleToRejectAlreadyAcceptedBooking() {
+		Booking booking = givenAcceptedBooking();
+
+		BookingStatusException actual = assertThrows(BookingStatusException.class, booking::reject);
+
+		Assertions.assertThat(actual).hasMessage("Rejecting already accepted booking is forbidden.");
+	}
+
+	private Booking givenAcceptedBooking() {
+		Booking booking = Booking.apartment(APARTMENT_ID, TENANT_ID, new Period(START, END));
+		booking.accept(eventChannel);
+		return booking;
+	}
+
+	private Booking givenRejectedBooking() {
+		Booking booking = Booking.apartment(APARTMENT_ID, TENANT_ID, new Period(START, END));
+		booking.reject();
+		return booking;
 	}
 }

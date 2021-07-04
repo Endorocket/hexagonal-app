@@ -61,10 +61,16 @@ public class Booking {
   }
 
   public void reject() {
+    if (bookingStatus == BookingStatus.ACCEPTED) {
+      throw BookingStatusException.alreadyAccepted();
+    }
     bookingStatus = BookingStatus.REJECTED;
   }
 
   public void accept(EventChannel eventChannel) {
+    if (bookingStatus == BookingStatus.REJECTED) {
+      throw BookingStatusException.alreadyRejected();
+    }
     bookingStatus = BookingStatus.ACCEPTED;
     BookingAccepted bookingAccepted = BookingAccepted.create(rentalType, rentalPlaceId, tenantId, days);
     eventChannel.publish(bookingAccepted);
