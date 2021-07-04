@@ -46,8 +46,14 @@ public class HotelRoomOffer {
 
     public HotelRoomOffer build() {
       Money money = Money.of(price);
-      HotelRoomAvailability availability = HotelRoomAvailability.of(start, end);
-      return new HotelRoomOffer(hotelRoomId, money, availability);
+      return new HotelRoomOffer(hotelRoomId, money, hotelRoomAvailability());
+    }
+
+    private HotelRoomAvailability hotelRoomAvailability() {
+      if (end == null) {
+        return HotelRoomAvailability.of(start);
+      }
+      return HotelRoomAvailability.of(start, end);
     }
   }
 }
