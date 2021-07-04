@@ -1,14 +1,20 @@
 package com.endorocket.hexagonalapp.query.hotel;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.UUID;
 
 @Entity
 @Table(name = "HOTEL")
 public class HotelReadModel {
 	@Id
-	private String id;
+	@GeneratedValue
+	@Column(name = "ID")
+	private UUID id;
+
 	private String name;
 	private String street;
 	private String postalCode;
@@ -19,18 +25,8 @@ public class HotelReadModel {
 	private HotelReadModel() {
 	}
 
-	HotelReadModel(String id, String name, String street, String postalCode, String buildingNumber, String city, String country) {
-		this.id = id;
-		this.name = name;
-		this.street = street;
-		this.postalCode = postalCode;
-		this.buildingNumber = buildingNumber;
-		this.city = city;
-		this.country = country;
-	}
-
 	public String getId() {
-		return id;
+		return id.toString();
 	}
 
 	public String getName() {

@@ -4,6 +4,7 @@ import com.endorocket.hexagonalapp.query.space.SpaceReadModel;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "HOTEL_ROOM")
@@ -11,7 +12,8 @@ public class HotelRoomReadModel {
 	@Id
 	private String id;
 
-	private String hotelId;
+	@Column(name = "HOTEL_ID")
+	private UUID hotelId;
 	private int number;
 
 	@ElementCollection
@@ -23,20 +25,12 @@ public class HotelRoomReadModel {
 	private HotelRoomReadModel() {
 	}
 
-	HotelRoomReadModel(String id, String hotelId, int number, List<SpaceReadModel> spaces, String description) {
-		this.id = id;
-		this.hotelId = hotelId;
-		this.number = number;
-		this.spaces = spaces;
-		this.description = description;
-	}
-
 	public String getId() {
 		return id;
 	}
 
 	public String getHotelId() {
-		return hotelId;
+		return hotelId.toString();
 	}
 
 	public int getNumber() {

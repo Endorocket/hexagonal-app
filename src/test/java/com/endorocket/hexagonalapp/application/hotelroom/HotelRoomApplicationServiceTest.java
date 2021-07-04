@@ -3,6 +3,7 @@ package com.endorocket.hexagonalapp.application.hotelroom;
 import com.endorocket.hexagonalapp.domain.booking.Booking;
 import com.endorocket.hexagonalapp.domain.booking.BookingAssertion;
 import com.endorocket.hexagonalapp.domain.booking.BookingRepository;
+import com.endorocket.hexagonalapp.domain.hotel.HotelRepository;
 import com.endorocket.hexagonalapp.domain.hotel.HotelRoom;
 import com.endorocket.hexagonalapp.domain.hotel.HotelRoomEventsPublisher;
 import com.endorocket.hexagonalapp.domain.hotel.HotelRoomRepository;
@@ -25,11 +26,13 @@ class HotelRoomApplicationServiceTest {
   private static final String TENANT_ID = "456";
   private static final List<LocalDate> DAYS = List.of(LocalDate.of(2020, 1, 1), LocalDate.of(2020, 1, 2));
 
+  private final HotelRepository hotelRepository = mock(HotelRepository.class);
   private final HotelRoomRepository hotelRoomRepository = mock(HotelRoomRepository.class);
   private final BookingRepository bookingRepository = mock(BookingRepository.class);
   private final HotelRoomEventsPublisher hotelRoomEventsPublisher = mock(HotelRoomEventsPublisher.class);
 
-  private final HotelRoomApplicationService service = new HotelRoomApplicationService(hotelRoomRepository, bookingRepository, hotelRoomEventsPublisher);
+  private final HotelRoomApplicationService service = new HotelRoomApplicationService(
+      hotelRepository, hotelRoomRepository, bookingRepository, hotelRoomEventsPublisher);
 
   @Test
   void shouldCreateBookingWhenHotelRoomBooked() {

@@ -5,6 +5,7 @@ import com.endorocket.hexagonalapp.domain.space.Space;
 import com.endorocket.hexagonalapp.domain.space.SpacesFactory;
 
 import javax.persistence.CollectionTable;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,8 @@ public class HotelRoom {
   @GeneratedValue
   private UUID id;
 
-  private String hotelId;
+  @Column(name = "HOTEL_ID")
+  private UUID hotelId;
 
   private int number;
 
@@ -37,7 +39,7 @@ public class HotelRoom {
   private HotelRoom() {
   }
 
-  HotelRoom(String hotelId, int number, List<Space> spaces, String description) {
+  HotelRoom(UUID hotelId, int number, List<Space> spaces, String description) {
     this.hotelId = hotelId;
     this.number = number;
     this.spaces = spaces;
@@ -45,7 +47,7 @@ public class HotelRoom {
   }
 
   public Booking book(String tenantId, List<LocalDate> days, HotelRoomEventsPublisher publisher) {
-    publisher.publishHotelRoomBooked(id(), hotelId, tenantId, days);
+    publisher.publishHotelRoomBooked(id(), hotelId.toString(), tenantId, days);
 
     return Booking.hotelRoom(id(), tenantId, days);
   }
@@ -61,8 +63,12 @@ public class HotelRoom {
     return id.toString();
   }
 
+  boolean hasNumberEqualTo(int number) {
+    return this.number == number;
+  }
+
   public static class Builder {
-    private String hotelId;
+    private UUID hotelId;
     private int number;
     private Map<String, Double> spacesDefinition;
     private String description;
@@ -75,6 +81,10 @@ public class HotelRoom {
     }
 
     public Builder withHotelId(String hotelId) {
+      return withHotelId(UUID.fromString(hotelId));
+    }
+
+    Builder withHotelId(UUID hotelId) {
       this.hotelId = hotelId;
       return this;
     }
