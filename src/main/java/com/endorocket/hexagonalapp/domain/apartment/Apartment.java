@@ -3,7 +3,7 @@ package com.endorocket.hexagonalapp.domain.apartment;
 import com.endorocket.hexagonalapp.domain.address.Address;
 import com.endorocket.hexagonalapp.domain.booking.Booking;
 import com.endorocket.hexagonalapp.domain.space.Space;
-import com.endorocket.hexagonalapp.domain.space.SquareMeter;
+import com.endorocket.hexagonalapp.domain.space.SpacesFactory;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -134,22 +134,16 @@ public class Apartment {
     }
 
     public Apartment build() {
-      return new Apartment(ownerId, address(), apartmentNumber, rooms(), description);
+      return new Apartment(ownerId, address(), apartmentNumber, spaces(), description);
     }
 
     private Address address() {
       return new Address(street, postalCode, houseNumber, city, country);
     }
 
-    private List<Space> rooms() {
-      return roomsDefinition.entrySet().stream()
-          .map(entry -> {
-            String name = entry.getKey();
-            Double size = entry.getValue();
-            SquareMeter squareMeter = new SquareMeter(size);
-            return new Space(name, squareMeter);
-          })
-          .toList();
+    private List<Space> spaces() {
+      return SpacesFactory.create(roomsDefinition);
     }
+
   }
 }

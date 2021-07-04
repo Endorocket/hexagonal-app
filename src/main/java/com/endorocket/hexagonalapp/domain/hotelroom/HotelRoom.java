@@ -2,7 +2,7 @@ package com.endorocket.hexagonalapp.domain.hotelroom;
 
 import com.endorocket.hexagonalapp.domain.booking.Booking;
 import com.endorocket.hexagonalapp.domain.space.Space;
-import com.endorocket.hexagonalapp.domain.space.SquareMeter;
+import com.endorocket.hexagonalapp.domain.space.SpacesFactory;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -96,14 +96,7 @@ public class HotelRoom {
     }
 
     private List<Space> spaces() {
-      return spacesDefinition.entrySet().stream()
-          .map(entry -> {
-            String name = entry.getKey();
-            Double size = entry.getValue();
-            SquareMeter squareMeter = new SquareMeter(size);
-            return new Space(name, squareMeter);
-          })
-          .toList();
+      return SpacesFactory.create(spacesDefinition);
     }
   }
 }

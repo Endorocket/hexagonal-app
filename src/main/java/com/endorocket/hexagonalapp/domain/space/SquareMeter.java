@@ -4,13 +4,13 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 @SuppressWarnings("PMD.UnusedPrivateMethod")
-public class SquareMeter {
+class SquareMeter {
   private Double size;
 
   private SquareMeter() {
   }
 
-  public SquareMeter(Double size) {
+  SquareMeter(Double size) {
     this.size = size;
   }
 

@@ -14,7 +14,7 @@ public class Space {
   private Space() {
   }
 
-  public Space(String name, SquareMeter squareMeter) {
+  Space(String name, SquareMeter squareMeter) {
     this.name = name;
     this.squareMeter = squareMeter;
   }
