@@ -1,5 +1,7 @@
 package com.endorocket.hexagonalapp.domain.hotel;
 
+import com.endorocket.hexagonalapp.domain.address.Address;
+
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
