@@ -1,5 +1,6 @@
 package com.endorocket.hexagonalapp.domain.hotelroom;
 
+import com.endorocket.hexagonalapp.domain.space.Space;
 import org.assertj.core.api.Assertions;
 
 import java.util.List;

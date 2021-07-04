@@ -2,6 +2,8 @@ package com.endorocket.hexagonalapp.domain.apartment;
 
 import com.endorocket.hexagonalapp.domain.address.Address;
 import com.endorocket.hexagonalapp.domain.booking.Booking;
+import com.endorocket.hexagonalapp.domain.space.Space;
+import com.endorocket.hexagonalapp.domain.space.SquareMeter;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -36,14 +38,14 @@ public class Apartment {
   private String apartmentNumber;
 
   @ElementCollection
-  private List<Room> rooms;
+  private List<Space> rooms;
 
   private String description;
 
   private Apartment() {
   }
 
-  private Apartment(String ownerId, Address address, String apartmentNumber, List<Room> rooms, String description) {
+  private Apartment(String ownerId, Address address, String apartmentNumber, List<Space> rooms, String description) {
     this.ownerId = ownerId;
     this.address = address;
     this.apartmentNumber = apartmentNumber;
@@ -139,13 +141,13 @@ public class Apartment {
       return new Address(street, postalCode, houseNumber, city, country);
     }
 
-    private List<Room> rooms() {
+    private List<Space> rooms() {
       return roomsDefinition.entrySet().stream()
           .map(entry -> {
             String name = entry.getKey();
             Double size = entry.getValue();
             SquareMeter squareMeter = new SquareMeter(size);
-            return new Room(name, squareMeter);
+            return new Space(name, squareMeter);
           })
           .toList();
     }

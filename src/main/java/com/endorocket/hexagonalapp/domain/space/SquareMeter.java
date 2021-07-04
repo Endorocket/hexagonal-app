@@ -1,16 +1,16 @@
-package com.endorocket.hexagonalapp.domain.hotelroom;
+package com.endorocket.hexagonalapp.domain.space;
 
 import javax.persistence.Embeddable;
 
 @Embeddable
 @SuppressWarnings("PMD.UnusedPrivateMethod")
-class SquareMeter {
+public class SquareMeter {
   private Double size;
 
   private SquareMeter() {
   }
 
-  SquareMeter(Double size) {
+  public SquareMeter(Double size) {
     this.size = size;
   }
 

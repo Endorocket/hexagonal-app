@@ -1,5 +1,7 @@
 package com.endorocket.hexagonalapp.query.apartment;
 
+import com.endorocket.hexagonalapp.query.space.SpaceReadModel;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
@@ -23,7 +25,7 @@ public class ApartmentReadModel {
 	private String country;
 
 	@ElementCollection
-	private List<RoomReadModel> rooms;
+	private List<SpaceReadModel> rooms;
 
 	private String description;
 
@@ -31,7 +33,7 @@ public class ApartmentReadModel {
 	}
 
 	ApartmentReadModel(String ownerId, String street, String postalCode, String houseNumber, String apartmentNumber,
-	                   String city, String country, List<RoomReadModel> rooms, String description) {
+	                   String city, String country, List<SpaceReadModel> rooms, String description) {
 		this.ownerId = ownerId;
 		this.street = street;
 		this.postalCode = postalCode;
@@ -75,7 +77,7 @@ public class ApartmentReadModel {
 		return country;
 	}
 
-	public List<RoomReadModel> getRooms() {
+	public List<SpaceReadModel> getRooms() {
 		return rooms;
 	}
 

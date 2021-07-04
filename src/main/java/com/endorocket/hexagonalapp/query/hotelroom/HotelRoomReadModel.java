@@ -1,5 +1,7 @@
 package com.endorocket.hexagonalapp.query.hotelroom;
 
+import com.endorocket.hexagonalapp.query.space.SpaceReadModel;
+
 import javax.persistence.*;
 import java.util.List;
 

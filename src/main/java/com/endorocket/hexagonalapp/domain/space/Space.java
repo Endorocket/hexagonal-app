@@ -1,11 +1,11 @@
-package com.endorocket.hexagonalapp.domain.hotelroom;
+package com.endorocket.hexagonalapp.domain.space;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 
 @Embeddable
 @SuppressWarnings("PMD.UnusedPrivateField")
-class Space {
+public class Space {
   private String name;
 
   @Embedded
@@ -14,7 +14,7 @@ class Space {
   private Space() {
   }
 
-  Space(String name, SquareMeter squareMeter) {
+  public Space(String name, SquareMeter squareMeter) {
     this.name = name;
     this.squareMeter = squareMeter;
   }
