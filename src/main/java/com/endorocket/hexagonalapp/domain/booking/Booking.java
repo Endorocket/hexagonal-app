@@ -1,7 +1,7 @@
 package com.endorocket.hexagonalapp.domain.booking;
 
-import com.endorocket.hexagonalapp.domain.period.Period;
 import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
+import com.endorocket.hexagonalapp.domain.period.Period;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
+
+import static com.endorocket.hexagonalapp.domain.booking.BookingStatus.ACCEPTED;
+import static com.endorocket.hexagonalapp.domain.booking.BookingStatus.REJECTED;
 
 @Entity
 @SuppressWarnings("PMD.UnusedPrivateField")
@@ -61,17 +64,17 @@ public class Booking {
   }
 
   public void reject() {
-    if (bookingStatus == BookingStatus.ACCEPTED) {
-      throw NotAllowedBookingStatusTransitionException.alreadyAccepted();
+    if (bookingStatus == ACCEPTED) {
+      throw new NotAllowedBookingStatusTransitionException(bookingStatus, REJECTED);
     }
-    bookingStatus = BookingStatus.REJECTED;
+    bookingStatus = REJECTED;
   }
 
   public void accept(EventChannel eventChannel) {
-    if (bookingStatus == BookingStatus.REJECTED) {
-      throw NotAllowedBookingStatusTransitionException.alreadyRejected();
+    if (bookingStatus == REJECTED) {
+      throw new NotAllowedBookingStatusTransitionException(bookingStatus, ACCEPTED);
     }
-    bookingStatus = BookingStatus.ACCEPTED;
+    bookingStatus = ACCEPTED;
     BookingAccepted bookingAccepted = BookingAccepted.create(rentalType, rentalPlaceId, tenantId, days);
     eventChannel.publish(bookingAccepted);
   }
