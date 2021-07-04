@@ -1,7 +1,11 @@
 package com.endorocket.hexagonalapp.domain.apartment;
 
+import com.endorocket.hexagonalapp.domain.address.Address;
 import com.endorocket.hexagonalapp.domain.booking.Booking;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -24,6 +28,9 @@ public class Apartment {
   private String ownerId;
 
   @Embedded
+  @AttributeOverrides({
+      @AttributeOverride(name = "buildingNumber", column = @Column(name = "house_number"))
+  })
   private Address address;
 
   private String apartmentNumber;
