@@ -1,6 +1,9 @@
 package com.endorocket.hexagonalapp.domain.apartmentbookinghistory;
 
+import com.endorocket.hexagonalapp.domain.period.Period;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +25,11 @@ public class ApartmentBookingHistory {
 		this.apartmentId = apartmentId;
 	}
 
-	public void add(ApartmentBooking apartmentBooking) {
+	public void addBookingStart(LocalDateTime eventCreationDateTime, String ownerId, String tenantId, Period period) {
+		add(ApartmentBooking.start(eventCreationDateTime, ownerId, tenantId, period));
+	}
+
+	private void add(ApartmentBooking apartmentBooking) {
 		bookings.add(apartmentBooking);
 	}
 }
