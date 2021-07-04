@@ -58,6 +58,11 @@ public class Hotel {
     return getHotelRoom(number).id();
   }
 
+  public boolean hasRoomWithNumber(int number) {
+    return hotelRooms.stream()
+        .anyMatch(hotelRoom -> hotelRoom.hasNumberEqualTo(number));
+  }
+
   private HotelRoom getHotelRoom(int number) {
     return hotelRooms.stream()
         .filter(hotelRoom -> hotelRoom.hasNumberEqualTo(number))

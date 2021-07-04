@@ -5,9 +5,11 @@ import com.endorocket.hexagonalapp.domain.apartment.ApartmentRepository;
 import com.endorocket.hexagonalapp.domain.apartmentoffer.ApartmentOffer;
 import com.endorocket.hexagonalapp.domain.apartmentoffer.ApartmentOfferRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import static com.endorocket.hexagonalapp.domain.apartmentoffer.ApartmentOffer.Builder.apartmentOffer;
 
+@Service
 @RequiredArgsConstructor
 class ApartmentOfferApplicationService {
   private final ApartmentOfferRepository apartmentOfferRepository;

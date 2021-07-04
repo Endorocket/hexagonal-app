@@ -43,7 +43,7 @@ class HotelRoomApplicationServiceTest {
   }
 
   private HotelRoomBookingDto givenHotelRoomBookingDto() {
-    return new HotelRoomBookingDto(HOTEL_ID, ROOM_NUMBER, HOTEL_ROOM_ID, TENANT_ID, DAYS);
+    return new HotelRoomBookingDto(HOTEL_ID, ROOM_NUMBER, TENANT_ID, DAYS);
   }
 
   private void givenHotelRoom() {

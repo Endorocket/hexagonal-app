@@ -5,7 +5,6 @@ import java.util.List;
 
 public record HotelRoomBookingDto(String hotelId,
                                   int number,
-                                  String hotelRoomId,
                                   String tenantId,
                                   List<LocalDate> days) {
 }

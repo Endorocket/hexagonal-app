@@ -1,18 +1,23 @@
 package com.endorocket.hexagonalapp.application.hotelroomoffer;
 
+import com.endorocket.hexagonalapp.domain.hotel.Hotel;
+import com.endorocket.hexagonalapp.domain.hotel.HotelRepository;
 import com.endorocket.hexagonalapp.domain.hotel.HotelRoomNotFoundException;
-import com.endorocket.hexagonalapp.domain.hotel.HotelRoomRepository;
 import com.endorocket.hexagonalapp.domain.hotelroomoffer.HotelRoomOffer;
 import com.endorocket.hexagonalapp.domain.hotelroomoffer.HotelRoomOfferRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
 @RequiredArgsConstructor
 class HotelRoomOfferApplicationService {
+  private final HotelRepository hotelRepository;
   private final HotelRoomOfferRepository hotelRoomOfferRepository;
-  private final HotelRoomRepository hotelRoomRepository;
 
   void add(HotelRoomOfferDto dto) {
-    if (!hotelRoomRepository.existsById(dto.hotelRoomId())) {
+    Hotel hotel = hotelRepository.findById(dto.hotelId());
+
+    if (!hotel.hasRoomWithNumber(dto.number())) {
       throw new HotelRoomNotFoundException(dto.hotelRoomId());
     }
     HotelRoomOffer hotelRoomOffer = HotelRoomOffer.Builder.hotelRoomOffer()
