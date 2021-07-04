@@ -47,7 +47,7 @@ class JpaHotelRoomRepositoryIntegrationTest {
     HotelRoomAssertion.assertThat(actual)
         .hasHotelIdEqualTo(HOTEL_ID)
         .hasNumberEqualTo(ROOM_NUMBER)
-        .hasSpacesEqualOf(SPACES_DEFINITION)
+        .hasSpacesDefinitionEqualOf(SPACES_DEFINITION)
         .hasDescriptionEqualTo(DESCRIPTION);;
   }
 

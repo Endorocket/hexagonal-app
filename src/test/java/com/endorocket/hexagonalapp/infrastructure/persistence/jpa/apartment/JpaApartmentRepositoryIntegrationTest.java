@@ -53,7 +53,7 @@ class JpaApartmentRepositoryIntegrationTest {
         .hasDescriptionEqualTo(DESCRIPTION)
         .hasApartmentNumberEqualTo(APARTMENT_NUMBER)
         .hasAddressEqualTo(STREET, POSTAL_CODE, HOUSE_NUMBER, CITY, COUNTRY)
-        .hasSpacesEqualTo(SPACES_DEFINITION);
+        .hasSpacesDefinitionEqualTo(SPACES_DEFINITION);
   }
 
   @Test
@@ -109,7 +109,7 @@ class JpaApartmentRepositoryIntegrationTest {
         .hasDescriptionEqualTo(DESCRIPTION)
         .hasApartmentNumberEqualTo(APARTMENT_NUMBER)
         .hasAddressEqualTo(STREET, POSTAL_CODE, HOUSE_NUMBER, CITY, COUNTRY)
-        .hasSpacesEqualTo(SPACES_DEFINITION);
+        .hasSpacesDefinitionEqualTo(SPACES_DEFINITION);
   }
 
   private Apartment createApartment() {

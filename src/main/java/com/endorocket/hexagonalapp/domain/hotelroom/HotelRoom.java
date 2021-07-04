@@ -4,10 +4,12 @@ import com.endorocket.hexagonalapp.domain.booking.Booking;
 import com.endorocket.hexagonalapp.domain.space.Space;
 import com.endorocket.hexagonalapp.domain.space.SpacesFactory;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.List;
@@ -27,6 +29,7 @@ public class HotelRoom {
   private int number;
 
   @ElementCollection
+  @CollectionTable(name = "HOTEL_ROOM_SPACE", joinColumns = @JoinColumn(name = "HOTEL_ROOM_ID"))
   private List<Space> spaces;
 
   private String description;

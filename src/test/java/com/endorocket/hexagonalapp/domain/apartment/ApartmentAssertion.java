@@ -1,11 +1,11 @@
 package com.endorocket.hexagonalapp.domain.apartment;
 
 import com.endorocket.hexagonalapp.domain.space.Space;
+import com.endorocket.hexagonalapp.domain.space.SpacesAssertion;
 import org.assertj.core.api.Assertions;
 
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
 
 public class ApartmentAssertion {
 	private final Apartment actual;
@@ -44,20 +44,13 @@ public class ApartmentAssertion {
 	}
 
 	@SuppressWarnings("unchecked")
-	public ApartmentAssertion hasSpacesEqualTo(Map<String, Double> spacesDefinition) {
+	public ApartmentAssertion hasSpacesDefinitionEqualTo(Map<String, Double> expected) {
 		Assertions.assertThat(actual).extracting("spaces").satisfies(spacesActual -> {
 			List<Space> spaces = (List<Space>) spacesActual;
-			Assertions.assertThat(spaces).hasSize(spacesDefinition.size());
-
-			spacesDefinition.forEach((name, squareMeter) ->
-				Assertions.assertThat(spaces).anySatisfy(hasSpaceThat(name, squareMeter)));
+			SpacesAssertion.assertThat(spaces)
+					.hasSize(expected.size())
+					.hasAllSpacesFrom(expected);
 		});
 		return this;
-	}
-
-	private Consumer<Space> hasSpaceThat(String name, Double squareMeter) {
-		return room -> Assertions.assertThat(room)
-			.hasFieldOrPropertyWithValue("name", name)
-			.hasFieldOrPropertyWithValue("squareMeter.size", squareMeter);
 	}
 }

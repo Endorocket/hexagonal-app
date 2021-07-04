@@ -1,11 +1,11 @@
 package com.endorocket.hexagonalapp.domain.hotelroom;
 
 import com.endorocket.hexagonalapp.domain.space.Space;
+import com.endorocket.hexagonalapp.domain.space.SpacesAssertion;
 import org.assertj.core.api.Assertions;
 
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
 
 public class HotelRoomAssertion {
   private final HotelRoom actual;
@@ -29,21 +29,14 @@ public class HotelRoomAssertion {
   }
 
   @SuppressWarnings("unchecked")
-  public HotelRoomAssertion hasSpacesEqualOf(Map<String, Double> spacesDefinition) {
+  public HotelRoomAssertion hasSpacesDefinitionEqualOf(Map<String, Double> expected) {
     Assertions.assertThat(actual).extracting("spaces").satisfies(spacesActual -> {
       List<Space> spaces = (List<Space>) spacesActual;
-      Assertions.assertThat(spaces).hasSize(spacesDefinition.size());
-
-      spacesDefinition.forEach((name, squareMeter) ->
-          Assertions.assertThat(spaces).anySatisfy(hasSpaceThat(name, squareMeter)));
+      SpacesAssertion.assertThat(spaces)
+          .hasSize(expected.size())
+          .hasAllSpacesFrom(expected);
     });
     return this;
-  }
-
-  private Consumer<Space> hasSpaceThat(String name, Double squareMeter) {
-    return space -> Assertions.assertThat(space)
-        .hasFieldOrPropertyWithValue("name", name)
-        .hasFieldOrPropertyWithValue("squareMeter.size", squareMeter);
   }
 
   public HotelRoomAssertion hasDescriptionEqualTo(String expected) {
