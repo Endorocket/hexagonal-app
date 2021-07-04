@@ -1,7 +1,7 @@
 package com.endorocket.hexagonalapp.infrastructure.persistence.jpa.hotelroom;
 
-import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoom;
-import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomRepository;
+import com.endorocket.hexagonalapp.domain.hotel.HotelRoom;
+import com.endorocket.hexagonalapp.domain.hotel.HotelRoomRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;

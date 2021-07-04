@@ -1,8 +1,8 @@
 package com.endorocket.hexagonalapp.infrastructure.persistence.jpa.hotelroom;
 
-import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoom;
-import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomAssertion;
-import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomRepository;
+import com.endorocket.hexagonalapp.domain.hotel.HotelRoom;
+import com.endorocket.hexagonalapp.domain.hotel.HotelRoomAssertion;
+import com.endorocket.hexagonalapp.domain.hotel.HotelRoomRepository;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
 import java.util.Map;
 import java.util.UUID;
 
-import static com.endorocket.hexagonalapp.domain.hotelroom.HotelRoom.Builder.hotelRoom;
+import static com.endorocket.hexagonalapp.domain.hotel.HotelRoom.Builder.hotelRoom;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

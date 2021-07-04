@@ -1,6 +1,6 @@
 package com.endorocket.hexagonalapp.application.hotelbookinghistory;
 
-import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomBooked;
+import com.endorocket.hexagonalapp.domain.hotel.HotelRoomBooked;
 import com.endorocket.hexagonalapp.domain.hotelbookinghistory.HotelBookingHistory;
 import com.endorocket.hexagonalapp.domain.hotelbookinghistory.HotelBookingHistoryRepository;
 import org.springframework.context.event.EventListener;

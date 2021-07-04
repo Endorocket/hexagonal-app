@@ -1,7 +1,7 @@
 package com.endorocket.hexagonalapp.application.hotelroomoffer;
 
-import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomNotFoundException;
-import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomRepository;
+import com.endorocket.hexagonalapp.domain.hotel.HotelRoomNotFoundException;
+import com.endorocket.hexagonalapp.domain.hotel.HotelRoomRepository;
 import com.endorocket.hexagonalapp.domain.hotelroomoffer.HotelRoomOffer;
 import com.endorocket.hexagonalapp.domain.hotelroomoffer.HotelRoomOfferRepository;
 import lombok.RequiredArgsConstructor;

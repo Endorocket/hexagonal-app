@@ -1,4 +1,4 @@
-package com.endorocket.hexagonalapp.domain.hotelroom;
+package com.endorocket.hexagonalapp.domain.hotel;
 
 public class HotelRoomNotFoundException extends RuntimeException {
   public HotelRoomNotFoundException(String hotelRoomId) {

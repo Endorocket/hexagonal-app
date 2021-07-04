@@ -1,4 +1,4 @@
-package com.endorocket.hexagonalapp.domain.hotelroom;
+package com.endorocket.hexagonalapp.domain.hotel;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

@@ -2,13 +2,13 @@ package com.endorocket.hexagonalapp.application.hotelroom;
 
 import com.endorocket.hexagonalapp.domain.booking.Booking;
 import com.endorocket.hexagonalapp.domain.booking.BookingRepository;
-import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoom;
-import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomEventsPublisher;
-import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomRepository;
+import com.endorocket.hexagonalapp.domain.hotel.HotelRoom;
+import com.endorocket.hexagonalapp.domain.hotel.HotelRoomEventsPublisher;
+import com.endorocket.hexagonalapp.domain.hotel.HotelRoomRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 
-import static com.endorocket.hexagonalapp.domain.hotelroom.HotelRoom.Builder.hotelRoom;
+import static com.endorocket.hexagonalapp.domain.hotel.HotelRoom.Builder.hotelRoom;
 
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public class HotelRoomApplicationService {

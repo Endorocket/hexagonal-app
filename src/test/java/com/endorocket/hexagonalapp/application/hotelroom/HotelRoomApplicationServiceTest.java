@@ -3,9 +3,9 @@ package com.endorocket.hexagonalapp.application.hotelroom;
 import com.endorocket.hexagonalapp.domain.booking.Booking;
 import com.endorocket.hexagonalapp.domain.booking.BookingAssertion;
 import com.endorocket.hexagonalapp.domain.booking.BookingRepository;
-import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoom;
-import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomEventsPublisher;
-import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomRepository;
+import com.endorocket.hexagonalapp.domain.hotel.HotelRoom;
+import com.endorocket.hexagonalapp.domain.hotel.HotelRoomEventsPublisher;
+import com.endorocket.hexagonalapp.domain.hotel.HotelRoomRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-import static com.endorocket.hexagonalapp.domain.hotelroom.HotelRoom.Builder.hotelRoom;
+import static com.endorocket.hexagonalapp.domain.hotel.HotelRoom.Builder.hotelRoom;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.mock;

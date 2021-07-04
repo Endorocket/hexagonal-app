@@ -4,8 +4,8 @@ import com.endorocket.hexagonalapp.domain.booking.BookingRepository;
 import com.endorocket.hexagonalapp.domain.clock.Clock;
 import com.endorocket.hexagonalapp.domain.event.EventIdFactory;
 import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
-import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomEventsPublisher;
-import com.endorocket.hexagonalapp.domain.hotelroom.HotelRoomRepository;
+import com.endorocket.hexagonalapp.domain.hotel.HotelRoomEventsPublisher;
+import com.endorocket.hexagonalapp.domain.hotel.HotelRoomRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

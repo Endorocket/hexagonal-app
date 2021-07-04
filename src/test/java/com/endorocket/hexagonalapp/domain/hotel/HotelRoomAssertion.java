@@ -1,4 +1,4 @@
-package com.endorocket.hexagonalapp.domain.hotelroom;
+package com.endorocket.hexagonalapp.domain.hotel;
 
 import com.endorocket.hexagonalapp.domain.space.Space;
 import com.endorocket.hexagonalapp.domain.space.SpacesAssertion;
