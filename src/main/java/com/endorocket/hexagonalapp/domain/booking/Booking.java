@@ -64,17 +64,11 @@ public class Booking {
   }
 
   public void reject() {
-    if (bookingStatus == ACCEPTED) {
-      throw new NotAllowedBookingStatusTransitionException(bookingStatus, REJECTED);
-    }
-    bookingStatus = REJECTED;
+    bookingStatus = bookingStatus.moveTo(REJECTED);
   }
 
   public void accept(EventChannel eventChannel) {
-    if (bookingStatus == REJECTED) {
-      throw new NotAllowedBookingStatusTransitionException(bookingStatus, ACCEPTED);
-    }
-    bookingStatus = ACCEPTED;
+    bookingStatus = bookingStatus.moveTo(ACCEPTED);
     BookingAccepted bookingAccepted = BookingAccepted.create(rentalType, rentalPlaceId, tenantId, days);
     eventChannel.publish(bookingAccepted);
   }

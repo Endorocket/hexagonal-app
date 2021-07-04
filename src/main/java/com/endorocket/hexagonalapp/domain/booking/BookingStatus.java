@@ -1,14 +1,23 @@
 package com.endorocket.hexagonalapp.domain.booking;
 
-public enum BookingStatus {
-	OPEN, ACCEPTED, REJECTED;
+import java.util.List;
+import java.util.Map;
 
-//	BookingStatus moveTo(BookingStatus bookingStatus) {
-//		Map<BookingStatus>
-//
-//		if (bookingStatus.equals(BookingStatus.ACCEPTED)) {
-//			throw NotAllowedBookingStatusTransitionException.alreadyAccepted();
-//		}
-//		return bookingStatus;
-//	}
+import static java.util.Collections.emptyList;
+
+public enum BookingStatus {
+  OPEN, ACCEPTED, REJECTED;
+
+  private static final Map<BookingStatus, List<BookingStatus>> ALLOWED_TRANSITIONS = Map.of(
+      REJECTED, emptyList(),
+      ACCEPTED, emptyList(),
+      OPEN, List.of(REJECTED, ACCEPTED)
+  );
+
+  BookingStatus moveTo(BookingStatus bookingStatus) {
+    if (!ALLOWED_TRANSITIONS.get(this).contains(bookingStatus)) {
+      throw new NotAllowedBookingStatusTransitionException(this, bookingStatus);
+    }
+    return bookingStatus;
+  }
 }
