@@ -1,6 +1,7 @@
 package com.endorocket.hexagonalapp.domain.hotel;
 
 import com.endorocket.hexagonalapp.domain.address.Address;
+import com.endorocket.hexagonalapp.domain.booking.Booking;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -61,6 +63,10 @@ public class Hotel {
         .filter(hotelRoom -> hotelRoom.hasNumberEqualTo(number))
         .findFirst()
         .get();
+  }
+
+  public Booking bookRoom(int number, String tenantId, List<LocalDate> days, HotelRoomEventsPublisher hotelRoomEventsPublisher) {
+    return getHotelRoom(number).book(tenantId, days, hotelRoomEventsPublisher);
   }
 
   public static class Builder {

@@ -25,7 +25,7 @@ public class HotelRoomRestController {
 
 	@PutMapping("/book/{id}")
 	public void book(@PathVariable String id, @RequestBody HotelRoomBookingDto hotelRoomBookingDto) {
-		hotelRoomApplicationService.book(id, hotelRoomBookingDto);
+		hotelRoomApplicationService.book(hotelRoomBookingDto);
 	}
 
 	@GetMapping("/hotel/{hotelId}")

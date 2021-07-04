@@ -20,7 +20,7 @@ import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.mock;
 
 class HotelRoomApplicationServiceTest {
-  private static final String HOTEL_ID = "234";
+  private static final String HOTEL_ID = "c975b473-2d9e-4f63-baa4-a94c9389f191";
   private static final int ROOM_NUMBER = 1;
   private static final String HOTEL_ROOM_ID = "123";
   private static final String TENANT_ID = "456";
@@ -31,20 +31,19 @@ class HotelRoomApplicationServiceTest {
   private final BookingRepository bookingRepository = mock(BookingRepository.class);
   private final HotelRoomEventsPublisher hotelRoomEventsPublisher = mock(HotelRoomEventsPublisher.class);
 
-  private final HotelRoomApplicationService service = new HotelRoomApplicationService(
-      hotelRepository, hotelRoomRepository, bookingRepository, hotelRoomEventsPublisher);
+  private final HotelRoomApplicationService service = new HotelRoomApplicationService(hotelRepository, bookingRepository, hotelRoomEventsPublisher);
 
   @Test
   void shouldCreateBookingWhenHotelRoomBooked() {
     givenHotelRoom();
 
-    service.book(HOTEL_ROOM_ID, givenHotelRoomBookingDto());
+    service.book(givenHotelRoomBookingDto());
 
     thenBookingShouldBeCreated();
   }
 
   private HotelRoomBookingDto givenHotelRoomBookingDto() {
-    return new HotelRoomBookingDto(TENANT_ID, DAYS);
+    return new HotelRoomBookingDto(HOTEL_ID, ROOM_NUMBER, HOTEL_ROOM_ID, TENANT_ID, DAYS);
   }
 
   private void givenHotelRoom() {
