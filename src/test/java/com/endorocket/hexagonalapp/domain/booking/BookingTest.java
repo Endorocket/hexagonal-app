@@ -83,18 +83,18 @@ class BookingTest {
 	void shouldNotBeAbleToAcceptAlreadyRejectedBooking() {
 		Booking booking = givenRejectedBooking();
 
-		BookingStatusException actual = assertThrows(BookingStatusException.class, () -> booking.accept(eventChannel));
+		NotAllowedBookingStatusTransitionException actual = assertThrows(NotAllowedBookingStatusTransitionException.class, () -> booking.accept(eventChannel));
 
-		Assertions.assertThat(actual).hasMessage("Accepting already rejected booking is forbidden.");
+		Assertions.assertThat(actual).hasMessage("Not allowed transition from REJECTED to ACCEPTED booking.");
 	}
 
 	@Test
 	void shouldNotBeAbleToRejectAlreadyAcceptedBooking() {
 		Booking booking = givenAcceptedBooking();
 
-		BookingStatusException actual = assertThrows(BookingStatusException.class, booking::reject);
+		NotAllowedBookingStatusTransitionException actual = assertThrows(NotAllowedBookingStatusTransitionException.class, booking::reject);
 
-		Assertions.assertThat(actual).hasMessage("Rejecting already accepted booking is forbidden.");
+		Assertions.assertThat(actual).hasMessage("Not allowed transition from ACCEPTED to REJECTED booking.");
 	}
 
 	private Booking givenAcceptedBooking() {
