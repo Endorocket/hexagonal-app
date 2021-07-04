@@ -2,6 +2,7 @@ package com.endorocket.hexagonalapp.application.hotelroom;
 
 import com.endorocket.hexagonalapp.domain.booking.Booking;
 import com.endorocket.hexagonalapp.domain.booking.BookingRepository;
+import com.endorocket.hexagonalapp.domain.hotel.HotelRepository;
 import com.endorocket.hexagonalapp.domain.hotel.HotelRoom;
 import com.endorocket.hexagonalapp.domain.hotel.HotelRoomEventsPublisher;
 import com.endorocket.hexagonalapp.domain.hotel.HotelRoomRepository;
@@ -12,6 +13,7 @@ import static com.endorocket.hexagonalapp.domain.hotel.HotelRoom.Builder.hotelRo
 
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public class HotelRoomApplicationService {
+  private final HotelRepository hotelRepository;
   private final HotelRoomRepository hotelRoomRepository;
   private final BookingRepository bookingRepository;
   private final HotelRoomEventsPublisher hotelRoomEventsPublisher;
