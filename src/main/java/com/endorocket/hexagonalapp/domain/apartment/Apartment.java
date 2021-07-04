@@ -7,6 +7,7 @@ import com.endorocket.hexagonalapp.domain.space.Space;
 import com.endorocket.hexagonalapp.domain.space.SpacesFactory;
 
 import javax.persistence.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -89,7 +90,7 @@ public class Apartment {
     private String city;
     private String country;
     private String description;
-    private Map<String, Double> spacesDefinition;
+    private Map<String, Double> spacesDefinition = new HashMap<>();
 
     private Builder() {
     }

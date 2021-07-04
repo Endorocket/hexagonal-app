@@ -3,6 +3,7 @@ package com.endorocket.hexagonalapp.domain.apartment;
 import com.endorocket.hexagonalapp.domain.booking.Booking;
 import com.endorocket.hexagonalapp.domain.booking.BookingAssertion;
 import com.endorocket.hexagonalapp.domain.period.Period;
+import com.endorocket.hexagonalapp.domain.space.NotEnoughSpacesGivenException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -14,6 +15,7 @@ import java.util.stream.Stream;
 
 import static com.endorocket.hexagonalapp.domain.apartment.Apartment.Builder.apartment;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.then;
@@ -58,6 +60,23 @@ class ApartmentTest {
         .hasApartmentNumberEqualTo(APARTMENT_NUMBER_1)
         .hasAddressEqualTo(STREET_1, POSTAL_CODE_1, HOUSE_NUMBER_1, CITY_1, COUNTRY_1)
         .hasSpacesDefinitionEqualTo(SPACES_DEFINITION_1);
+  }
+
+  @Test
+  void shouldNotBeAbleCreateApartmentWithoutSpaces() {
+    Apartment.Builder apartment = apartment()
+        .withOwnerId(OWNER_ID_1)
+        .withStreet(STREET_1)
+        .withPostalCode(POSTAL_CODE_1)
+        .withHouseNumber(HOUSE_NUMBER_1)
+        .withApartmentNumber(APARTMENT_NUMBER_1)
+        .withCity(CITY_1)
+        .withCountry(COUNTRY_1)
+        .withDescription(DESCRIPTION_1);
+
+    NotEnoughSpacesGivenException actual = assertThrows(NotEnoughSpacesGivenException.class, apartment::build);
+
+    assertThat(actual).hasMessage("No spaces given.");
   }
 
   @Test

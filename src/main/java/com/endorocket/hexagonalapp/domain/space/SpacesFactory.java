@@ -8,6 +8,9 @@ public class SpacesFactory {
   }
 
   public static List<Space> create(Map<String, Double> spacesDefinition) {
+    if (spacesDefinition.isEmpty()) {
+      throw NotEnoughSpacesGivenException.noSpaces();
+    }
     return spacesDefinition.entrySet().stream()
         .map(SpacesFactory::asSpace)
         .toList();
