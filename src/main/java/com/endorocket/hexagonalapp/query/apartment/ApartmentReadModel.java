@@ -25,7 +25,8 @@ public class ApartmentReadModel {
 	private String country;
 
 	@ElementCollection
-	private List<SpaceReadModel> rooms;
+	@CollectionTable(name = "APARTMENT_ROOM", joinColumns = @JoinColumn(name = "APARTMENT_ID"))
+	private List<SpaceReadModel> spaces;
 
 	private String description;
 
@@ -33,7 +34,7 @@ public class ApartmentReadModel {
 	}
 
 	ApartmentReadModel(String ownerId, String street, String postalCode, String houseNumber, String apartmentNumber,
-	                   String city, String country, List<SpaceReadModel> rooms, String description) {
+	                   String city, String country, List<SpaceReadModel> spaces, String description) {
 		this.ownerId = ownerId;
 		this.street = street;
 		this.postalCode = postalCode;
@@ -41,7 +42,7 @@ public class ApartmentReadModel {
 		this.apartmentNumber = apartmentNumber;
 		this.city = city;
 		this.country = country;
-		this.rooms = rooms;
+		this.spaces = spaces;
 		this.description = description;
 	}
 
@@ -77,8 +78,8 @@ public class ApartmentReadModel {
 		return country;
 	}
 
-	public List<SpaceReadModel> getRooms() {
-		return rooms;
+	public List<SpaceReadModel> getSpaces() {
+		return spaces;
 	}
 
 	public String getDescription() {

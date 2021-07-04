@@ -33,7 +33,7 @@ class ApartmentRestControllerSystemTest {
   private static final String CITY = "Wrocław";
   private static final String COUNTRY = "Poland";
   private static final String DESCRIPTION = "Nice apartment";
-  private static final Map<String, Double> ROOMS_DEFINITION = Map.of("Toilet", 10.0, "Bedroom", 15.5);
+  private static final Map<String, Double> SPACES_DEFINITION = Map.of("Toilet", 10.0, "Bedroom", 15.5);
 
   private final JsonFactory jsonFactory = new JsonFactory();
 
@@ -54,7 +54,7 @@ class ApartmentRestControllerSystemTest {
 
   @Test
   void shouldReturnExistingApartment() throws Exception {
-    ApartmentDto apartmentDto = new ApartmentDto(OWNER_ID, STREET, POSTAL_CODE, HOUSE_NUMBER, APARTMENT_NUMBER, CITY, COUNTRY, DESCRIPTION, ROOMS_DEFINITION);
+    ApartmentDto apartmentDto = new ApartmentDto(OWNER_ID, STREET, POSTAL_CODE, HOUSE_NUMBER, APARTMENT_NUMBER, CITY, COUNTRY, DESCRIPTION, SPACES_DEFINITION);
 
     MvcResult mvcResult = mockMvc.perform(post("/apartment").contentType(MediaType.APPLICATION_JSON).content(jsonFactory.create(apartmentDto)))
         .andExpect(status().isCreated())

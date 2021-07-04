@@ -10,5 +10,5 @@ public record ApartmentDto(String ownerId,
                     String city,
                     String country,
                     String description,
-                    Map<String, Double> roomsDefinition) {
+                    Map<String, Double> spacesDefinition) {
 }

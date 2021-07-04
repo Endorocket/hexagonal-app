@@ -32,7 +32,7 @@ class ApartmentBookingHistoryEventListenerIntegrationTest {
   private static final String CITY = "Wrocław";
   private static final String COUNTRY = "Poland";
   private static final String DESCRIPTION = "Nice apartment";
-  private static final Map<String, Double> ROOMS_DEFINITION = Map.of("Toilet", 10.0, "Bedroom", 15.5);
+  private static final Map<String, Double> SPACES_DEFINITION = Map.of("Toilet", 10.0, "Bedroom", 15.5);
   private static final String TENANT_ID = "126";
   private static final LocalDate START = LocalDate.of(2020, 3, 5);
   private static final LocalDate END = LocalDate.of(2020, 3, 7);
@@ -91,7 +91,7 @@ class ApartmentBookingHistoryEventListenerIntegrationTest {
         .withCity(CITY)
         .withCountry(COUNTRY)
         .withDescription(DESCRIPTION)
-        .withRoomsDefinition(ROOMS_DEFINITION)
+        .withSpacesDefinition(SPACES_DEFINITION)
         .build();
   }
 }

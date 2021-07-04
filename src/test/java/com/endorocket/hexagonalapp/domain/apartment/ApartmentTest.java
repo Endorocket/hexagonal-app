@@ -23,7 +23,7 @@ class ApartmentTest {
 	private static final String CITY = "Wrocław";
 	private static final String COUNTRY = "Poland";
 	private static final String DESCRIPTION = "Nice apartment";
-	private static final Map<String, Double> ROOMS_DEFINITION = Map.of("Toilet", 10.0, "Bedroom", 15.5);
+	private static final Map<String, Double> SPACES_DEFINITION = Map.of("Toilet", 10.0, "Bedroom", 15.5);
 	private static final String TENANT_ID = "126";
 	private static final LocalDate START = LocalDate.of(2020, 3, 5);
 	private static final LocalDate MIDDLE = LocalDate.of(2020, 3, 6);
@@ -39,9 +39,9 @@ class ApartmentTest {
 		ApartmentAssertion.assertThat(actual)
 			.hasOwnerIdEqualTo(OWNER_ID)
 			.hasDescriptionEqualTo(DESCRIPTION)
-			.hasApartmentNumber(APARTMENT_NUMBER)
+			.hasApartmentNumberEqualTo(APARTMENT_NUMBER)
 			.hasAddressEqualTo(STREET, POSTAL_CODE, HOUSE_NUMBER, CITY, COUNTRY)
-			.hasRoomsEqualsTo(ROOMS_DEFINITION);
+			.hasSpacesEqualTo(SPACES_DEFINITION);
 	}
 
 	@Test
@@ -75,7 +75,7 @@ class ApartmentTest {
         .withCity(CITY)
         .withCountry(COUNTRY)
         .withDescription(DESCRIPTION)
-        .withRoomsDefinition(ROOMS_DEFINITION)
+        .withSpacesDefinition(SPACES_DEFINITION)
         .build();
   }
 }

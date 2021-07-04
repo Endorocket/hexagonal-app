@@ -28,7 +28,7 @@ public class ApartmentAssertion {
 		return this;
 	}
 
-	public ApartmentAssertion hasApartmentNumber(String apartmentNumber) {
+	public ApartmentAssertion hasApartmentNumberEqualTo(String apartmentNumber) {
 		Assertions.assertThat(actual).hasFieldOrPropertyWithValue("apartmentNumber", apartmentNumber);
 		return this;
 	}
@@ -44,18 +44,18 @@ public class ApartmentAssertion {
 	}
 
 	@SuppressWarnings("unchecked")
-	public ApartmentAssertion hasRoomsEqualsTo(Map<String, Double> roomsDefinition) {
-		Assertions.assertThat(actual).extracting("rooms").satisfies(roomsActual -> {
-			List<Space> rooms = (List<Space>) roomsActual;
-			Assertions.assertThat(rooms).hasSize(roomsDefinition.size());
+	public ApartmentAssertion hasSpacesEqualTo(Map<String, Double> spacesDefinition) {
+		Assertions.assertThat(actual).extracting("spaces").satisfies(spacesActual -> {
+			List<Space> spaces = (List<Space>) spacesActual;
+			Assertions.assertThat(spaces).hasSize(spacesDefinition.size());
 
-			roomsDefinition.forEach((name, squareMeter) ->
-				Assertions.assertThat(rooms).anySatisfy(hasRoomThat(name, squareMeter)));
+			spacesDefinition.forEach((name, squareMeter) ->
+				Assertions.assertThat(spaces).anySatisfy(hasSpaceThat(name, squareMeter)));
 		});
 		return this;
 	}
 
-	private Consumer<Space> hasRoomThat(String name, Double squareMeter) {
+	private Consumer<Space> hasSpaceThat(String name, Double squareMeter) {
 		return room -> Assertions.assertThat(room)
 			.hasFieldOrPropertyWithValue("name", name)
 			.hasFieldOrPropertyWithValue("squareMeter.size", squareMeter);

@@ -28,7 +28,7 @@ public class ApartmentApplicationService {
         .withCity(apartmentDto.city())
         .withCountry(apartmentDto.country())
         .withDescription(apartmentDto.description())
-        .withRoomsDefinition(apartmentDto.roomsDefinition())
+        .withSpacesDefinition(apartmentDto.spacesDefinition())
         .build();
 
     return apartmentRepository.save(apartment);

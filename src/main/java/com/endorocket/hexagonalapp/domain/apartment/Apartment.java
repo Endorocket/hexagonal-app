@@ -5,15 +5,7 @@ import com.endorocket.hexagonalapp.domain.booking.Booking;
 import com.endorocket.hexagonalapp.domain.space.Space;
 import com.endorocket.hexagonalapp.domain.space.SpacesFactory;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -38,18 +30,19 @@ public class Apartment {
   private String apartmentNumber;
 
   @ElementCollection
-  private List<Space> rooms;
+  @CollectionTable(name = "APARTMENT_ROOM", joinColumns = @JoinColumn(name = "APARTMENT_ID"))
+  private List<Space> spaces;
 
   private String description;
 
   private Apartment() {
   }
 
-  private Apartment(String ownerId, Address address, String apartmentNumber, List<Space> rooms, String description) {
+  private Apartment(String ownerId, Address address, String apartmentNumber, List<Space> spaces, String description) {
     this.ownerId = ownerId;
     this.address = address;
     this.apartmentNumber = apartmentNumber;
-    this.rooms = rooms;
+    this.spaces = spaces;
     this.description = description;
   }
 
@@ -79,7 +72,7 @@ public class Apartment {
     private String city;
     private String country;
     private String description;
-    private Map<String, Double> roomsDefinition;
+    private Map<String, Double> spacesDefinition;
 
     private Builder() {
     }
@@ -128,8 +121,8 @@ public class Apartment {
       return this;
     }
 
-    public Builder withRoomsDefinition(Map<String, Double> roomsDefinition) {
-      this.roomsDefinition = roomsDefinition;
+    public Builder withSpacesDefinition(Map<String, Double> spacesDefinition) {
+      this.spacesDefinition = spacesDefinition;
       return this;
     }
 
@@ -142,7 +135,7 @@ public class Apartment {
     }
 
     private List<Space> spaces() {
-      return SpacesFactory.create(roomsDefinition);
+      return SpacesFactory.create(spacesDefinition);
     }
 
   }
