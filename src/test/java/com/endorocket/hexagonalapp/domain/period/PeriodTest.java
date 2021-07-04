@@ -1,4 +1,4 @@
-package com.endorocket.hexagonalapp.domain.apartment;
+package com.endorocket.hexagonalapp.domain.period;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

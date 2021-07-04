@@ -1,5 +1,7 @@
 package com.endorocket.hexagonalapp.domain.apartment;
 
+import com.endorocket.hexagonalapp.domain.period.Period;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 

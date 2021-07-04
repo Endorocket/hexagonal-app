@@ -2,6 +2,7 @@ package com.endorocket.hexagonalapp.domain.apartment;
 
 import com.endorocket.hexagonalapp.domain.event.EventIdFactory;
 import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
+import com.endorocket.hexagonalapp.domain.period.Period;
 
 public class ApartmentEventsPublisher {
   private final EventIdFactory eventIdFactory;

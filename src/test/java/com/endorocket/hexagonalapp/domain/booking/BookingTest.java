@@ -1,6 +1,6 @@
 package com.endorocket.hexagonalapp.domain.booking;
 
-import com.endorocket.hexagonalapp.domain.apartment.Period;
+import com.endorocket.hexagonalapp.domain.period.Period;
 import com.endorocket.hexagonalapp.domain.eventchannel.EventChannel;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;

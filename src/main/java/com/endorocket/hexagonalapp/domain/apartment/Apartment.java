@@ -2,6 +2,7 @@ package com.endorocket.hexagonalapp.domain.apartment;
 
 import com.endorocket.hexagonalapp.domain.address.Address;
 import com.endorocket.hexagonalapp.domain.booking.Booking;
+import com.endorocket.hexagonalapp.domain.period.Period;
 import com.endorocket.hexagonalapp.domain.space.Space;
 import com.endorocket.hexagonalapp.domain.space.SpacesFactory;
 

@@ -73,7 +73,7 @@ class ApartmentBookingHistoryEventListenerIntegrationTest {
                   .isStart()
                   .hasOwnerIdEqualTo(OWNER_ID)
                   .hasTenantIdEqualTo(TENANT_ID)
-                  .hasBookingPeriodThatHas(START, END));
+                  .hasPeriodThatHas(START, END));
     });
   }
 

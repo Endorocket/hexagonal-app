@@ -2,6 +2,7 @@ package com.endorocket.hexagonalapp.domain.apartment;
 
 import com.endorocket.hexagonalapp.domain.booking.Booking;
 import com.endorocket.hexagonalapp.domain.booking.BookingAssertion;
+import com.endorocket.hexagonalapp.domain.period.Period;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

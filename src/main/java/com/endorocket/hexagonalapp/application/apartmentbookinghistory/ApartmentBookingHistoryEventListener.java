@@ -4,7 +4,7 @@ import com.endorocket.hexagonalapp.domain.apartment.ApartmentBooked;
 import com.endorocket.hexagonalapp.domain.apartmentbookinghistory.ApartmentBooking;
 import com.endorocket.hexagonalapp.domain.apartmentbookinghistory.ApartmentBookingHistory;
 import com.endorocket.hexagonalapp.domain.apartmentbookinghistory.ApartmentBookingHistoryRepository;
-import com.endorocket.hexagonalapp.domain.apartmentbookinghistory.BookingPeriod;
+import com.endorocket.hexagonalapp.domain.period.Period;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
@@ -20,10 +20,10 @@ public class ApartmentBookingHistoryEventListener {
 	@EventListener
 	public void consume(ApartmentBooked apartmentBooked) {
 		ApartmentBookingHistory apartmentBookingHistory = getApartmentBookingHistoryFor(apartmentBooked.getApartmentId());
-		BookingPeriod bookingPeriod = new BookingPeriod(apartmentBooked.getPeriodStart(), apartmentBooked.getPeriodEnd());
+		Period period = new Period(apartmentBooked.getPeriodStart(), apartmentBooked.getPeriodEnd());
 
 		apartmentBookingHistory.add(ApartmentBooking.start(
-			apartmentBooked.getEventCreationDateTime(), apartmentBooked.getOwnerId(), apartmentBooked.getTenantId(), bookingPeriod));
+			apartmentBooked.getEventCreationDateTime(), apartmentBooked.getOwnerId(), apartmentBooked.getTenantId(), period));
 
 		apartmentBookingHistoryRepository.save(apartmentBookingHistory);
 	}

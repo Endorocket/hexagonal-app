@@ -2,7 +2,7 @@ package com.endorocket.hexagonalapp.application.apartmentbookinghistory;
 
 import com.endorocket.hexagonalapp.domain.apartment.ApartmentBooked;
 import com.endorocket.hexagonalapp.domain.apartment.ApartmentBookedTestFactory;
-import com.endorocket.hexagonalapp.domain.apartment.Period;
+import com.endorocket.hexagonalapp.domain.period.Period;
 import com.endorocket.hexagonalapp.domain.apartmentbookinghistory.*;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -54,7 +54,7 @@ class ApartmentBookingHistoryEventListenerTest {
 					ApartmentBookingAssertion.assertThat(actualBooking)
 						.hasOwnerIdEqualTo(OWNER_ID)
 						.hasTenantIdEqualTo(TENANT_ID)
-						.hasBookingPeriodThatHas(START, END));
+						.hasPeriodThatHas(START, END));
 		});
 	}
 
@@ -77,7 +77,7 @@ class ApartmentBookingHistoryEventListenerTest {
 	private ApartmentBookingHistory getApartmentBookingHistory() {
 		ApartmentBookingHistory apartmentBookingHistory = new ApartmentBookingHistory(APARTMENT_ID);
 		apartmentBookingHistory.add(ApartmentBooking.start(
-			LocalDateTime.now(), OWNER_ID, "3567", new BookingPeriod(LocalDate.now(), LocalDate.now().plusDays(1))));
+			LocalDateTime.now(), OWNER_ID, "3567", new Period(LocalDate.now(), LocalDate.now().plusDays(1))));
 		return apartmentBookingHistory;
 	}
 
