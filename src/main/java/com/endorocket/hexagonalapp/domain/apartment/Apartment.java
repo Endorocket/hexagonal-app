@@ -9,6 +9,7 @@ import com.endorocket.hexagonalapp.domain.space.SpacesFactory;
 import javax.persistence.*;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -62,6 +63,21 @@ public class Apartment {
       return null;
     }
     return id.toString();
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Apartment apartment = (Apartment) o;
+    return Objects.equals(ownerId, apartment.ownerId)
+        && Objects.equals(address, apartment.address)
+        && Objects.equals(apartmentNumber, apartment.apartmentNumber);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(ownerId, address, apartmentNumber);
   }
 
   public static class Builder {
@@ -138,6 +154,5 @@ public class Apartment {
     private List<Space> spaces() {
       return SpacesFactory.create(spacesDefinition);
     }
-
   }
 }

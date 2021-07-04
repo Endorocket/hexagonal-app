@@ -1,8 +1,11 @@
 package com.endorocket.hexagonalapp.domain.address;
 
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.Embeddable;
 
 @Embeddable
+@EqualsAndHashCode
 @SuppressWarnings("PMD.UnusedPrivateField")
 public class Address {
   private String street;
